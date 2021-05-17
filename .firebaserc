@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "covidhelp-7598c"
+  },
+  "targets": {
+    "covidhelp-7598c": {
+      "hosting": {
+        "covidhelpsuperadmin": [
+          "covidhelpsuperadmin"
+        ]
+      }
+    }
+  }
+}
