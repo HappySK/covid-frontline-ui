@@ -90,7 +90,7 @@ function AdminLogin() {
               </div>
               <p>
                 If you want to login as Super Admin?{" "}
-                <a href="/">Super Admin Login</a>
+                <a href="/login">Super Admin Login</a>
               </p>
             </div>
           </form>

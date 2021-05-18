@@ -47,11 +47,14 @@ import AddResource from "./AdminComponents/Resource/add_resource";
 import EditResource from "./AdminComponents/Resource/edit_resource";
 import ViewResource from "./AdminComponents/Resource/view_resource";
 import Resources from "./AdminComponents/Resource/resources";
+
+import Empty from "./empty";
 function Routing() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Login}></Route>
+        <Route exact path="/" component={Empty}></Route>
+        <Route exact path="/login" component={Login}></Route>
         <Route path="/dashboard" exact component={Dashboard} />
         {/* Admin Users */}
         <Route path="/add_adminuser" exact component={AddAdminUser} />
