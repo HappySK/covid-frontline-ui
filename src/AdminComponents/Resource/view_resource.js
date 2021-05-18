@@ -4,7 +4,7 @@ import Sidebar from "../../AdminComponents/sidebar";
 import SimpleReactValidator from "simple-react-validator";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
-class ViewResource extends React.Component {
+class ViewResource1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -181,7 +181,7 @@ class ViewResource extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <Link to="/resources">
+                  <Link to="/resources1">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>
@@ -219,4 +219,4 @@ class ViewResource extends React.Component {
   }
 }
 
-export default ViewResource;
+export default ViewResource1;

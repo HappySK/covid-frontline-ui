@@ -66,6 +66,13 @@ function Sidebar() {
                     Blood Group
                   </Link>
                 </MenuItem>
+
+                <MenuItem>
+                  {" "}
+                  <Link to="/resources" style={{ color: "white" }}>
+                    Resources
+                  </Link>
+                </MenuItem>
               </SubMenu>
               <SubMenu
                 title="CMS"
@@ -90,12 +97,12 @@ function Sidebar() {
                   </Link>
                 </MenuItem>
               </SubMenu>
-              {/* <MenuItem>
+              <MenuItem>
                 <Link to="/change_password">
                   <i class="fa fa-book fa-fw" aria-hidden="true"></i> Change
                   Password
                 </Link>
-              </MenuItem> */}
+              </MenuItem>
               {/* <SubMenu title="Component 2">
               <MenuItem>Component 2.1</MenuItem>
               <MenuItem>Component 2.2</MenuItem>

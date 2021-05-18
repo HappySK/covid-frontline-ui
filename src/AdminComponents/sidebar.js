@@ -45,7 +45,7 @@ function Sidebar() {
                 </Link>
               </MenuItem> */}
               <MenuItem>
-                <Link to="/resources">
+                <Link to="/resources1">
                   <i class="fa fa-book fa-fw" aria-hidden="true"></i> Resources
                 </Link>
               </MenuItem>

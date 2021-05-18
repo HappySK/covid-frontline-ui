@@ -22,6 +22,32 @@ function Changepassword() {
     setPassword({ passwordnew: e.target.value });
   };
 
+  // const updatepassword = (e) => {
+  //   e.preventDefault();
+
+  //   axios
+  //     .post("http://localhost:5050/superadmin/superadminchangepassword", {
+  //       userid: _id,
+  //       password: Password.password,
+  //       passwordnew: Password.passwordnew,
+  //     })
+
+  //     .then(function (response) {
+  //       // handle success
+
+  //       if (response.data) {
+  //         alert(response.data);
+  //       } else {
+  //         setPassword(response.data);
+  //       }
+  //     })
+  //     .catch(function (error) {
+  //       // handle error
+  //       console.log(error);
+  //       console.log("fsdfsdfsdf");
+  //     });
+  // };
+
   const updatepassword = (e) => {
     e.preventDefault();
 
@@ -34,7 +60,6 @@ function Changepassword() {
           passwordnew: Password.passwordnew,
         }
       )
-
       .then(function (response) {
         // handle success
 
@@ -47,7 +72,6 @@ function Changepassword() {
       .catch(function (error) {
         // handle error
         console.log(error);
-        console.log("fsdfsdfsdf");
       });
   };
 
@@ -63,7 +87,6 @@ function Changepassword() {
                 className="form-contact contact_form"
                 onSubmit={updatepassword}
               >
-                {name}
                 <div className="row m-0">
                   <div className="col-lg-12 p-0">
                     <div className="form-group tags-field row m-0">

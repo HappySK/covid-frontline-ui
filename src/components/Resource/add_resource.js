@@ -1,19 +1,19 @@
 import axios from "axios";
 import React from "react";
-import Sidebar from "../../AdminComponents/sidebar";
-import Loader from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import Sidebar from "../../components/sidebar";
 import SimpleReactValidator from "simple-react-validator";
-class EditResource1 extends React.Component {
+import { isAutheticated, signout } from "../../auth";
+class AddResource extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
       addedby: "",
+      data: Date.now(),
       mobile_message: "",
       validError: false,
-      loading: false,
     };
+
     this.handleChange = this.handleChange.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -103,26 +103,6 @@ class EditResource1 extends React.Component {
       },
     });
   }
-  componentDidMount() {
-    const { _id } = this.props.match.params;
-
-    console.log(_id);
-    axios
-      .get(`https://api.covidfrontline.net/resource/update_resource/${_id}`)
-      .then((res) => {
-        console.log(res.data);
-        const menu = {
-          name: res.data.name,
-          addedby: res.data.addedby,
-        };
-        console.log(menu.name);
-        this.setState({
-          name: menu.name,
-          addedby: menu.addedby,
-          loading: true,
-        });
-      });
-  }
 
   handleChange(event) {
     this.setState({
@@ -130,24 +110,25 @@ class EditResource1 extends React.Component {
     });
   }
 
-  handleSubmit(e) {
-    const { _id } = this.props.match.params;
-
-    e.preventDefault();
+  handleSubmit(event) {
+    event.preventDefault();
     if (this.validator.allValid()) {
+      const {
+        user: { _id },
+      } = isAutheticated();
       const menu = {
         name: this.state.name,
-        addedby: this.state.addedby,
+        addedby: _id,
       };
-      console.log(this.state.name, this.state.addedby);
+      console.log(menu);
       axios
-        .put(
-          `https://api.covidfrontline.net/resource/update_resource_patch/${_id}`,
-          menu
-        )
-        .then((res) => console.log(res.data));
-      this.forceUpdate();
-      this.props.history.push("/resources1");
+        .post(`https://api.covidfrontline.net/resource/addresource`, menu)
+        .then((res) => {
+          console.log(res);
+          console.log(res.data);
+        });
+
+      this.props.history.push("/resources");
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -160,74 +141,54 @@ class EditResource1 extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Edit Resource</div>
-            {this.state.loading ? (
-              <div className="admin-data">
-                <div className="col-lg-12 p-0 text-right mb-30">
-                  <Link to="/resources1">
-                    <button className="button button-contactForm boxed-btn">
-                      Back
-                    </button>
-                  </Link>
-                </div>
-                <div className="container-fluid p-0">
-                  <form
-                    className="form-contact contact_form"
-                    onSubmit={this.handleSubmit}
-                  >
-                    <div className="row m-0">
-                      <div className="col-lg-12 p-0"></div>
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0"> Name</label>
-                          <input
-                            className="form-control col-lg-10"
-                            name="name"
-                            onChange={this.handleChange}
-                            value={this.state.name}
-                            type="text"
-                            onfocus="this.placeholder = 'Menu Name'"
-                            onblur="this.placeholder = ''"
-                            placeholder=""
-                          />
-                          {this.validator.message(
-                            " Name",
-                            this.state.name,
-                            "required|whitespace|min:1|max:20"
-                          )}
-                          {this.state.mobile_message}
-                        </div>
+            <div className="admin-head">Resource - Add New</div>
+            <div className="admin-data">
+              <div className="container-fluid p-0">
+                <form
+                  className="form-contact contact_form"
+                  onSubmit={this.handleSubmit}
+                >
+                  <div className="row m-0">
+                    <div className="col-lg-12 p-0"></div>
+                    <div className="col-lg-12 p-0">
+                      <div className="form-group tags-field row m-0">
+                        <label className="col-lg-2 p-0">Name</label>
+                        <input
+                          className="form-control col-lg-10"
+                          name="name"
+                          onChange={this.handleChange}
+                          value={this.state.name}
+                          type="text"
+                          onfocus="this.placeholder = 'Menu Name'"
+                          onblur="this.placeholder = ''"
+                          placeholder="Alt Text"
+                        />
+                        {this.validator.message(
+                          "Name",
+                          this.state.name,
+                          "required|whitespace|min:1|max:20"
+                        )}
+                        {this.state.mobile_message}
                       </div>
+                    </div>
 
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field  row m-0">
-                          <label className="col-lg-2 p-0" />
-                          <div className="col-lg-6 p-0">
-                            <button
-                              className="button button-contactForm boxed-btn"
-                              type="submit"
-                            >
-                              Save
-                            </button>
-                          </div>
+                    <div className="col-lg-12 p-0">
+                      <div className="form-group tags-field  row m-0">
+                        <label className="col-lg-2 p-0" />
+                        <div className="col-lg-6 p-0">
+                          <button
+                            className="button button-contactForm boxed-btn"
+                            type="submit"
+                          >
+                            Save
+                          </button>
                         </div>
                       </div>
                     </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
-            ) : (
-              <div style={{ marginLeft: "500px", marginTop: "200px" }}>
-                {" "}
-                <Loader
-                  type="Circles"
-                  color="#f39510"
-                  height={100}
-                  width={100}
-                  timeout={3000} //3 secs
-                />
-              </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
@@ -235,4 +196,4 @@ class EditResource1 extends React.Component {
   }
 }
 
-export default EditResource1;
+export default AddResource;

@@ -1,22 +1,22 @@
 import axios from "axios";
 import React from "react";
-import Sidebar from "../../AdminComponents/sidebar";
+import Sidebar from "../../components/sidebar";
+import SimpleReactValidator from "simple-react-validator";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
-import SimpleReactValidator from "simple-react-validator";
-class EditResource1 extends React.Component {
+class ViewResource extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
-      addedby: "",
+
       mobile_message: "",
       validError: false,
       loading: false,
     };
     this.handleChange = this.handleChange.bind(this);
-
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.menuNameChange = this.menuNameChange.bind(this);
     this.validator = new SimpleReactValidator({
       className: "text-danger",
       validators: {
@@ -132,25 +132,42 @@ class EditResource1 extends React.Component {
 
   handleSubmit(e) {
     const { _id } = this.props.match.params;
-
     e.preventDefault();
     if (this.validator.allValid()) {
       const menu = {
-        name: this.state.name,
-        addedby: this.state.addedby,
+        menu: this.state.menu,
+        date: Date.now(),
       };
-      console.log(this.state.name, this.state.addedby);
       axios
         .put(
-          `https://api.covidfrontline.net/resource/update_resource_patch/${_id}`,
+          `https://deepthoughts-nodejs.herokuapp.com/admin/update_menu_patch/${_id}`,
           menu
         )
         .then((res) => console.log(res.data));
-      this.forceUpdate();
-      this.props.history.push("/resources1");
+
+      this.props.history.push("/menu");
     } else {
       this.validator.showMessages();
       this.forceUpdate();
+    }
+  }
+  menuNameChange(e) {
+    this.setState({
+      menu: e.target.value,
+    });
+    if (this.state.validError != true) {
+      axios
+        .get(`https://deepthoughts-nodejs.herokuapp.com/admin/menus`)
+        .then((res) => {
+          if (this.state.menu > 1) {
+            this.setState({
+              mobile_message: "Menu already exist",
+              validError: false,
+            });
+          } else {
+            this.setState({ mobile_message: "", validError: true });
+          }
+        });
     }
   }
 
@@ -160,60 +177,27 @@ class EditResource1 extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Edit Resource</div>
+            <div className="admin-head">Resource - View</div>
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <Link to="/resources1">
+                  <Link to="/resources">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>
                   </Link>
                 </div>
-                <div className="container-fluid p-0">
-                  <form
-                    className="form-contact contact_form"
-                    onSubmit={this.handleSubmit}
-                  >
-                    <div className="row m-0">
-                      <div className="col-lg-12 p-0"></div>
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0"> Name</label>
-                          <input
-                            className="form-control col-lg-10"
-                            name="name"
-                            onChange={this.handleChange}
-                            value={this.state.name}
-                            type="text"
-                            onfocus="this.placeholder = 'Menu Name'"
-                            onblur="this.placeholder = ''"
-                            placeholder=""
-                          />
-                          {this.validator.message(
-                            " Name",
-                            this.state.name,
-                            "required|whitespace|min:1|max:20"
-                          )}
-                          {this.state.mobile_message}
-                        </div>
-                      </div>
-
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field  row m-0">
-                          <label className="col-lg-2 p-0" />
-                          <div className="col-lg-6 p-0">
-                            <button
-                              className="button button-contactForm boxed-btn"
-                              type="submit"
-                            >
-                              Save
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+                <div className="table-responsive admin-table demo">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Name</b>
+                        </td>
+                        <td>{this.state.name}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             ) : (
@@ -235,4 +219,4 @@ class EditResource1 extends React.Component {
   }
 }
 
-export default EditResource1;
+export default ViewResource;

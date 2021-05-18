@@ -3,7 +3,7 @@ import React from "react";
 import Sidebar from "../../AdminComponents/sidebar";
 import SimpleReactValidator from "simple-react-validator";
 import { isAutheticated, signout } from "../../auth";
-class AddResource extends React.Component {
+class AddResource1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -128,7 +128,7 @@ class AddResource extends React.Component {
           console.log(res.data);
         });
 
-      this.props.history.push("/resources");
+      this.props.history.push("/resources1");
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -196,4 +196,4 @@ class AddResource extends React.Component {
   }
 }
 
-export default AddResource;
+export default AddResource1;

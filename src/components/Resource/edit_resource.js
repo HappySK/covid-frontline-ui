@@ -1,10 +1,10 @@
 import axios from "axios";
 import React from "react";
-import Sidebar from "../../AdminComponents/sidebar";
+import Sidebar from "../../components/sidebar";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
-class EditResource1 extends React.Component {
+class EditResource extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -147,7 +147,7 @@ class EditResource1 extends React.Component {
         )
         .then((res) => console.log(res.data));
       this.forceUpdate();
-      this.props.history.push("/resources1");
+      this.props.history.push("/resources");
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -164,7 +164,7 @@ class EditResource1 extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <Link to="/resources1">
+                  <Link to="/resources">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>
@@ -235,4 +235,4 @@ class EditResource1 extends React.Component {
   }
 }
 
-export default EditResource1;
+export default EditResource;

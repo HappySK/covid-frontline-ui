@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../../AdminComponents/sidebar";
+import Sidebar from "../../components/sidebar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
@@ -7,7 +7,7 @@ import Loader from "react-loader-spinner";
 import ReactPaginate from "react-paginate";
 import { isAutheticated, signout } from "../../auth";
 const PER_PAGE = 10;
-class Resources1 extends React.Component {
+class Resources extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,14 +25,14 @@ class Resources1 extends React.Component {
     } = isAutheticated();
     console.log(_id);
     axios
-      .get(`https://api.covidfrontline.net/resource/resources/${_id}`)
+      .get(`https://api.covidfrontline.net/resource/allresources`)
       .then((res) => {
         const resources = res.data;
         console.log(resources);
         this.setState({ resources, loading: true });
       });
     this.unsubscribe = axios
-      .get(`https://api.covidfrontline.net/resource/resources/${_id}`)
+      .get(`https://api.covidfrontline.net/resource/allresources`)
       .then((res) => {
         const resources = res.data;
         console.log(resources);
@@ -113,7 +113,7 @@ class Resources1 extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <Link to="/add_resource1">
+                  <Link to="/add_resource">
                     <button className="button button-contactForm boxed-btn">
                       + Add New
                     </button>
@@ -165,4 +165,4 @@ class Resources1 extends React.Component {
   }
 }
 
-export default Resources1;
+export default Resources;

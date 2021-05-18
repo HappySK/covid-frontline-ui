@@ -42,11 +42,17 @@ import AdminLogin from "./AdminComponents/login";
 import AdminDashboard from "./AdminComponents/dashboard";
 import AdminChangepassword from "./AdminComponents/changepassword";
 
+//Resource1
+import AddResource1 from "./AdminComponents/Resource/add_resource";
+import EditResource1 from "./AdminComponents/Resource/edit_resource";
+import ViewResource1 from "./AdminComponents/Resource/view_resource";
+import Resources1 from "./AdminComponents/Resource/resources";
+
 //Resource
-import AddResource from "./AdminComponents/Resource/add_resource";
-import EditResource from "./AdminComponents/Resource/edit_resource";
-import ViewResource from "./AdminComponents/Resource/view_resource";
-import Resources from "./AdminComponents/Resource/resources";
+import AddResource from "./components/Resource/add_resource";
+import EditResource from "./components/Resource/edit_resource";
+import ViewResource from "./components/Resource/view_resource";
+import Resources from "./components/Resource/resources";
 
 import Empty from "./empty";
 
@@ -62,6 +68,7 @@ function Routing() {
         <Route exact path="/login" component={Empty}></Route>
         <Route exact path="/superadminlogin" component={Login}></Route>
         <Route path="/dashboard" exact component={Dashboard} />
+        <Route path="/change_password" exact component={Changepassword} />
         {/* Admin Users */}
         <Route path="/add_adminuser" exact component={AddAdminUser} />
         <Route path="/adminuser" exact component={AdminUsers} />
@@ -114,6 +121,20 @@ function Routing() {
           exact
           component={Changepassword}
         />
+        {/* Resource */}
+        <PrivateRoute path="/add_resource1" exact component={AddResource1} />
+        <PrivateRoute
+          path="/edit_resource1/:_id"
+          exact
+          component={EditResource1}
+        />
+        <PrivateRoute
+          path="/view_resource1/:_id"
+          exact
+          component={ViewResource1}
+        />
+        <PrivateRoute path="/resources1" exact component={Resources1} />
+
         {/* Resource */}
         <PrivateRoute path="/add_resource" exact component={AddResource} />
         <PrivateRoute
