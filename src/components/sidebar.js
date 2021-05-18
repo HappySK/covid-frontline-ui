@@ -50,34 +50,34 @@ function Sidebar() {
               >
                 <MenuItem>
                   {" "}
-                  <a href="/countries" style={{ color: "white" }}>
+                  <Link to="/countries" style={{ color: "white" }}>
                     Countries
-                  </a>
+                  </Link>
                 </MenuItem>
                 <MenuItem>
                   {" "}
-                  <a href="/cities" style={{ color: "white" }}>
+                  <Link to="/cities" style={{ color: "white" }}>
                     Cities
-                  </a>
+                  </Link>
                 </MenuItem>
 
                 <MenuItem>
                   {" "}
-                  <a
-                    href="/privacypolicypage/60a2573033be630015d6fcad"
+                  <Link
+                    to="/privacypolicypage/60a2573033be630015d6fcad"
                     style={{ color: "white" }}
                   >
                     Privacy Policy
-                  </a>
+                  </Link>
                 </MenuItem>
                 <MenuItem>
                   {" "}
-                  <a
-                    href="/termsofservicepage/60a25d9c33be630015d6fcaf"
+                  <Link
+                    to="/termsofservicepage/60a25d9c33be630015d6fcaf"
                     style={{ color: "white" }}
                   >
                     Terms of Service
-                  </a>
+                  </Link>
                 </MenuItem>
               </SubMenu>
               {/* <MenuItem>
@@ -96,15 +96,15 @@ function Sidebar() {
               >
                 <MenuItem>
                   {" "}
-                  <a href="/about_section_2" style={{ color: "white" }}>
+                  <Link to="/about_section_2" style={{ color: "white" }}>
                     Values
-                  </a>
+                  </Link>
                 </MenuItem>
                 <MenuItem>
                   {" "}
-                  <a href="/about_section_3" style={{ color: "white" }}>
+                  <Link to="/about_section_3" style={{ color: "white" }}>
                     Leadership
-                  </a>
+                  </Link>
                 </MenuItem>
               </SubMenu>
 
@@ -114,17 +114,17 @@ function Sidebar() {
               >
                 <MenuItem>
                   {" "}
-                  <a href="/blogcategory" style={{ color: "white" }}>
+                  <Link to="/blogcategory" style={{ color: "white" }}>
                     Category
-                  </a>{" "}
+                  </link>{" "}
                 </MenuItem>
                 <MenuItem>
                   {" "}
                   <li>
                     {" "}
-                    <a href="/article" style={{ color: "white" }}>
+                    <Link to="/article" style={{ color: "white" }}>
                       Articles
-                    </a>{" "}
+                    </Link>{" "}
                   </li>
                 </MenuItem>
               </SubMenu>

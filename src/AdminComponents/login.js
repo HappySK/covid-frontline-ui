@@ -29,7 +29,7 @@ function AdminLogin() {
 
         sessionStorage.setItem("user", JSON.stringify(res.data));
 
-        history.push("/#/admindashboard");
+        history.push("/admindashboard");
       });
 
     // setUser({
@@ -90,7 +90,7 @@ function AdminLogin() {
               </div>
               <p>
                 If you want to login as Super Admin?{" "}
-                <a href="/superadminlogin">Super Admin Login</a>
+                <Link to="/superadminlogin">Super Admin Login</Link>
               </p>
             </div>
           </form>

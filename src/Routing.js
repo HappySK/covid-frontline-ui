@@ -53,79 +53,75 @@ function Routing() {
   return (
     <HashRouter>
       <Switch>
-        <Route exact path="/#/" component={Empty}></Route>
-        <Route exact path="/#/login" component={Empty}></Route>
-        <Route exact path="/#/superadminlogin" component={Login}></Route>
-        <Route path="/#/dashboard" exact component={Dashboard} />
+        <Route exact path="/" component={Empty}></Route>
+        <Route exact path="/login" component={Empty}></Route>
+        <Route exact path="/superadminlogin" component={Login}></Route>
+        <Route path="/dashboard" exact component={Dashboard} />
         {/* Admin Users */}
-        <Route path="/#/add_adminuser" exact component={AddAdminUser} />
-        <Route path="/#/adminuser" exact component={AdminUsers} />
-        <Route path="/#/edit_adminuser/:_id" exact component={EditAdminUsers} />
+        <Route path="/add_adminuser" exact component={AddAdminUser} />
+        <Route path="/adminuser" exact component={AdminUsers} />
+        <Route path="/edit_adminuser/:_id" exact component={EditAdminUsers} />
         {/* Cities */}
-        <Route path="/#/add_city" exact component={AddCity} />
-        <Route path="/#/cities" exact component={City} />
-        <Route path="/#/edit_city/:_id" exact component={EditCity} />
+        <Route path="/add_city" exact component={AddCity} />
+        <Route path="/cities" exact component={City} />
+        <Route path="/edit_city/:_id" exact component={EditCity} />
         {/* Countries */}
-        <Route path="/#/add_country" exact component={AddCountry} />
-        <Route path="/#/countries" exact component={Country} />
-        <Route path="/#/edit_country/:_id" exact component={EditCountry} />
+        <Route path="/add_country" exact component={AddCountry} />
+        <Route path="/countries" exact component={Country} />
+        <Route path="/edit_country/:_id" exact component={EditCountry} />
         {/* PrivacyPolicy */}
-        <Route path="/#/add_privacypolicy" exact component={AddPrivacyPolicy} />
-        <Route path="/#/privacypolicy" exact component={PrivacyPolicy} />
+        <Route path="/add_privacypolicy" exact component={AddPrivacyPolicy} />
+        <Route path="/privacypolicy" exact component={PrivacyPolicy} />
         <Route
-          path="/#/edit_privacypolicy/:_id"
+          path="/edit_privacypolicy/:_id"
           exact
           component={EditPrivacyPolicy}
         />
         <Route
-          path="/#/privacypolicypage/60a2573033be630015d6fcad"
+          path="/privacypolicypage/60a2573033be630015d6fcad"
           exact
           component={PrivacyPolicyPage}
         />
 
         {/* terms of service */}
+        <Route path="/add_termsofservice" exact component={AddTermsOfservice} />
+        <Route path="/termsofservice" exact component={TermsOfservice} />
         <Route
-          path="/#/add_termsofservice"
-          exact
-          component={AddTermsOfservice}
-        />
-        <Route path="/#/termsofservice" exact component={TermsOfservice} />
-        <Route
-          path="/#/edit_termsofservice/:_id"
+          path="/edit_termsofservice/:_id"
           exact
           component={EditTermsOfservice}
         />
         <Route
-          path="/#/termsofservicepage/60a25d9c33be630015d6fcaf"
+          path="/termsofservicepage/60a25d9c33be630015d6fcaf"
           exact
           component={TermsOfservicePage}
         />
         {/* Admin */}
         <Route
-          path="/#/adminchange_password"
+          path="/adminchange_password"
           exact
           component={AdminChangepassword}
         />
-        <Route exact path="/#/adminlogin" component={AdminLogin}></Route>
-        <Route path="/#/admindashboard" exact component={AdminDashboard} />
+        <Route exact path="/adminlogin" component={AdminLogin}></Route>
+        <Route path="/admindashboard" exact component={AdminDashboard} />
         <PrivateRoute
-          path="/#/adminchangepassword"
+          path="/adminchangepassword"
           exact
           component={Changepassword}
         />
         {/* Resource */}
-        <PrivateRoute path="/#/add_resource" exact component={AddResource} />
+        <PrivateRoute path="/add_resource" exact component={AddResource} />
         <PrivateRoute
-          path="/#/edit_resource/:_id"
+          path="/edit_resource/:_id"
           exact
           component={EditResource}
         />
         <PrivateRoute
-          path="/#/view_resource/:_id"
+          path="/view_resource/:_id"
           exact
           component={ViewResource}
         />
-        <PrivateRoute path="/#/resources" exact component={Resources} />
+        <PrivateRoute path="/resources" exact component={Resources} />
       </Switch>
     </HashRouter>
   );

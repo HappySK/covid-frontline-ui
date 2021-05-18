@@ -83,11 +83,11 @@ class Resources extends React.Component {
               <td>{resource.name}</td>
 
               <td>
-                <Link to={`/#/view_resource/${resource._id}`}>
+                <Link to={`/view_resource/${resource._id}`}>
                   <span className="btn">View</span>
                 </Link>
 
-                <Link to={`/#/edit_resource/${resource._id}`}>
+                <Link to={`/edit_resource/${resource._id}`}>
                   <span className="btn">Edit</span>
                 </Link>
                 <span
@@ -113,11 +113,11 @@ class Resources extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <a href="/#/add_resource">
+                  <Link to="/add_resource">
                     <button className="button button-contactForm boxed-btn">
                       + Add New
                     </button>
-                  </a>
+                  </Link>
                 </div>
                 <div className="table-responsive admin-table">
                   <table>

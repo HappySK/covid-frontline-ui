@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import Sidebar from "../../components/sidebar";
 import Loader from "react-loader-spinner";
+import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
 class EditAdminUsers extends React.Component {
   constructor(props) {
@@ -170,11 +171,11 @@ class EditAdminUsers extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <a href="/menu">
+                  <Link to="/menu">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>
-                  </a>
+                  </Link>
                 </div>
                 <div className="container-fluid p-0">
                   <form

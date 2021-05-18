@@ -105,11 +105,11 @@ class Country extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <a href="/add_country">
+                  <Link to="/add_country">
                     <button className="button button-contactForm boxed-btn">
                       + Add New
                     </button>
-                  </a>
+                  </Link>
                 </div>
                 <div className="table-responsive admin-table">
                   <table>

@@ -3,6 +3,7 @@ import React from "react";
 import Sidebar from "../../components/sidebar";
 import Loader from "react-loader-spinner";
 import SimpleReactValidator from "simple-react-validator";
+import { Link } from "react-router-dom";
 import { isAutheticated, signout } from "../../auth";
 class EditCity extends React.Component {
   constructor(props) {
@@ -172,11 +173,11 @@ class EditCity extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <a href="/cities">
+                  <Link to="/cities">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>
-                  </a>
+                  </Link>
                 </div>
                 <div className="container-fluid p-0">
                   <form

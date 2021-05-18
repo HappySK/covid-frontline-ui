@@ -93,7 +93,7 @@ function Login() {
 
               <p>
                 If you want to login as Admin ?{" "}
-                <a href="/adminlogin">Admin Login</a>
+                <Link to="/adminlogin">Admin Login</Link>
               </p>
             </div>
           </form>
