@@ -170,7 +170,7 @@ function Sidebar() {
                   to=""
                   onClick={() => {
                     signout(() => {
-                      history.push("/");
+                      history.push("/adminlogin");
                     });
                   }}
                 >
