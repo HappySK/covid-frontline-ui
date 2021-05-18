@@ -49,6 +49,11 @@ import ViewResource from "./AdminComponents/Resource/view_resource";
 import Resources from "./AdminComponents/Resource/resources";
 
 import Empty from "./empty";
+
+//Blood Group
+import AddBloodGroup from "./components/BloodGroup/add_bloodgroup";
+import EditBloodGroup from "./components/BloodGroup/edit_bloodgroup";
+import BloodGroup from "./components/BloodGroup/bloodgroup";
 function Routing() {
   return (
     <HashRouter>
@@ -122,6 +127,16 @@ function Routing() {
           component={ViewResource}
         />
         <PrivateRoute path="/resources" exact component={Resources} />
+
+        {/* Blood Group */}
+        <PrivateRoute path="/add_bloodgroup" exact component={AddBloodGroup} />
+        <PrivateRoute
+          path="/edit_bloodgroup/:_id"
+          exact
+          component={EditBloodGroup}
+        />
+
+        <PrivateRoute path="/bloodgroup" exact component={BloodGroup} />
       </Switch>
     </HashRouter>
   );

@@ -1,26 +1,22 @@
 import axios from "axios";
 import React from "react";
 import Sidebar from "../../components/sidebar";
-import SimpleReactValidator from "simple-react-validator";
-import PropTypes from "prop-types";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import Loader from "react-loader-spinner";
-class TermsOfservicePage extends React.Component {
+import { Link } from "react-router-dom";
+import SimpleReactValidator from "simple-react-validator";
+class EditBloodGroup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: "",
-      theme: "snow",
+      bloodgroup: "",
+
       mobile_message: "",
       validError: false,
       loading: false,
     };
     this.handleChange = this.handleChange.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.onChange = this.onChange.bind(this);
-
     this.validator = new SimpleReactValidator({
       className: "text-danger",
       validators: {
@@ -108,51 +104,48 @@ class TermsOfservicePage extends React.Component {
     });
   }
   componentDidMount() {
+    const { _id } = this.props.match.params;
+
+    console.log(_id);
     axios
-      .get(
-        `https://api.covidfrontline.net/termsofservices/update_termsofservices/60a25d9c33be630015d6fcaf`
-      )
+      .get(`https://api.covidfrontline.net/bloodgroup/update_bloodgroup/${_id}`)
       .then((res) => {
         console.log(res.data);
-        const private1 = {
-          description: res.data.description,
+        const menu = {
+          bloodgroup: res.data.bloodgroup,
         };
-
+        console.log(menu.name);
         this.setState({
-          description: private1.description,
+          bloodgroup: menu.bloodgroup,
+
           loading: true,
         });
       });
   }
 
-  handleChange(html) {
-    this.setState({ description: html });
-  }
-  onChange(event) {
+  handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
 
-  handleThemeChange(newTheme) {
-    if (newTheme === "core") newTheme = null;
-    this.setState({ theme: newTheme });
-  }
-
   handleSubmit(e) {
     const { _id } = this.props.match.params;
+
     e.preventDefault();
     if (this.validator.allValid()) {
-      const post = {
-        description: this.state.description,
+      const menu = {
+        bloodgroup: this.state.bloodgroup,
       };
+
       axios
         .put(
-          `https://api.covidfrontline.net/termsofservices/update_termsofservices_patch/60a25d9c33be630015d6fcaf`,
-          post
+          `https://api.covidfrontline.net/bloodgroup/update_bloodgroup_patch/${_id}`,
+          menu
         )
         .then((res) => console.log(res.data));
-      this.setState({ mobile_message: "Text Updated Sucessfully" });
+      this.forceUpdate();
+      this.props.history.push("/bloodgroup");
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -160,28 +153,21 @@ class TermsOfservicePage extends React.Component {
   }
 
   render() {
-    const divStyle = {
-      height: "400px",
-    };
     return (
       <div>
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head"> Terms Of Service</div>
+            <div className="admin-head">Edit Blood Group</div>
             {this.state.loading ? (
               <div className="admin-data">
-                {this.state.mobile_message == "" ? (
-                  <></>
-                ) : (
-                  <div className="col-lg-12 p-0 text-right mb-30">
-                    <a href="#">
-                      <button className="button button-contactForm boxed-btn">
-                        {this.state.mobile_message}
-                      </button>
-                    </a>
-                  </div>
-                )}
+                <div className="col-lg-12 p-0 text-right mb-30">
+                  <Link to="/bloodgroup">
+                    <button className="button button-contactForm boxed-btn">
+                      Back
+                    </button>
+                  </Link>
+                </div>
                 <div className="container-fluid p-0">
                   <form
                     className="form-contact contact_form"
@@ -191,46 +177,32 @@ class TermsOfservicePage extends React.Component {
                       <div className="col-lg-12 p-0"></div>
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Description</label>
-                          {/* <textarea
-                          className="form-control col-lg-10"
-                          name="description"
-                          onChange={this.onChange}
-                          value={this.state.description}
-                          type="text"
-                          onfocus="this.placeholder = 'Menu Name'"
-                          onblur="this.placeholder = ''"
-                          placeholder=""
-                        /> */}
-                          <ReactQuill
-                            className=" col-lg-10 height"
-                            theme={this.state.theme}
+                          <label className="col-lg-2 p-0"> Blood Group</label>
+                          <input
+                            className="form-control col-lg-10"
+                            name="bloodgroup"
                             onChange={this.handleChange}
-                            value={this.state.description}
-                            modules={TermsOfservicePage.modules}
-                            formats={TermsOfservicePage.formats}
-                            bounds={".app"}
-                            placeholder={this.props.placeholder}
-                            style={divStyle}
+                            value={this.state.bloodgroup}
+                            type="text"
+                            onfocus="this.placeholder = 'Menu Name'"
+                            onblur="this.placeholder = ''"
+                            placeholder=""
                           />
-
                           {this.validator.message(
-                            "Description",
-                            this.state.description,
-                            "required"
+                            " Blood Group",
+                            this.state.bloodgroup,
+                            "required|whitespace|min:2|max:5"
                           )}
+                          {this.state.mobile_message}
                         </div>
                       </div>
-
-                      <br />
-                      <hr />
 
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field  row m-0">
                           <label className="col-lg-2 p-0" />
                           <div className="col-lg-6 p-0">
                             <button
-                              className="button button-contactForm boxed-btn margin"
+                              className="button button-contactForm boxed-btn"
                               type="submit"
                             >
                               Save
@@ -247,7 +219,7 @@ class TermsOfservicePage extends React.Component {
                 {" "}
                 <Loader
                   type="Circles"
-                  color="#0029ff"
+                  color="#f39510"
                   height={100}
                   width={100}
                   timeout={3000} //3 secs
@@ -260,43 +232,5 @@ class TermsOfservicePage extends React.Component {
     );
   }
 }
-TermsOfservicePage.modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image", "video"],
-    ["clean"],
-  ],
-  clipboard: {
-    matchVisual: false,
-  },
-};
 
-TermsOfservicePage.formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "video",
-];
-
-TermsOfservicePage.propTypes = {
-  placeholder: PropTypes.string,
-};
-export default TermsOfservicePage;
+export default EditBloodGroup;

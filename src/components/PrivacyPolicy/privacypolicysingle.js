@@ -160,6 +160,9 @@ class PrivacyPolicyPage extends React.Component {
   }
 
   render() {
+    const divStyle = {
+      height: "400px",
+    };
     return (
       <div>
         <Sidebar></Sidebar>
@@ -208,6 +211,7 @@ class PrivacyPolicyPage extends React.Component {
                             formats={PrivacyPolicyPage.formats}
                             bounds={".app"}
                             placeholder={this.props.placeholder}
+                            style={divStyle}
                           />
 
                           {this.validator.message(

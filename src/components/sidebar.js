@@ -46,7 +46,7 @@ function Sidebar() {
               </MenuItem>
               <SubMenu
                 title="Master Data"
-                icon={<i className="fa fa-home" aria-hidden="true"></i>}
+                icon={<i class="fa fa-info-circle" aria-hidden="true"></i>}
               >
                 <MenuItem>
                   {" "}
@@ -60,7 +60,17 @@ function Sidebar() {
                     Cities
                   </Link>
                 </MenuItem>
-
+                <MenuItem>
+                  {" "}
+                  <Link to="/bloodgroup" style={{ color: "white" }}>
+                    Blood Group
+                  </Link>
+                </MenuItem>
+              </SubMenu>
+              <SubMenu
+                title="CMS"
+                icon={<i className="fa fa-home" aria-hidden="true"></i>}
+              >
                 <MenuItem>
                   {" "}
                   <Link
