@@ -55,12 +55,15 @@ function Login() {
 
           <div className="form-group mt-3 mb-0">
             <p>
-              If you want to login as Super Admin ?{" "}
-              <Link to="/superadminlogin">Super Admin Login</Link>
+              <Link to="/superadminlogin">
+                Click here to login as Super Administrator
+              </Link>
             </p>
             <p>
-              If you want to login as Admin ?{" "}
-              <Link to="/adminlogin"> Admin Login</Link>
+              <Link to="/adminlogin">
+                {" "}
+                Click here to login as Administrator
+              </Link>
             </p>
           </div>
         </div>

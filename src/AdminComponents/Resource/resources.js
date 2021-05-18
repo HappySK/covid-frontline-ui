@@ -25,14 +25,14 @@ class Resources1 extends React.Component {
     } = isAutheticated();
     console.log(_id);
     axios
-      .get(`https://api.covidfrontline.net/resource/resources/${_id}`)
+      .get(`https://api.covidfrontline.net/resource/allresources`)
       .then((res) => {
         const resources = res.data;
         console.log(resources);
         this.setState({ resources, loading: true });
       });
     this.unsubscribe = axios
-      .get(`https://api.covidfrontline.net/resource/resources/${_id}`)
+      .get(`https://api.covidfrontline.net/resource/allresources`)
       .then((res) => {
         const resources = res.data;
         console.log(resources);
@@ -81,8 +81,86 @@ class Resources1 extends React.Component {
               <td>{index + 1}</td>
 
               <td>{resource.name}</td>
-
+              {resource.status == true ? (
+                <td>
+                  <span
+                    className="badge badge-pill badge-soft-success font-size-12"
+                    style={{ fontSize: "16px" }}
+                  >
+                    Activate
+                  </span>
+                </td>
+              ) : (
+                <td>
+                  <span
+                    className="badge badge-pill badge-soft-success font-size-12"
+                    style={{ fontSize: "16px" }}
+                  >
+                    InActivated
+                  </span>
+                </td>
+              )}
               <td>
+                {resource.status == true ? (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+
+                      axios
+                        .get(
+                          `https://api.covidfrontline.net/resource/Inactivate/${resource._id}`
+                        )
+                        .then(function (response) {
+                          window.location.reload();
+                          alert("Resource is Inactivated!");
+                        })
+                        .catch(function (error) {
+                          // handle error
+                          console.log(error);
+                        });
+                    }}
+                    className="btn btn-success btn-sm  waves-effect waves-light btn-table"
+                    style={{
+                      borderRadius: "5px",
+                      fontSize: "16px",
+                      padding: "5px 15px",
+                      marginRight: "2px",
+                      backgroundColor: "red",
+                    }}
+                  >
+                    Inactivate
+                  </button>
+                ) : (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+
+                      axios
+                        .get(
+                          `https://api.covidfrontline.net/Activate/${resource._id}`
+                        )
+                        .then(function (response) {
+                          window.location.reload();
+                          alert("Resource is Active!");
+                        })
+                        .catch(function (error) {
+                          // handle error
+                          console.log(error);
+                        });
+                    }}
+                    className="btn btn-success btn-sm  waves-effect waves-light btn-table "
+                    style={{
+                      borderRadius: "5px",
+                      fontSize: "16px",
+                      padding: "5px 15px",
+                      marginRight: "2px",
+                    }}
+                  >
+                    Make Activate
+                  </button>
+                )}
+              </td>
+              {/* <td>
                 <Link to={`/view_resource/${resource._id}`}>
                   <span className="btn">View</span>
                 </Link>
@@ -96,7 +174,7 @@ class Resources1 extends React.Component {
                 >
                   Delete
                 </span>
-              </td>
+              </td> */}
             </tr>
           );
         });
@@ -125,7 +203,7 @@ class Resources1 extends React.Component {
                       <tr>
                         <th>S.No</th>
                         <th>Name</th>
-
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
