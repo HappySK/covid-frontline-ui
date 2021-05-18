@@ -54,7 +54,8 @@ function Routing() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Empty}></Route>
-        <Route exact path="/login" component={Login}></Route>
+        <Route exact path="/login" component={Empty}></Route>
+        <Route exact path="/superadminlogin" component={Login}></Route>
         <Route path="/dashboard" exact component={Dashboard} />
         {/* Admin Users */}
         <Route path="/add_adminuser" exact component={AddAdminUser} />

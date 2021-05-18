@@ -141,7 +141,7 @@ function Sidebar() {
                   to=""
                   onClick={() => {
                     signout(() => {
-                      history.push("/login");
+                      history.push("/superadminlogin");
                     });
                   }}
                 >
