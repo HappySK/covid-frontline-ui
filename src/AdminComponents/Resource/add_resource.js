@@ -128,7 +128,7 @@ class AddResource extends React.Component {
           console.log(res.data);
         });
 
-      this.props.history.push("/resources");
+      this.props.history.push("/#/resources");
     } else {
       this.validator.showMessages();
       this.forceUpdate();

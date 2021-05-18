@@ -146,7 +146,7 @@ class EditResource extends React.Component {
         )
         .then((res) => console.log(res.data));
       this.forceUpdate();
-      this.props.history.push("/resources");
+      this.props.history.push("/#/resources");
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -163,7 +163,7 @@ class EditResource extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <a href="/resources">
+                  <a href="/#/resources">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>

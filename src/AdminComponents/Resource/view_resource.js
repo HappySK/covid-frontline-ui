@@ -143,8 +143,6 @@ class ViewResource extends React.Component {
           menu
         )
         .then((res) => console.log(res.data));
-
-      this.props.history.push("/menu");
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -180,7 +178,7 @@ class ViewResource extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <a href="/resources">
+                  <a href="/#/resources">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>

@@ -29,7 +29,7 @@ function AdminLogin() {
 
         sessionStorage.setItem("user", JSON.stringify(res.data));
 
-        history.push("/admindashboard");
+        history.push("/#/admindashboard");
       });
 
     // setUser({
