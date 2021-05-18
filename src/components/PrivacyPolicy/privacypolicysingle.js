@@ -110,7 +110,7 @@ class PrivacyPolicyPage extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `https://covidhelpbackend.herokuapp.com/privacypolicy/update_privacypolicy/60a2573033be630015d6fcad`
+        `https://api.covidfrontline.net/privacypolicy/update_privacypolicy/60a2573033be630015d6fcad`
       )
       .then((res) => {
         console.log(res.data);
@@ -148,7 +148,7 @@ class PrivacyPolicyPage extends React.Component {
       };
       axios
         .put(
-          `https://covidhelpbackend.herokuapp.com/privacypolicy/update_privacypolicy_patch/60a2573033be630015d6fcad`,
+          `https://api.covidfrontline.net/privacypolicy/update_privacypolicy_patch/60a2573033be630015d6fcad`,
           post
         )
         .then((res) => console.log(res.data));

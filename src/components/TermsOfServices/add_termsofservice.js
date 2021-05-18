@@ -129,7 +129,7 @@ class AddTermsOfservice extends React.Component {
       console.log(private1);
       axios
         .post(
-          `https://covidhelpbackend.herokuapp.com/termsofservices/Addtermsofservices`,
+          `https://api.covidfrontline.net/termsofservices/Addtermsofservices`,
           private1
         )
         .then((res) => {

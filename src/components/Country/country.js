@@ -21,14 +21,14 @@ class Country extends React.Component {
 
   componentDidMount() {
     axios
-      .get(`https://covidhelpbackend.herokuapp.com/country/allcountry`)
+      .get(`https://api.covidfrontline.net/country/allcountry`)
       .then((res) => {
         const Countries = res.data;
         console.log(Countries);
         this.setState({ Countries, loading: true });
       });
     this.unsubscribe = axios
-      .get(`https://covidhelpbackend.herokuapp.com/country/allcountry`)
+      .get(`https://api.covidfrontline.net/country/allcountry`)
       .then((res) => {
         const Countries = res.data;
         console.log(Countries);
@@ -52,7 +52,7 @@ class Country extends React.Component {
         console.log(_id);
         axios
           .delete(
-            `https://covidhelpbackend.herokuapp.com/country/delete_country/${_id}`
+            `https://api.covidfrontline.net/country/delete_country/${_id}`
           )
           .then((res) => {
             console.log(res);

@@ -107,7 +107,7 @@ class AddAdminUser extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(`https://covidhelpbackend.herokuapp.com/country/allcountry`)
+      .get(`https://api.covidfrontline.net/country/allcountry`)
       .then((res) => {
         const Countries = res.data;
         console.log(Countries);
@@ -138,7 +138,7 @@ class AddAdminUser extends React.Component {
       };
       console.log(menu);
       axios
-        .post(`https://covidhelpbackend.herokuapp.com/admin/adminusers`, menu)
+        .post(`https://api.covidfrontline.net/admin/adminusers`, menu)
         .then((res) => {
           console.log(res);
           console.log(res.data);
@@ -161,7 +161,7 @@ class AddAdminUser extends React.Component {
     let selectedCountryName = e.target.value;
     axios
       .get(
-        `https://covidhelpbackend.herokuapp.com/city/cityvalues/${selectedCountryName}`
+        `https://api.covidfrontline.net/city/cityvalues/${selectedCountryName}`
       )
       .then((res) => {
         const cities = res.data;

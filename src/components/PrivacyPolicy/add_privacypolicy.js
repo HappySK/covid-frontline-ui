@@ -129,7 +129,7 @@ class AddPrivacyPolicy extends React.Component {
       console.log(private1);
       axios
         .post(
-          `https://covidhelpbackend.herokuapp.com/privacypolicy/Addprivacypolicy`,
+          `https://api.covidfrontline.net/privacypolicy/Addprivacypolicy`,
           private1
         )
         .then((res) => {

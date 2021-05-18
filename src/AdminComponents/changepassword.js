@@ -26,7 +26,7 @@ function AdminChangepassword() {
     e.preventDefault();
 
     axios
-      .post("https://covidhelpbackend.herokuapp.com/admin/changepassword", {
+      .post("https://api.covidfrontline.net/admin/changepassword", {
         userid: _id,
         password: Password.password,
         passwordnew: Password.passwordnew,

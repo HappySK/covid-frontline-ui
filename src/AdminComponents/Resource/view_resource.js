@@ -107,9 +107,7 @@ class ViewResource extends React.Component {
 
     console.log(_id);
     axios
-      .get(
-        `https://covidhelpbackend.herokuapp.com/resource/update_resource/${_id}`
-      )
+      .get(`https://api.covidfrontline.net/resource/update_resource/${_id}`)
       .then((res) => {
         console.log(res.data);
         const menu = {

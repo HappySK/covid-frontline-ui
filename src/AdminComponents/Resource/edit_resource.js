@@ -3,7 +3,6 @@ import React from "react";
 import Sidebar from "../../AdminComponents/sidebar";
 import Loader from "react-loader-spinner";
 import SimpleReactValidator from "simple-react-validator";
-import { isAutheticated, signout } from "../../auth";
 class EditResource extends React.Component {
   constructor(props) {
     super(props);
@@ -108,9 +107,7 @@ class EditResource extends React.Component {
 
     console.log(_id);
     axios
-      .get(
-        `https://covidhelpbackend.herokuapp.com/resource/update_resource/${_id}`
-      )
+      .get(`https://api.covidfrontline.net/resource/update_resource/${_id}`)
       .then((res) => {
         console.log(res.data);
         const menu = {
@@ -144,7 +141,7 @@ class EditResource extends React.Component {
       console.log(this.state.name, this.state.addedby);
       axios
         .put(
-          `https://covidhelpbackend.herokuapp.com/resource/update_resource_patch/${_id}`,
+          `https://api.covidfrontline.net/resource/update_resource_patch/${_id}`,
           menu
         )
         .then((res) => console.log(res.data));

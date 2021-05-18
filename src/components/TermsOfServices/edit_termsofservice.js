@@ -112,7 +112,7 @@ class EditTermsOfservice extends React.Component {
     console.log(_id);
     axios
       .get(
-        `https://covidhelpbackend.herokuapp.com/termsofservices/update_termsofservices/${_id}`
+        `https://api.covidfrontline.net/termsofservices/update_termsofservices/${_id}`
       )
       .then((res) => {
         console.log(res.data);
@@ -150,7 +150,7 @@ class EditTermsOfservice extends React.Component {
       };
       axios
         .put(
-          `https://covidhelpbackend.herokuapp.com/termsofservices/update_termsofservices_patch/${_id}`,
+          `https://api.covidfrontline.net/termsofservices/update_termsofservices_patch/${_id}`,
           post
         )
         .then((res) => console.log(res.data));

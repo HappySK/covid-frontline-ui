@@ -104,7 +104,7 @@ class AddCity extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(`https://covidhelpbackend.herokuapp.com/country/allcountry`)
+      .get(`https://api.covidfrontline.net/country/allcountry`)
       .then((res) => {
         const Countries = res.data;
         console.log(Countries);
@@ -126,7 +126,7 @@ class AddCity extends React.Component {
       };
       console.log(menu);
       axios
-        .post(`https://covidhelpbackend.herokuapp.com/city/addcity`, menu)
+        .post(`https://api.covidfrontline.net/city/addcity`, menu)
         .then((res) => {
           console.log(res);
           console.log(res.data);

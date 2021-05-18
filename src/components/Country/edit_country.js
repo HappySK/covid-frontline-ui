@@ -113,9 +113,7 @@ class EditCountry extends React.Component {
 
     console.log(_id);
     axios
-      .get(
-        `https://covidhelpbackend.herokuapp.com/country/update_country/${_id}`
-      )
+      .get(`https://api.covidfrontline.net/country/update_country/${_id}`)
       .then((res) => {
         console.log(res.data);
         const menu = {
@@ -167,7 +165,7 @@ class EditCountry extends React.Component {
 
       axios
         .put(
-          `https://covidhelpbackend.herokuapp.com/country/update_country_patch/${_id}`,
+          `https://api.covidfrontline.net/country/update_country_patch/${_id}`,
           menu
         )
         .then((res) => console.log(res.data));

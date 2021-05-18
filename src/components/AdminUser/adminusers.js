@@ -20,14 +20,14 @@ class AdminUsers extends React.Component {
 
   componentDidMount() {
     axios
-      .get(`https://covidhelpbackend.herokuapp.com/admin/AdminUsersList`)
+      .get(`https://api.covidfrontline.net/admin/AdminUsersList`)
       .then((res) => {
         const menus = res.data;
         console.log(menus);
         this.setState({ menus, loading: true });
       });
     this.unsubscribe = axios
-      .get(`https://covidhelpbackend.herokuapp.com/admin/AdminUsersList`)
+      .get(`https://api.covidfrontline.net/admin/AdminUsersList`)
       .then((res) => {
         const menus = res.data;
         console.log(menus);
@@ -51,7 +51,7 @@ class AdminUsers extends React.Component {
         console.log(_id);
         axios
           .delete(
-            `https://covidhelpbackend.herokuapp.com/admin/delete_adminusers/${_id}`
+            `https://api.covidfrontline.net/admin/delete_adminusers/${_id}`
           )
           .then((res) => {
             console.log(res);
@@ -104,7 +104,7 @@ class AdminUsers extends React.Component {
 
                       axios
                         .get(
-                          `https://covidhelpbackend.herokuapp.com/admin/suspenduser/${menu._id}`
+                          `https://api.covidfrontline.net/admin/suspenduser/${menu._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
@@ -133,7 +133,7 @@ class AdminUsers extends React.Component {
 
                       axios
                         .get(
-                          `https://covidhelpbackend.herokuapp.com/admin/makeliveuser/${menu._id}`
+                          `https://api.covidfrontline.net/admin/makeliveuser/${menu._id}`
                         )
                         .then(function (response) {
                           window.location.reload();

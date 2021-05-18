@@ -108,7 +108,7 @@ class EditCity extends React.Component {
 
     console.log(_id);
     axios
-      .get(`https://covidhelpbackend.herokuapp.com/city/update_city/${_id}`)
+      .get(`https://api.covidfrontline.net/city/update_city/${_id}`)
       .then((res) => {
         console.log(res.data);
         const menu = {
@@ -124,7 +124,7 @@ class EditCity extends React.Component {
       });
 
     axios
-      .get(`https://covidhelpbackend.herokuapp.com/country/allcountry`)
+      .get(`https://api.covidfrontline.net/country/allcountry`)
       .then((res) => {
         const Countries = res.data;
         console.log(Countries);
@@ -150,7 +150,7 @@ class EditCity extends React.Component {
 
       axios
         .put(
-          `https://covidhelpbackend.herokuapp.com/city/update_city_patch/${_id}`,
+          `https://api.covidfrontline.net/city/update_city_patch/${_id}`,
           menu
         )
         .then((res) => console.log(res.data));

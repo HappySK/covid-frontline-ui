@@ -20,15 +20,13 @@ class City extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get(`https://covidhelpbackend.herokuapp.com/city/allcity`)
-      .then((res) => {
-        const Cities = res.data;
-        console.log(Cities);
-        this.setState({ Cities, loading: true });
-      });
+    axios.get(`https://api.covidfrontline.net/city/allcity`).then((res) => {
+      const Cities = res.data;
+      console.log(Cities);
+      this.setState({ Cities, loading: true });
+    });
     this.unsubscribe = axios
-      .get(`https://covidhelpbackend.herokuapp.com/city/allcity`)
+      .get(`https://api.covidfrontline.net/city/allcity`)
       .then((res) => {
         const Cities = res.data;
         console.log(Cities);
@@ -51,9 +49,7 @@ class City extends React.Component {
       if (willDelete) {
         console.log(_id);
         axios
-          .delete(
-            `https://covidhelpbackend.herokuapp.com/city/delete_city/${_id}`
-          )
+          .delete(`https://api.covidfrontline.net/city/delete_city/${_id}`)
           .then((res) => {
             console.log(res);
             console.log(res.data);

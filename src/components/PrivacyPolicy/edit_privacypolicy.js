@@ -112,7 +112,7 @@ class EditPrivacyPolicy extends React.Component {
     console.log(_id);
     axios
       .get(
-        `https://covidhelpbackend.herokuapp.com/privacypolicy/update_privacypolicy/${_id}`
+        `https://api.covidfrontline.net/privacypolicy/update_privacypolicy/${_id}`
       )
       .then((res) => {
         console.log(res.data);
@@ -150,7 +150,7 @@ class EditPrivacyPolicy extends React.Component {
       };
       axios
         .put(
-          `https://covidhelpbackend.herokuapp.com/privacypolicy/update_privacypolicy_patch/${_id}`,
+          `https://api.covidfrontline.net/privacypolicy/update_privacypolicy_patch/${_id}`,
           post
         )
         .then((res) => console.log(res.data));

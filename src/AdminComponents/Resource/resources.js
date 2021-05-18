@@ -25,14 +25,14 @@ class Resources extends React.Component {
     } = isAutheticated();
     console.log(_id);
     axios
-      .get(`https://covidhelpbackend.herokuapp.com/resource/resources/${_id}`)
+      .get(`https://api.covidfrontline.net/resource/resources/${_id}`)
       .then((res) => {
         const resources = res.data;
         console.log(resources);
         this.setState({ resources, loading: true });
       });
     this.unsubscribe = axios
-      .get(`https://covidhelpbackend.herokuapp.com/resource/resources/${_id}`)
+      .get(`https://api.covidfrontline.net/resource/resources/${_id}`)
       .then((res) => {
         const resources = res.data;
         console.log(resources);
@@ -56,7 +56,7 @@ class Resources extends React.Component {
         console.log(_id);
         axios
           .delete(
-            `https://covidhelpbackend.herokuapp.com/resource/delete_resource/${_id}`
+            `https://api.covidfrontline.net/resource/delete_resource/${_id}`
           )
           .then((res) => {
             console.log(res);

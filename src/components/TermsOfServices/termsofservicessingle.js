@@ -110,7 +110,7 @@ class TermsOfservicePage extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `https://covidhelpbackend.herokuapp.com/termsofservices/update_termsofservices/60a25d9c33be630015d6fcaf`
+        `https://api.covidfrontline.net/termsofservices/update_termsofservices/60a25d9c33be630015d6fcaf`
       )
       .then((res) => {
         console.log(res.data);
@@ -148,7 +148,7 @@ class TermsOfservicePage extends React.Component {
       };
       axios
         .put(
-          `https://covidhelpbackend.herokuapp.com/termsofservices/update_termsofservices_patch/60a25d9c33be630015d6fcaf`,
+          `https://api.covidfrontline.net/termsofservices/update_termsofservices_patch/60a25d9c33be630015d6fcaf`,
           post
         )
         .then((res) => console.log(res.data));

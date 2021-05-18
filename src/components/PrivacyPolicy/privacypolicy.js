@@ -20,18 +20,14 @@ class PrivacyPolicy extends React.Component {
 
   componentDidMount() {
     axios
-      .get(
-        `https://covidhelpbackend.herokuapp.com/privacypolicy/privacypolicys`
-      )
+      .get(`https://api.covidfrontline.net/privacypolicy/privacypolicys`)
       .then((res) => {
         const PrivatePages = res.data;
         console.log(PrivatePages);
         this.setState({ PrivatePages, loading: true });
       });
     this.unsubscribe = axios
-      .get(
-        `https://covidhelpbackend.herokuapp.com/privacypolicy/privacypolicys`
-      )
+      .get(`https://api.covidfrontline.net/privacypolicy/privacypolicys`)
       .then((res) => {
         const PrivatePages = res.data;
         console.log(PrivatePages);
@@ -51,7 +47,7 @@ class PrivacyPolicy extends React.Component {
         console.log(_id);
         axios
           .delete(
-            `https://covidhelpbackend.herokuapp.com/privacypolicy/delete_privacypolicy/${_id}`
+            `https://api.covidfrontline.net/privacypolicy/delete_privacypolicy/${_id}`
           )
           .then((res) => {
             console.log(res);

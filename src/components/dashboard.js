@@ -10,13 +10,6 @@ class Post extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   axios.get(`https://deepthoughts-nodejs.herokuapp.com/Posts`).then((res) => {
-  //     const posts = res.data;
-  //     console.log(posts);
-  //     this.setState({ posts });
-  //   });
-  // }
   render() {
     return (
       <div>

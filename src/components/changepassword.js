@@ -27,7 +27,7 @@ function Changepassword() {
 
     axios
       .post(
-        "https://covidhelpbackend.herokuapp.com/superadmin/superadminchangepassword",
+        "https://api.covidfrontline.net/superadmin/superadminchangepassword",
         {
           userid: _id,
           password: Password.password,

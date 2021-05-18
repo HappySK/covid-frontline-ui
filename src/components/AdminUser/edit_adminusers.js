@@ -107,9 +107,7 @@ class EditAdminUsers extends React.Component {
     const { _id } = this.props.match.params;
     console.log(_id);
     axios
-      .get(
-        `https://covidhelpbackend.herokuapp.com/admin/update_adminusers/${_id}`
-      )
+      .get(`https://api.covidfrontline.net/admin/update_adminusers/${_id}`)
       .then((res) => {
         console.log(res.data);
         const menu = {
@@ -150,7 +148,7 @@ class EditAdminUsers extends React.Component {
       };
       axios
         .put(
-          `https://covidhelpbackend.herokuapp.com/admin/update_adminusers_patch/${_id}`,
+          `https://api.covidfrontline.net/admin/update_adminusers_patch/${_id}`,
           menu
         )
         .then((res) => console.log(res.data));

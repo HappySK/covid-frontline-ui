@@ -20,17 +20,14 @@ function Login() {
 
   const Lo = () => {
     axios
-      .post(
-        "https://covidhelpbackend.herokuapp.com/superadmin/superadminlogin",
-        {
-          email: email,
-          password: password,
-        }
-      )
+      .post("https://api.covidfrontline.net/superadmin/superadminlogin", {
+        email: email,
+        password: password,
+      })
       .then((res) => {
         console.log(res);
 
-        localStorage.setItem("user", JSON.stringify(res.data));
+        sessionStorage.setItem("user", JSON.stringify(res.data));
 
         history.push("/dashboard");
       });

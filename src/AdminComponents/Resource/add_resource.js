@@ -122,10 +122,7 @@ class AddResource extends React.Component {
       };
       console.log(menu);
       axios
-        .post(
-          `https://covidhelpbackend.herokuapp.com/resource/addresource`,
-          menu
-        )
+        .post(`https://api.covidfrontline.net/resource/addresource`, menu)
         .then((res) => {
           console.log(res);
           console.log(res.data);

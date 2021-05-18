@@ -145,7 +145,7 @@ class AddCountry extends React.Component {
       };
       console.log(menu);
       axios
-        .post(`https://covidhelpbackend.herokuapp.com/country/addcountry`, menu)
+        .post(`https://api.covidfrontline.net/country/addcountry`, menu)
         .then((res) => {
           console.log(res);
           console.log(res.data);
