@@ -1,23 +1,25 @@
 import axios from "axios";
 import React from "react";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../AdminComponents/sidebar";
 import SimpleReactValidator from "simple-react-validator";
 import { isAutheticated, signout } from "../../auth";
-class AddResource extends React.Component {
+class AddVolunteers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
+      email: "",
+      password: "",
       addedby: "",
-      status: true,
+      contact: "",
       data: Date.now(),
       mobile_message: "",
       validError: false,
     };
-
     this.handleChange = this.handleChange.bind(this);
-
+    this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
     this.validator = new SimpleReactValidator({
       className: "text-danger",
       validators: {
@@ -110,7 +112,11 @@ class AddResource extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
-
+  onChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
   handleSubmit(event) {
     event.preventDefault();
     if (this.validator.allValid()) {
@@ -119,18 +125,22 @@ class AddResource extends React.Component {
       } = isAutheticated();
       const menu = {
         name: this.state.name,
+        email: this.state.email,
         addedby: _id,
-        status: true,
+        contact: this.state.contact,
+        password: this.state.password,
+        date: Date.now(),
       };
       console.log(menu);
       axios
-        .post(`https://api.covidfrontline.net/resource/addresource`, menu)
+        .post(`https://api.covidfrontline.net/volunteers/volunteersusers`, menu)
         .then((res) => {
           console.log(res);
           console.log(res.data);
         });
 
-      this.props.history.push("/resources");
+      this.props.history.push("/volunteers");
+      // window.location.reload();
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -143,7 +153,7 @@ class AddResource extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Resource - Add New</div>
+            <div className="admin-head">Volunteers- Add New</div>
             <div className="admin-data">
               <div className="container-fluid p-0">
                 <form
@@ -154,7 +164,7 @@ class AddResource extends React.Component {
                     <div className="col-lg-12 p-0"></div>
                     <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">
-                        <label className="col-lg-2 p-0">Name</label>
+                        <label className="col-lg-2 p-0"> Name</label>
                         <input
                           className="form-control col-lg-10"
                           name="name"
@@ -170,7 +180,68 @@ class AddResource extends React.Component {
                           this.state.name,
                           "required|whitespace|min:1|max:20"
                         )}
+                      </div>
+                    </div>
+                    <div className="col-lg-12 p-0">
+                      <div className="form-group tags-field row m-0">
+                        <label className="col-lg-2 p-0"> Email</label>
+                        <input
+                          className="form-control col-lg-10"
+                          name="email"
+                          onChange={this.handleChange}
+                          value={this.state.email}
+                          type="text"
+                          onfocus="this.placeholder = 'Menu Name'"
+                          onblur="this.placeholder = ''"
+                          placeholder="Alt Text"
+                        />
+                        {this.validator.message(
+                          "Email",
+                          this.state.email,
+                          "required|email"
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-lg-12 p-0">
+                      <div className="form-group tags-field row m-0">
+                        <label className="col-lg-2 p-0"> Contact Number</label>
+                        <input
+                          className="form-control col-lg-10"
+                          name="contact"
+                          onChange={this.handleChange}
+                          value={this.state.contact}
+                          type="number"
+                          onfocus="this.placeholder = 'Menu Name'"
+                          onblur="this.placeholder = ''"
+                          placeholder=""
+                        />
+                        {this.validator.message(
+                          "Contact",
+                          this.state.contact,
+                          "required|min:10|max:10"
+                        )}
                         {this.state.mobile_message}
+                      </div>
+                    </div>
+
+                    <div className="col-lg-12 p-0">
+                      <div className="form-group tags-field row m-0">
+                        <label className="col-lg-2 p-0"> Password</label>
+                        <input
+                          className="form-control col-lg-10"
+                          name="password"
+                          onChange={this.handleChange}
+                          value={this.state.password}
+                          type="text"
+                          onfocus="this.placeholder = 'Menu Name'"
+                          onblur="this.placeholder = ''"
+                          placeholder="Alt Text"
+                        />
+                        {this.validator.message(
+                          "Password",
+                          this.state.password,
+                          "required"
+                        )}
                       </div>
                     </div>
 
@@ -198,4 +269,4 @@ class AddResource extends React.Component {
   }
 }
 
-export default AddResource;
+export default AddVolunteers;

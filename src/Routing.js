@@ -1,9 +1,11 @@
 import logo from "./logo.svg";
 
 import { BrowserRouter, Switch, Route, HashRouter } from "react-router-dom";
-
-//SuperAdmin
+import PrivateRoute from "./PrivateRoute";
+import Empty from "./empty";
+/////////////////////SuperAdmin/////////////////////////////////////////////
 import Login from "./components/login";
+import Changepassword from "./components/changepassword";
 import Dashboard from "./components/dashboard";
 
 //Admin Users
@@ -21,23 +23,30 @@ import AddCountry from "./components/Country/add_country";
 import Country from "./components/Country/country";
 import EditCountry from "./components/Country/edit_country";
 
+//Blood Group
+import AddBloodGroup from "./components/BloodGroup/add_bloodgroup";
+import EditBloodGroup from "./components/BloodGroup/edit_bloodgroup";
+import BloodGroup from "./components/BloodGroup/bloodgroup";
+
+//Resource
+import AddResource from "./components/Resource/add_resource";
+import EditResource from "./components/Resource/edit_resource";
+import ViewResource from "./components/Resource/view_resource";
+import Resources from "./components/Resource/resources";
+
 //Privacy Policy
 import AddPrivacyPolicy from "./components/PrivacyPolicy/add_privacypolicy";
 import PrivacyPolicy from "./components/PrivacyPolicy/privacypolicy";
 import EditPrivacyPolicy from "./components/PrivacyPolicy/edit_privacypolicy";
 import PrivacyPolicyPage from "./components/PrivacyPolicy/privacypolicysingle";
 
-//Privacy Policy
+//TermsOfServices
 import AddTermsOfservice from "./components/TermsOfServices/add_termsofservice";
 import TermsOfservice from "./components/TermsOfServices/termsofservice";
 import EditTermsOfservice from "./components/TermsOfServices/edit_termsofservice";
-
 import TermsOfservicePage from "./components/TermsOfServices/termsofservicessingle";
 
-import Changepassword from "./components/changepassword";
-import PrivateRoute from "./PrivateRoute";
-
-//Admin
+////////////////////Admin/////////////////////////////////////////////////////////////////////////////////////////////
 import AdminLogin from "./AdminComponents/login";
 import AdminDashboard from "./AdminComponents/dashboard";
 import AdminChangepassword from "./AdminComponents/changepassword";
@@ -48,31 +57,28 @@ import EditResource1 from "./AdminComponents/Resource/edit_resource";
 import ViewResource1 from "./AdminComponents/Resource/view_resource";
 import Resources1 from "./AdminComponents/Resource/resources";
 
-//Resource
-import AddResource from "./components/Resource/add_resource";
-import EditResource from "./components/Resource/edit_resource";
-import ViewResource from "./components/Resource/view_resource";
-import Resources from "./components/Resource/resources";
+//Volunteers
 
-import Empty from "./empty";
+import AddVolunteers from "./AdminComponents/Volunteers/add_volunteers";
+import EditVolunteers from "./AdminComponents/Volunteers/edit_volunteers";
+import Volunteers from "./AdminComponents/Volunteers/volunteers";
 
-//Blood Group
-import AddBloodGroup from "./components/BloodGroup/add_bloodgroup";
-import EditBloodGroup from "./components/BloodGroup/edit_bloodgroup";
-import BloodGroup from "./components/BloodGroup/bloodgroup";
 function Routing() {
   return (
     <HashRouter>
       <Switch>
         <Route exact path="/" component={Empty}></Route>
         <Route exact path="/login" component={Empty}></Route>
+        {/*************************************  Super Admin *****************************************/}
         <Route exact path="/superadminlogin" component={Login}></Route>
         <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/change_password" exact component={Changepassword} />
+
         {/* Admin Users */}
         <Route path="/add_adminuser" exact component={AddAdminUser} />
         <Route path="/adminuser" exact component={AdminUsers} />
         <Route path="/edit_adminuser/:_id" exact component={EditAdminUsers} />
+
         {/* Cities */}
         <Route path="/add_city" exact component={AddCity} />
         <Route path="/cities" exact component={City} />
@@ -81,59 +87,15 @@ function Routing() {
         <Route path="/add_country" exact component={AddCountry} />
         <Route path="/countries" exact component={Country} />
         <Route path="/edit_country/:_id" exact component={EditCountry} />
-        {/* PrivacyPolicy */}
-        <Route path="/add_privacypolicy" exact component={AddPrivacyPolicy} />
-        <Route path="/privacypolicy" exact component={PrivacyPolicy} />
-        <Route
-          path="/edit_privacypolicy/:_id"
-          exact
-          component={EditPrivacyPolicy}
-        />
-        <Route
-          path="/privacypolicypage/60a2573033be630015d6fcad"
-          exact
-          component={PrivacyPolicyPage}
-        />
 
-        {/* terms of service */}
-        <Route path="/add_termsofservice" exact component={AddTermsOfservice} />
-        <Route path="/termsofservice" exact component={TermsOfservice} />
-        <Route
-          path="/edit_termsofservice/:_id"
-          exact
-          component={EditTermsOfservice}
-        />
-        <Route
-          path="/termsofservicepage/60a25d9c33be630015d6fcaf"
-          exact
-          component={TermsOfservicePage}
-        />
-        {/* Admin */}
-        <Route
-          path="/adminchange_password"
-          exact
-          component={AdminChangepassword}
-        />
-        <Route exact path="/adminlogin" component={AdminLogin}></Route>
-        <Route path="/admindashboard" exact component={AdminDashboard} />
+        {/* Blood Group */}
+        <PrivateRoute path="/add_bloodgroup" exact component={AddBloodGroup} />
         <PrivateRoute
-          path="/adminchangepassword"
+          path="/edit_bloodgroup/:_id"
           exact
-          component={Changepassword}
+          component={EditBloodGroup}
         />
-        {/* Resource */}
-        <PrivateRoute path="/add_resource1" exact component={AddResource1} />
-        <PrivateRoute
-          path="/edit_resource1/:_id"
-          exact
-          component={EditResource1}
-        />
-        <PrivateRoute
-          path="/view_resource1/:_id"
-          exact
-          component={ViewResource1}
-        />
-        <PrivateRoute path="/resources1" exact component={Resources1} />
+        <PrivateRoute path="/bloodgroup" exact component={BloodGroup} />
 
         {/* Resource */}
         <PrivateRoute path="/add_resource" exact component={AddResource} />
@@ -149,15 +111,65 @@ function Routing() {
         />
         <PrivateRoute path="/resources" exact component={Resources} />
 
-        {/* Blood Group */}
-        <PrivateRoute path="/add_bloodgroup" exact component={AddBloodGroup} />
-        <PrivateRoute
-          path="/edit_bloodgroup/:_id"
+        {/* PrivacyPolicy */}
+        <Route path="/add_privacypolicy" exact component={AddPrivacyPolicy} />
+        <Route path="/privacypolicy" exact component={PrivacyPolicy} />
+        <Route
+          path="/edit_privacypolicy/:_id"
           exact
-          component={EditBloodGroup}
+          component={EditPrivacyPolicy}
+        />
+        <Route
+          path="/privacypolicypage/60a2573033be630015d6fcad"
+          exact
+          component={PrivacyPolicyPage}
+        />
+        {/* terms of service */}
+        <Route path="/add_termsofservice" exact component={AddTermsOfservice} />
+        <Route path="/termsofservice" exact component={TermsOfservice} />
+        <Route
+          path="/edit_termsofservice/:_id"
+          exact
+          component={EditTermsOfservice}
+        />
+        <Route
+          path="/termsofservicepage/60a25d9c33be630015d6fcaf"
+          exact
+          component={TermsOfservicePage}
         />
 
-        <PrivateRoute path="/bloodgroup" exact component={BloodGroup} />
+        {/*************************************   Admin *****************************************/}
+        {/* Admin */}
+        <Route exact path="/adminlogin" component={AdminLogin}></Route>
+        <Route
+          path="/adminchange_password"
+          exact
+          component={AdminChangepassword}
+        />
+        <Route path="/admindashboard" exact component={AdminDashboard} />
+
+        {/* Resource 1*/}
+        <PrivateRoute path="/add_resource1" exact component={AddResource1} />
+        <PrivateRoute
+          path="/edit_resource1/:_id"
+          exact
+          component={EditResource1}
+        />
+        <PrivateRoute
+          path="/view_resource1/:_id"
+          exact
+          component={ViewResource1}
+        />
+        <PrivateRoute path="/resources1" exact component={Resources1} />
+
+        {/* Volunteers */}
+        <PrivateRoute path="/add_volunteers" exact component={AddVolunteers} />
+        <PrivateRoute
+          path="/edit_volunteers/:_id"
+          exact
+          component={EditVolunteers}
+        />
+        <PrivateRoute path="/volunteers" exact component={Volunteers} />
       </Switch>
     </HashRouter>
   );
