@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../AdminComponents/sidebar";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
