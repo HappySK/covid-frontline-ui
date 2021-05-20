@@ -81,13 +81,13 @@ class Resources1 extends React.Component {
               <td>{index + 1}</td>
 
               <td>{resource.name}</td>
-              {/* {resource.status == true ? (
+              {resource.status == true ? (
                 <td>
                   <span
                     className="badge badge-pill badge-soft-success font-size-12"
                     style={{ fontSize: "16px" }}
                   >
-                    Activate
+                    Active
                   </span>
                 </td>
               ) : (
@@ -96,10 +96,10 @@ class Resources1 extends React.Component {
                     className="badge badge-pill badge-soft-success font-size-12"
                     style={{ fontSize: "16px" }}
                   >
-                    InActivated
+                    InActive
                   </span>
                 </td>
-              )} */}
+              )}
               <td>
                 {resource.status == true ? (
                   <button
@@ -128,7 +128,7 @@ class Resources1 extends React.Component {
                       backgroundColor: "red",
                     }}
                   >
-                    Inactivate
+                    Make Inactivate
                   </button>
                 ) : (
                   <button
@@ -156,7 +156,7 @@ class Resources1 extends React.Component {
                       marginRight: "2px",
                     }}
                   >
-                    Make Activate
+                    Make Active
                   </button>
                 )}
               </td>
@@ -204,7 +204,7 @@ class Resources1 extends React.Component {
                         <th>S.No</th>
                         <th>Name</th>
                         <th>Status</th>
-                        {/* <th>Action</th> */}
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>{currentPageData}</tbody>

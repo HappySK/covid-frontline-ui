@@ -54,6 +54,12 @@ function Sidebar() {
                   <i class="fa fa-book fa-fw" aria-hidden="true"></i> Volunteers
                 </Link>
               </MenuItem>
+              <MenuItem>
+                <Link to="/request">
+                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> Requests
+                </Link>
+              </MenuItem>
+
               {/* <MenuItem>
                 <Link to="/dashboard">
                   <i className="fa fa-tachometer" aria-hidden="true" /> Service
@@ -71,7 +77,6 @@ function Sidebar() {
                   Password
                 </Link>
               </MenuItem> */}
-
               {/* 
               <MenuItem>
                 <Link to="/sub_menu">

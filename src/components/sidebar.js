@@ -44,6 +44,13 @@ function Sidebar() {
                   <i className="fa fa-upload" aria-hidden="true" /> Admin User
                 </Link>
               </MenuItem>
+              {/* <MenuItem>
+                <Link to="/administratoruser">
+                  <i className="fa fa-upload" aria-hidden="true" />{" "}
+                  Administrator User
+                </Link>
+              </MenuItem> */}
+
               <SubMenu
                 title="Master Data"
                 icon={<i class="fa fa-info-circle" aria-hidden="true"></i>}
@@ -152,7 +159,6 @@ function Sidebar() {
                 </Link>
               </MenuItem>
               */}
-
               <MenuItem>
                 <Link
                   to=""

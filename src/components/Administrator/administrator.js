@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import Loader from "react-loader-spinner";
 import ReactPaginate from "react-paginate";
 const PER_PAGE = 10;
-class AdminUsers extends React.Component {
+class AdministratorUsers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,14 +20,14 @@ class AdminUsers extends React.Component {
 
   componentDidMount() {
     axios
-      .get(`https://api.covidfrontline.net/admin/AdminUsersList`)
+      .get(`http://localhost:5050/administrator/AdministratorUsersList`)
       .then((res) => {
         const menus = res.data;
         console.log(menus);
         this.setState({ menus, loading: true });
       });
     this.unsubscribe = axios
-      .get(`https://api.covidfrontline.net/admin/AdminUsersList`)
+      .get(`http://localhost:5050/administrator/AdministratorUsersList`)
       .then((res) => {
         const menus = res.data;
         console.log(menus);
@@ -51,7 +51,7 @@ class AdminUsers extends React.Component {
         console.log(_id);
         axios
           .delete(
-            `https://api.covidfrontline.net/admin/delete_adminusers/${_id}`
+            `http://localhost:5050/administrator/delete_administratorusers/${_id}`
           )
           .then((res) => {
             console.log(res);
@@ -104,7 +104,7 @@ class AdminUsers extends React.Component {
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/admin/suspenduser/${menu._id}`
+                          `http://localhost:5050/administrator/suspenduser/${menu._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
@@ -133,7 +133,7 @@ class AdminUsers extends React.Component {
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/admin/makeliveuser/${menu._id}`
+                          `http://localhost:5050/administrator/makeliveuser/${menu._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
@@ -161,9 +161,9 @@ class AdminUsers extends React.Component {
                 >
                   Delete
                 </span>
-                <Link to={`/edit_adminuser/${menu._id}`}>
+                {/* <Link to={`/edit_adminuser/${menu._id}`}>
                   <span className="btn">Edit</span>
-                </Link>
+                </Link> */}
               </td>
               {/* <td>
                 <Link to={`/edit_adminuser/${menu._id}`}>
@@ -190,46 +190,46 @@ class AdminUsers extends React.Component {
         <div className="admin-wrapper col-12">
           <div className="admin-content">
             <div className="admin-head">Admin Users</div>
-            {this.state.loading ? (
-              <div className="admin-data">
-                <div className="col-lg-12 p-0 text-right mb-30">
-                  <Link to="/add_adminuser">
-                    <button className="button button-contactForm boxed-btn">
-                      + Add New
-                    </button>
-                  </Link>
-                </div>
-                <div className="table-responsive admin-table">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>S.No</th>
-                        <th>Name</th>
-
-                        <th>City</th>
-
-                        <th>Status</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>{currentPageData}</tbody>
-                  </table>
-                </div>
-                <div className="paginationstyle">
-                  <ReactPaginate
-                    previousLabel={"Previous"}
-                    nextLabel={"Next"}
-                    pageCount={pageCount}
-                    onPageChange={this.handlePageClick.bind(this)}
-                    containerClassName={"pagination"}
-                    previousLinkClassName={"pagination__link"}
-                    nextLinkClassName={"pagination__link"}
-                    disabledClassName={"pagination__link--disabled"}
-                    activeClassName={"pagination__link--active"}
-                  />
-                </div>
+            {/* {this.state.loading ? ( */}
+            <div className="admin-data">
+              <div className="col-lg-12 p-0 text-right mb-30">
+                <Link to="/add_administratoruser">
+                  <button className="button button-contactForm boxed-btn">
+                    + Add New
+                  </button>
+                </Link>
               </div>
-            ) : (
+              <div className="table-responsive admin-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>Name</th>
+
+                      <th>City</th>
+
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>{currentPageData}</tbody>
+                </table>
+              </div>
+              <div className="paginationstyle">
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={pageCount}
+                  onPageChange={this.handlePageClick.bind(this)}
+                  containerClassName={"pagination"}
+                  previousLinkClassName={"pagination__link"}
+                  nextLinkClassName={"pagination__link"}
+                  disabledClassName={"pagination__link--disabled"}
+                  activeClassName={"pagination__link--active"}
+                />
+              </div>
+            </div>
+            {/* ) : (
               <div style={{ marginLeft: "500px", marginTop: "200px" }}>
                 {" "}
                 <Loader
@@ -240,7 +240,7 @@ class AdminUsers extends React.Component {
                   timeout={3000} //3 secs
                 />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -248,4 +248,4 @@ class AdminUsers extends React.Component {
   }
 }
 
-export default AdminUsers;
+export default AdministratorUsers;

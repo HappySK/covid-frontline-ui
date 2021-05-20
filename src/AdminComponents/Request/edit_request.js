@@ -1,16 +1,21 @@
 import axios from "axios";
 import React from "react";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../AdminComponents/sidebar";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
-class EditAdminUsers extends React.Component {
+class EditRequest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: "",
-      description: "",
-      // password: "",
+      patient_name: "",
+      patient_mobilenumber: "",
+      patient_requirement: "",
+      patient_stage: "",
+      guardian_name: "",
+      guardian_mobilenumber: "",
+      addedby: "",
+      status: true,
       data: Date.now(),
       mobile_message: "",
       validError: false,
@@ -106,35 +111,40 @@ class EditAdminUsers extends React.Component {
   }
   componentDidMount() {
     const { _id } = this.props.match.params;
+
     console.log(_id);
     axios
-      .get(`https://api.covidfrontline.net/admin/update_adminusers/${_id}`)
+      .get(`https://api.covidfrontline.net/request/update_request/${_id}`)
       .then((res) => {
         console.log(res.data);
         const menu = {
-          name: res.data.name,
-          email: res.data.email,
-          country: res.data.country,
-          city: res.data.city,
-          date: res.data.date,
+          patient_name: res.data.patient_name,
+          patient_mobilenumber: res.data.patient_mobilenumber,
+          patient_requirement: res.data.patient_requirement,
+          patient_stage: res.data.patient_stage,
+          guardian_name: res.data.guardian_name,
+          guardian_mobilenumber: res.data.guardian_mobilenumber,
+          addedby: res.data.addedby,
         };
-        console.log(menu.menu);
+        console.log(menu.name);
         this.setState({
-          name: menu.name,
-          email: menu.email,
-          country: menu.country,
-          city: menu.city,
-          date: menu.date,
+          patient_name: menu.patient_name,
+          patient_mobilenumber: menu.patient_mobilenumber,
+          patient_requirement: menu.patient_requirement,
+          patient_stage: menu.patient_stage,
+          guardian_name: menu.guardian_name,
+          guardian_mobilenumber: menu.guardian_mobilenumber,
+
+          addedby: menu.addedby,
           loading: true,
         });
       });
-
     axios
-      .get(`https://api.covidfrontline.net/country/allcountry`)
+      .get(`https://api.covidfrontline.net/resource/allresources`)
       .then((res) => {
-        const Countries = res.data;
-        console.log(Countries);
-        this.setState({ Countries, loading: true });
+        const resources = res.data;
+        console.log(resources);
+        this.setState({ resources, loading: true });
       });
   }
 
@@ -146,44 +156,31 @@ class EditAdminUsers extends React.Component {
 
   handleSubmit(e) {
     const { _id } = this.props.match.params;
+
     e.preventDefault();
     if (this.validator.allValid()) {
       const menu = {
-        name: this.state.name,
-        email: this.state.email,
-        city: this.state.city,
-        country: this.state.country,
-        date: Date.now(),
+        patient_name: this.state.patient_name,
+        patient_mobilenumber: this.state.patient_mobilenumber,
+        patient_requirement: this.state.patient_requirement,
+        patient_stage: this.state.patient_stage,
+        guardian_name: this.state.guardian_name,
+        guardian_mobilenumber: this.state.guardian_mobilenumber,
+        addedby: this.state.addedby,
       };
+      console.log(this.state.name, this.state.addedby);
       axios
         .put(
-          `https://api.covidfrontline.net/admin/update_adminusers_patch/${_id}`,
+          `https://api.covidfrontline.net/request/update_request_patch/${_id}`,
           menu
         )
         .then((res) => console.log(res.data));
       this.forceUpdate();
-      this.props.history.push("/adminuser");
+      this.props.history.push("/request");
     } else {
       this.validator.showMessages();
       this.forceUpdate();
     }
-  }
-  setCityName(e) {
-    console.log(e.target.value);
-    this.setState({
-      country: e.target.value,
-    });
-
-    let selectedCountryName = e.target.value;
-    axios
-      .get(
-        `https://api.covidfrontline.net/city/cityvalues/${selectedCountryName}`
-      )
-      .then((res) => {
-        const cities = res.data;
-        console.log(cities);
-        this.setState({ cities });
-      });
   }
 
   render() {
@@ -192,11 +189,11 @@ class EditAdminUsers extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Edit Admin User</div>
+            <div className="admin-head">Edit Resource</div>
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <Link to="/menu">
+                  <Link to="/request">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>
@@ -211,141 +208,158 @@ class EditAdminUsers extends React.Component {
                       <div className="col-lg-12 p-0"></div>
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0"> Name</label>
+                          <label className="col-lg-2 p-0">Patient Name</label>
                           <input
                             className="form-control col-lg-10"
-                            name="name"
+                            name="patient_name"
                             onChange={this.handleChange}
-                            value={this.state.name}
+                            value={this.state.patient_name}
                             type="text"
                             onfocus="this.placeholder = 'Menu Name'"
                             onblur="this.placeholder = ''"
                             placeholder="Alt Text"
                           />
                           {this.validator.message(
-                            "Name",
-                            this.state.name,
+                            "Patient Name",
+                            this.state.patient_name,
                             "required|whitespace|min:1|max:20"
                           )}
                         </div>
                       </div>
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0"> Email</label>
+                          <label className="col-lg-2 p-0">
+                            {" "}
+                            Patient Mobile Number
+                          </label>
                           <input
                             className="form-control col-lg-10"
-                            name="email"
+                            name="patient_mobilenumber"
                             onChange={this.handleChange}
-                            value={this.state.email}
-                            type="text"
+                            value={this.state.patient_mobilenumber}
+                            type="number"
                             onfocus="this.placeholder = 'Menu Name'"
                             onblur="this.placeholder = ''"
-                            placeholder="Alt Text"
+                            placeholder=""
                           />
                           {this.validator.message(
-                            "Email",
-                            this.state.email,
-                            "required|email"
+                            "Patient Mobile Number",
+                            this.state.patient_mobilenumber,
+                            "required|min:10|max:10"
                           )}
+                          {this.state.mobile_message}
                         </div>
                       </div>
-                      {/* <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0"> City</label>
-                          <input
-                            className="form-control col-lg-10"
-                            name="city"
-                            onChange={this.handleChange}
-                            value={this.state.city}
-                            type="text"
-                            onfocus="this.placeholder = 'Menu Name'"
-                            onblur="this.placeholder = ''"
-                            placeholder="Alt Text"
-                          />
-                          {this.validator.message(
-                            "city",
-                            this.state.city,
-                            "required"
-                          )}
-                        </div>
-                      </div> */}
                       <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0 ">
-                          <label className="col-lg-2 p-0">Country Name</label>
+                        <div className="form-group tags-field row m-0">
+                          <label className="col-lg-2 p-0">
+                            Patient Requirement
+                          </label>
 
                           <select
                             className="form-control col-lg-10"
-                            name="country"
-                            value={this.state.country}
-                            onChange={this.setCityName}
+                            name="patient_requirement"
+                            onChange={this.handleChange}
                           >
-                            <option>{this.state.country}</option>
-                            {this.state.Countries &&
-                              this.state.Countries.map((data, index) => {
+                            <option>{this.state.patient_requirement}</option>
+                            {this.state.resources &&
+                              this.state.resources.map((data, index) => {
                                 return (
-                                  <option value={data.country} key={index}>
-                                    {data.country}
+                                  <option value={data.name} key={index}>
+                                    {data.name}
                                   </option>
                                 );
                               })}
                           </select>
 
                           {this.validator.message(
-                            "Country Name",
-                            this.state.country,
+                            "Patient Requirement",
+                            this.state.patient_requirement,
                             "required"
                           )}
                         </div>
                       </div>
+
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">City Name</label>
+                          <label className="col-lg-2 p-0">Patient Stage</label>
 
                           <select
+                            name="patient_stage"
+                            id="select"
+                            value={this.state.patient_stage}
+                            onChange={this.handleChange}
                             className="form-control col-lg-10"
-                            name="city"
-                            value={this.state.city}
-                            onChange={this.onChange}
                           >
-                            <option>{this.state.city}</option>
-                            {this.state.cities &&
-                              this.state.cities.map((data, index) => {
-                                return (
-                                  <option value={data.city} key={index}>
-                                    {data.city}
-                                  </option>
-                                );
-                              })}
+                            <option value="select">select</option>
+                            <option value="Critical ">Critical </option>
+                            <option value="Non Critical">Non Critical</option>
                           </select>
 
                           {this.validator.message(
-                            "City Name",
-                            this.state.city,
+                            "Patient Stage",
+                            this.state.patient_stage,
                             "required"
                           )}
                         </div>
                       </div>
-                      {/* <div className="col-lg-12 p-0">
+
+                      {/* <select
+                      name="item_halal"
+                      id="select"
+                      value={this.state.item_halal}
+                      onChange={this.onChange}
+                      className="form-control"
+                    >
+                      <option value="select">select</option>
+                      <option value="Yes">Yes</option>
+                      <option value="NO">NO</option>
+                      <option value="Not Applicable">Not Applicable</option>
+                    </select> */}
+                      <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0"> Password</label>
+                          <label className="col-lg-2 p-0">Guardian Name</label>
                           <input
                             className="form-control col-lg-10"
-                            name="password"
+                            name="guardian_name"
                             onChange={this.handleChange}
-                            value={this.state.password}
+                            value={this.state.guardian_name}
                             type="text"
                             onfocus="this.placeholder = 'Menu Name'"
                             onblur="this.placeholder = ''"
                             placeholder="Alt Text"
                           />
                           {this.validator.message(
-                            "Password",
-                            this.state.password,
-                            "required"
+                            "Guardian Name",
+                            this.state.guardian_name,
+                            "required|whitespace|min:1|max:20"
                           )}
                         </div>
-                      </div> */}
-
+                      </div>
+                      <div className="col-lg-12 p-0">
+                        <div className="form-group tags-field row m-0">
+                          <label className="col-lg-2 p-0">
+                            {" "}
+                            Guardian Mobile Number
+                          </label>
+                          <input
+                            className="form-control col-lg-10"
+                            name="guardian_mobilenumber"
+                            onChange={this.handleChange}
+                            value={this.state.guardian_mobilenumber}
+                            type="number"
+                            onfocus="this.placeholder = 'Menu Name'"
+                            onblur="this.placeholder = ''"
+                            placeholder=""
+                          />
+                          {this.validator.message(
+                            "Guardian Mobile Number",
+                            this.state.guardian_mobilenumber,
+                            "required|min:10|max:10"
+                          )}
+                          {this.state.mobile_message}
+                        </div>
+                      </div>
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field  row m-0">
                           <label className="col-lg-2 p-0" />
@@ -368,7 +382,7 @@ class EditAdminUsers extends React.Component {
                 {" "}
                 <Loader
                   type="Circles"
-                  color="#0029ff"
+                  color="#f39510"
                   height={100}
                   width={100}
                   timeout={3000} //3 secs
@@ -382,4 +396,4 @@ class EditAdminUsers extends React.Component {
   }
 }
 
-export default EditAdminUsers;
+export default EditRequest;

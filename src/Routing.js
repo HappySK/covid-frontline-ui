@@ -13,6 +13,10 @@ import AddAdminUser from "./components/AdminUser/add_adminuser";
 import AdminUsers from "./components/AdminUser/adminusers";
 import EditAdminUsers from "./components/AdminUser/edit_adminusers";
 
+//Administrator Users
+import AddAdministratorUser from "./components/Administrator/add_administrator";
+import AdministratorUsers from "./components/Administrator/administrator";
+
 //Cities
 import AddCity from "./components/City/add_city";
 import City from "./components/City/city";
@@ -63,6 +67,10 @@ import AddVolunteers from "./AdminComponents/Volunteers/add_volunteers";
 import EditVolunteers from "./AdminComponents/Volunteers/edit_volunteers";
 import Volunteers from "./AdminComponents/Volunteers/volunteers";
 
+import AddRequest from "./AdminComponents/Request/add_request";
+import EditRequest from "./AdminComponents/Request/edit_request";
+import Request from "./AdminComponents/Request/request";
+
 function Routing() {
   return (
     <HashRouter>
@@ -78,6 +86,15 @@ function Routing() {
         <Route path="/add_adminuser" exact component={AddAdminUser} />
         <Route path="/adminuser" exact component={AdminUsers} />
         <Route path="/edit_adminuser/:_id" exact component={EditAdminUsers} />
+
+        {/* Administrator Duplicate */}
+
+        <Route
+          path="/add_administratoruser"
+          exact
+          component={AddAdministratorUser}
+        />
+        <Route path="/administratoruser" exact component={AdministratorUsers} />
 
         {/* Cities */}
         <Route path="/add_city" exact component={AddCity} />
@@ -170,6 +187,16 @@ function Routing() {
           component={EditVolunteers}
         />
         <PrivateRoute path="/volunteers" exact component={Volunteers} />
+
+        {/* Request*/}
+        <PrivateRoute path="/add_request" exact component={AddRequest} />
+        <PrivateRoute path="/edit_request/:_id" exact component={EditRequest} />
+        {/* <PrivateRoute
+          path="/view_resource1/:_id"
+          exact
+          component={ViewResource1}
+        /> */}
+        <PrivateRoute path="/request" exact component={Request} />
       </Switch>
     </HashRouter>
   );

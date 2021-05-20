@@ -1,16 +1,17 @@
 import React from "react";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../AdminComponents/sidebar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import Loader from "react-loader-spinner";
 import ReactPaginate from "react-paginate";
+import { isAutheticated, signout } from "../../auth";
 const PER_PAGE = 10;
-class AdminUsers extends React.Component {
+class Request extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menus: [],
+      requests: [],
       loading: false,
       currentPage: 0,
     };
@@ -19,19 +20,23 @@ class AdminUsers extends React.Component {
   }
 
   componentDidMount() {
+    const {
+      user: { _id },
+    } = isAutheticated();
+    console.log(_id);
     axios
-      .get(`https://api.covidfrontline.net/admin/AdminUsersList`)
+      .get(`https://api.covidfrontline.net/request/requests/${_id}`)
       .then((res) => {
-        const menus = res.data;
-        console.log(menus);
-        this.setState({ menus, loading: true });
+        const requests = res.data;
+        console.log(requests);
+        this.setState({ requests, loading: true });
       });
     this.unsubscribe = axios
-      .get(`https://api.covidfrontline.net/admin/AdminUsersList`)
+      .get(`https://api.covidfrontline.net/request/requests/${_id}`)
       .then((res) => {
-        const menus = res.data;
-        console.log(menus);
-        this.setState({ menus, loading: true });
+        const requests = res.data;
+        console.log(requests);
+        this.setState({ requests, loading: true });
       });
   }
   handlePageClick({ selected: selectedPage }) {
@@ -51,7 +56,7 @@ class AdminUsers extends React.Component {
         console.log(_id);
         axios
           .delete(
-            `https://api.covidfrontline.net/admin/delete_adminusers/${_id}`
+            `https://api.covidfrontline.net/request/delete_request/${_id}`
           )
           .then((res) => {
             console.log(res);
@@ -67,23 +72,24 @@ class AdminUsers extends React.Component {
     const offset = this.state.currentPage * PER_PAGE;
 
     const currentPageData =
-      this.state.menus &&
-      this.state.menus.slice(offset, offset + PER_PAGE).map((menu, index) => {
-        return (
-          <>
+      this.state.requests &&
+      this.state.requests
+        .slice(offset, offset + PER_PAGE)
+        .map((request, index) => {
+          return (
             <tr key={index}>
               <td>{index + 1}</td>
 
-              <td>{menu.name}</td>
-              <td>{menu.city}</td>
-
-              {menu.status == true ? (
+              <td>{request.patient_name}</td>
+              <td>{request.patient_mobilenumber}</td>
+              <td>{request.patient_requirement}</td>
+              {request.status == true ? (
                 <td>
                   <span
                     className="badge badge-pill badge-soft-success font-size-12"
                     style={{ fontSize: "16px" }}
                   >
-                    Live
+                    Pending
                   </span>
                 </td>
               ) : (
@@ -92,23 +98,23 @@ class AdminUsers extends React.Component {
                     className="badge badge-pill badge-soft-success font-size-12"
                     style={{ fontSize: "16px" }}
                   >
-                    Suspended
+                    Completed
                   </span>
                 </td>
               )}
               <td>
-                {menu.status == true ? (
+                {request.status == true ? (
                   <button
                     onClick={(e) => {
                       e.preventDefault();
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/admin/suspenduser/${menu._id}`
+                          `https://api.covidfrontline.net/request/Inactivate/${request._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
-                          alert("Admin User is Suspended!");
+                          alert("request is Completed!");
                         })
                         .catch(function (error) {
                           // handle error
@@ -124,7 +130,7 @@ class AdminUsers extends React.Component {
                       backgroundColor: "red",
                     }}
                   >
-                    Suspend
+                    Pending
                   </button>
                 ) : (
                   <button
@@ -133,11 +139,11 @@ class AdminUsers extends React.Component {
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/admin/makeliveuser/${menu._id}`
+                          `https://api.covidfrontline.net/request/Activate/${request._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
-                          alert("Admin User is Live!");
+                          alert("request is Pending!");
                         })
                         .catch(function (error) {
                           // handle error
@@ -152,84 +158,87 @@ class AdminUsers extends React.Component {
                       marginRight: "2px",
                     }}
                   >
-                    Make Live
+                    Completed
                   </button>
                 )}
+                <Link to={`/edit_request/${request._id}`}>
+                  <span className="btn">Edit</span>
+                </Link>
                 <span
                   className="btn"
-                  onClick={this.deleteItem.bind(this, menu._id)}
+                  onClick={this.deleteItem.bind(this, request._id)}
                 >
                   Delete
                 </span>
-                <Link to={`/edit_adminuser/${menu._id}`}>
-                  <span className="btn">Edit</span>
-                </Link>
               </td>
               {/* <td>
-                <Link to={`/edit_adminuser/${menu._id}`}>
-                <span className="btn">Edit</span>
-              </Link>
+                <Link to={`/view_request/${request._id}`}>
+                  <span className="btn">View</span>
+                </Link>
+
+                <Link to={`/edit_request/${request._id}`}>
+                  <span className="btn">Edit</span>
+                </Link>
                 <span
                   className="btn"
-                  onClick={this.deleteItem.bind(this, menu._id)}
+                  onClick={this.deleteItem.bind(this, request._id)}
                 >
                   Delete
                 </span>
               </td> */}
             </tr>
-          </>
-        );
-      });
+          );
+        });
 
     const pageCount = Math.ceil(
-      this.state.menus && this.state.menus.length / PER_PAGE
+      this.state.requests && this.state.requests.length / PER_PAGE
     );
     return (
       <div>
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Admin Users</div>
-            {this.state.loading ? (
-              <div className="admin-data">
-                <div className="col-lg-12 p-0 text-right mb-30">
-                  <Link to="/add_adminuser">
-                    <button className="button button-contactForm boxed-btn">
-                      + Add New
-                    </button>
-                  </Link>
-                </div>
-                <div className="table-responsive admin-table">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>S.No</th>
-                        <th>Name</th>
-
-                        <th>City</th>
-
-                        <th>Status</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>{currentPageData}</tbody>
-                  </table>
-                </div>
-                <div className="paginationstyle">
-                  <ReactPaginate
-                    previousLabel={"Previous"}
-                    nextLabel={"Next"}
-                    pageCount={pageCount}
-                    onPageChange={this.handlePageClick.bind(this)}
-                    containerClassName={"pagination"}
-                    previousLinkClassName={"pagination__link"}
-                    nextLinkClassName={"pagination__link"}
-                    disabledClassName={"pagination__link--disabled"}
-                    activeClassName={"pagination__link--active"}
-                  />
-                </div>
+            <div className="admin-head">Request</div>
+            {/* {this.state.loading ? ( */}
+            <div className="admin-data">
+              <div className="col-lg-12 p-0 text-right mb-30">
+                <Link to="/add_request">
+                  <button className="button button-contactForm boxed-btn">
+                    + Add New
+                  </button>
+                </Link>
               </div>
-            ) : (
+              <div className="table-responsive admin-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>Patient Name</th>
+                      <th>Patient Mobile</th>
+                      <th>Requirement</th>
+
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>{currentPageData}</tbody>
+                </table>
+              </div>
+              <div className="paginationstyle">
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={pageCount}
+                  onPageChange={this.handlePageClick.bind(this)}
+                  containerClassName={"pagination"}
+                  previousLinkClassName={"pagination__link"}
+                  nextLinkClassName={"pagination__link"}
+                  disabledClassName={"pagination__link--disabled"}
+                  activeClassName={"pagination__link--active"}
+                />
+              </div>
+            </div>
+            {/* ) : (
               <div style={{ marginLeft: "500px", marginTop: "200px" }}>
                 {" "}
                 <Loader
@@ -240,7 +249,7 @@ class AdminUsers extends React.Component {
                   timeout={3000} //3 secs
                 />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -248,4 +257,4 @@ class AdminUsers extends React.Component {
   }
 }
 
-export default AdminUsers;
+export default Request;

@@ -28,8 +28,12 @@ function AdminLogin() {
         console.log(res);
 
         sessionStorage.setItem("user", JSON.stringify(res.data));
-
-        history.push("/admindashboard");
+        console.log(res.data.user.status);
+        if (res.data.user.status === true) {
+          history.push("/admindashboard");
+        } else {
+          alert("Admin User is Suspended");
+        }
       });
 
     // setUser({
