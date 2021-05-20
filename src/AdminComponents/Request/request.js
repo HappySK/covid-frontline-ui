@@ -162,19 +162,35 @@ class Request extends React.Component {
                   </button>
                 )}
                 <Link to={`/edit_request/${request._id}`}>
-                  <span className="btn">Edit</span>
+                  <span className="btn">Update</span>
                 </Link>
-                <span
+                {/* <span
                   className="btn"
                   onClick={this.deleteItem.bind(this, request._id)}
                 >
                   Delete
-                </span>
+                </span> */}
               </td>
               <td>
-                <Link to={`/add_patient_status/${request._id}`}>
-                  <span className="btn"> Verify Patient</span>
-                </Link>
+                {request.patient_at == "" ? (
+                  <Link to={`/add_patient_status/${request._id}`}>
+                    <span className="btn" style={{ background: "#5a6ceb" }}>
+                      {" "}
+                      Verify{" "}
+                    </span>
+                  </Link>
+                ) : (
+                  <>
+                    {" "}
+                    <span
+                      className="btn btn-success btn-sm  waves-effect waves-light btn-table "
+                      style={{ background: "green" }}
+                    >
+                      {" "}
+                      Verified{" "}
+                    </span>
+                  </>
+                )}{" "}
               </td>
             </tr>
           );

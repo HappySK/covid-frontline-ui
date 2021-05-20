@@ -224,21 +224,6 @@ class PatientStaus extends React.Component {
                         <div className="form-group tags-field row m-0">
                           <label className="col-lg-2 p-0">Patient At</label>
 
-                          {/* <select
-                            name="patient_at"
-                            id="select"
-                            value={this.state.patient_at}
-                            onChange={this.handleChange}
-                            className="form-control col-lg-10"
-                          >
-                            <option value="select">select</option>
-                            <option value="Hospital">Hospital</option>
-                            <option value="Home Isolation">
-                              {" "}
-                              Home Isolation
-                            </option>
-                            <option value="At home">At home</option>
-                          </select> */}
                           <div className="col-sm-3">
                             <label className="radio-inline no-padd">
                               <input
@@ -302,7 +287,7 @@ class PatientStaus extends React.Component {
                           {this.validator.message(
                             "Comorbidity conditions ",
                             this.state.comorbidity_conditions,
-                            "required|whitespace|min:30|max:100"
+                            "required"
                           )}
                         </div>
                       </div>
@@ -322,7 +307,7 @@ class PatientStaus extends React.Component {
                           {this.validator.message(
                             "Current SPO2",
                             this.state.current_spo2,
-                            "required|whitespace|min:1|max:20"
+                            "required"
                           )}
                         </div>
                       </div>
@@ -344,7 +329,7 @@ class PatientStaus extends React.Component {
                           {this.validator.message(
                             "Patient Location",
                             this.state.patient_location,
-                            "required|whitespace|min:1|max:20"
+                            "required"
                           )}
                         </div>
                       </div>

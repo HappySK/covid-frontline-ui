@@ -385,6 +385,159 @@ class EditRequest extends React.Component {
                           {this.state.mobile_message}
                         </div>
                       </div>
+
+                      {this.state.patient_at == "" ? (
+                        <></>
+                      ) : (
+                        <>
+                          <div className="col-lg-12 p-0">
+                            <div className="form-group tags-field row m-0">
+                              <label className="col-lg-2 p-0">Patient At</label>
+
+                              <div className="col-sm-3">
+                                <label className="radio-inline no-padd">
+                                  <input
+                                    type="radio"
+                                    name="patient_at"
+                                    value="Hospital"
+                                    onChange={this.handleChange}
+                                    checked={
+                                      this.state.patient_at === "Hospital"
+                                    }
+                                  />
+                                  Hospital
+                                </label>
+                              </div>
+                              <div className="col-sm-3">
+                                <label className="radio-inline no-padd">
+                                  <input
+                                    type="radio"
+                                    name="patient_at"
+                                    value="Home Isolation"
+                                    onChange={this.handleChange}
+                                    checked={
+                                      this.state.patient_at === "Home Isolation"
+                                    }
+                                  />
+                                  Home Isolation
+                                </label>
+                              </div>
+                              <div className="col-sm-3">
+                                <label className="radio-inline no-padd">
+                                  <input
+                                    type="radio"
+                                    name="patient_at"
+                                    value="At home"
+                                    onChange={this.handleChange}
+                                    checked={
+                                      this.state.patient_at === "At home"
+                                    }
+                                  />
+                                  At home
+                                </label>
+                              </div>
+
+                              {this.validator.message(
+                                "Patient At",
+                                this.state.patient_at,
+                                "required"
+                              )}
+                            </div>
+                          </div>
+                          <div className="col-lg-12 p-0">
+                            <div className="form-group tags-field row m-0">
+                              <label className="col-lg-2 p-0">
+                                Comorbidity conditions{" "}
+                              </label>
+                              <textarea
+                                className="form-control col-lg-10"
+                                name="comorbidity_conditions"
+                                onChange={this.handleChange}
+                                value={this.state.comorbidity_conditions}
+                                onfocus="this.placeholder = 'Menu Name'"
+                                onblur="this.placeholder = ''"
+                                placeholder=""
+                              />
+                              {this.validator.message(
+                                "Comorbidity conditions ",
+                                this.state.comorbidity_conditions,
+                                "required"
+                              )}
+                            </div>
+                          </div>
+                          <div className="col-lg-12 p-0">
+                            <div className="form-group tags-field row m-0">
+                              <label className="col-lg-2 p-0">
+                                Current SPO2
+                              </label>
+                              <input
+                                className="form-control col-lg-10"
+                                name="current_spo2"
+                                onChange={this.handleChange}
+                                value={this.state.current_spo2}
+                                type="text"
+                                onfocus="this.placeholder = 'Menu Name'"
+                                onblur="this.placeholder = ''"
+                                placeholder=""
+                              />
+                              {this.validator.message(
+                                "Current SPO2",
+                                this.state.current_spo2,
+                                "required"
+                              )}
+                            </div>
+                          </div>
+                          <div className="col-lg-12 p-0">
+                            <div className="form-group tags-field row m-0">
+                              <label className="col-lg-2 p-0">
+                                Patient Location
+                              </label>
+                              <input
+                                className="form-control col-lg-10"
+                                name="patient_location"
+                                onChange={this.handleChange}
+                                value={this.state.patient_location}
+                                type="text"
+                                onfocus="this.placeholder = 'Menu Name'"
+                                onblur="this.placeholder = ''"
+                                placeholder=""
+                              />
+                              {this.validator.message(
+                                "Patient Location",
+                                this.state.patient_location,
+                                "required"
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="col-lg-12 p-0">
+                            <div className="form-group tags-field row m-0">
+                              <label className="col-lg-2 p-0">Priority</label>
+
+                              <select
+                                name="Priority"
+                                id="select"
+                                value={this.state.Priority}
+                                onChange={this.handleChange}
+                                className="form-control col-lg-10"
+                              >
+                                <option value="select">select</option>
+                                <option value="Very High">Very High</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                              </select>
+
+                              {this.validator.message(
+                                "Priority",
+                                this.state.Priority,
+                                "required"
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      )}
+
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field  row m-0">
                           <label className="col-lg-2 p-0" />
