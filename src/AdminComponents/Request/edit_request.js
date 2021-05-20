@@ -16,6 +16,13 @@ class EditRequest extends React.Component {
       guardian_mobilenumber: "",
       addedby: "",
       status: true,
+
+      patient_at: "",
+      current_spo2: "",
+      patient_location: "",
+      comorbidity_conditions: "",
+      Priority: "",
+
       data: Date.now(),
       mobile_message: "",
       validError: false,
@@ -125,6 +132,12 @@ class EditRequest extends React.Component {
           guardian_name: res.data.guardian_name,
           guardian_mobilenumber: res.data.guardian_mobilenumber,
           addedby: res.data.addedby,
+
+          patient_at: res.data.patient_at,
+          current_spo2: res.data.current_spo2,
+          patient_location: res.data.patient_location,
+          comorbidity_conditions: res.data.comorbidity_conditions,
+          Priority: res.data.Priority,
         };
         console.log(menu.name);
         this.setState({
@@ -136,6 +149,12 @@ class EditRequest extends React.Component {
           guardian_mobilenumber: menu.guardian_mobilenumber,
 
           addedby: menu.addedby,
+          patient_at: menu.patient_at,
+          current_spo2: menu.current_spo2,
+          patient_location: menu.patient_location,
+          comorbidity_conditions: menu.comorbidity_conditions,
+          Priority: menu.Priority,
+
           loading: true,
         });
       });
@@ -167,6 +186,12 @@ class EditRequest extends React.Component {
         guardian_name: this.state.guardian_name,
         guardian_mobilenumber: this.state.guardian_mobilenumber,
         addedby: this.state.addedby,
+
+        patient_at: this.state.patient_at,
+        current_spo2: this.state.current_spo2,
+        patient_location: this.state.patient_location,
+        comorbidity_conditions: this.state.comorbidity_conditions,
+        Priority: this.state.Priority,
       };
       console.log(this.state.name, this.state.addedby);
       axios
