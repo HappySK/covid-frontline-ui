@@ -4,6 +4,8 @@ import Sidebar from "../../AdminComponents/sidebar";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
+import { isAutheticated, signout } from "../../auth";
+import * as moment from "moment";
 class EditRequest extends React.Component {
   constructor(props) {
     super(props);
@@ -120,6 +122,7 @@ class EditRequest extends React.Component {
     const { _id } = this.props.match.params;
 
     console.log(_id);
+
     axios
       .get(`https://api.covidfrontline.net/request/update_request/${_id}`)
       .then(res => {
@@ -138,6 +141,7 @@ class EditRequest extends React.Component {
           patient_location: res.data.patient_location,
           comorbidity_conditions: res.data.comorbidity_conditions,
           Priority: res.data.Priority,
+          updatedAt: res.data.updatedAt,
         };
         console.log(menu.name);
         this.setState({
@@ -154,7 +158,7 @@ class EditRequest extends React.Component {
           patient_location: menu.patient_location,
           comorbidity_conditions: menu.comorbidity_conditions,
           Priority: menu.Priority,
-
+          updatedAt: menu.updatedAt,
           loading: true,
         });
       });
@@ -209,12 +213,16 @@ class EditRequest extends React.Component {
   }
 
   render() {
+    const {
+      user: { name },
+    } = isAutheticated();
+    console.log(name);
     return (
       <div>
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Edit Resource</div>
+            <div className="admin-head">Verified Patient</div>
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
@@ -224,335 +232,105 @@ class EditRequest extends React.Component {
                     </button>
                   </Link>
                 </div>
-                <div className="container-fluid p-0">
-                  <form
-                    className="form-contact contact_form"
-                    onSubmit={this.handleSubmit}
-                  >
-                    <div className="row m-0">
-                      <div className="col-lg-12 p-0"></div>
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Patient Name</label>
-                          <input
-                            className="form-control col-lg-10"
-                            name="patient_name"
-                            onChange={this.handleChange}
-                            value={this.state.patient_name}
-                            type="text"
-                            onfocus="this.placeholder = 'Menu Name'"
-                            onblur="this.placeholder = ''"
-                            placeholder="Alt Text"
-                          />
-                          {this.validator.message(
-                            "Patient Name",
-                            this.state.patient_name,
-                            "required|whitespace|min:1|max:20"
-                          )}
-                        </div>
-                      </div>
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">
-                            {" "}
-                            Patient Mobile Number
-                          </label>
-                          <input
-                            className="form-control col-lg-10"
-                            name="patient_mobilenumber"
-                            onChange={this.handleChange}
-                            value={this.state.patient_mobilenumber}
-                            type="number"
-                            onfocus="this.placeholder = 'Menu Name'"
-                            onblur="this.placeholder = ''"
-                            placeholder=""
-                          />
-                          {this.validator.message(
-                            "Patient Mobile Number",
-                            this.state.patient_mobilenumber,
-                            "required|min:10|max:10"
-                          )}
-                          {this.state.mobile_message}
-                        </div>
-                      </div>
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">
-                            Patient Requirement
-                          </label>
+                <div className="table-responsive admin-table demo">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Patient Name</b>
+                        </td>
+                        <td>{this.state.patient_name}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Patient Mobile Number</b>
+                        </td>
+                        <td>{this.state.patient_mobilenumber}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Patient Requirement</b>
+                        </td>
+                        <td>{this.state.patient_requirement}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Patient Stage</b>
+                        </td>
+                        <td>{this.state.patient_stage}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Guardian Name</b>
+                        </td>
+                        <td>{this.state.guardian_name}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Guardian Mobile Number</b>
+                        </td>
+                        <td>{this.state.guardian_mobilenumber}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Added By </b>
+                        </td>
+                        <td>{name}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> updatedAt </b>
+                        </td>
+                        <td>
+                          {/* {this.state.updatedAt} */}
+                          {moment(this.state.updatedAt)
+                            .locale("en")
+                            .format("DD-MM-YYYY")}
+                          {""}
+                          {moment(this.state.updatedAt)
+                            .locale("en")
+                            .format("HH:mm:ss")}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
 
-                          <select
-                            className="form-control col-lg-10"
-                            name="patient_requirement"
-                            onChange={this.handleChange}
-                          >
-                            <option>{this.state.patient_requirement}</option>
-                            {this.state.resources &&
-                              this.state.resources.map((data, index) => {
-                                return (
-                                  <option value={data.name} key={index}>
-                                    {data.name}
-                                  </option>
-                                );
-                              })}
-                          </select>
-
-                          {this.validator.message(
-                            "Patient Requirement",
-                            this.state.patient_requirement,
-                            "required"
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Patient Stage</label>
-
-                          <select
-                            name="patient_stage"
-                            id="select"
-                            value={this.state.patient_stage}
-                            onChange={this.handleChange}
-                            className="form-control col-lg-10"
-                          >
-                            <option value="select">select</option>
-                            <option value="Critical ">Critical </option>
-                            <option value="Non Critical">Non Critical</option>
-                          </select>
-
-                          {this.validator.message(
-                            "Patient Stage",
-                            this.state.patient_stage,
-                            "required"
-                          )}
-                        </div>
-                      </div>
-
-                      {/* <select
-                      name="item_halal"
-                      id="select"
-                      value={this.state.item_halal}
-                      onChange={this.onChange}
-                      className="form-control"
-                    >
-                      <option value="select">select</option>
-                      <option value="Yes">Yes</option>
-                      <option value="NO">NO</option>
-                      <option value="Not Applicable">Not Applicable</option>
-                    </select> */}
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Guardian Name</label>
-                          <input
-                            className="form-control col-lg-10"
-                            name="guardian_name"
-                            onChange={this.handleChange}
-                            value={this.state.guardian_name}
-                            type="text"
-                            onfocus="this.placeholder = 'Menu Name'"
-                            onblur="this.placeholder = ''"
-                            placeholder="Alt Text"
-                          />
-                          {this.validator.message(
-                            "Guardian Name",
-                            this.state.guardian_name,
-                            "required|whitespace|min:1|max:20"
-                          )}
-                        </div>
-                      </div>
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">
-                            {" "}
-                            Guardian Mobile Number
-                          </label>
-                          <input
-                            className="form-control col-lg-10"
-                            name="guardian_mobilenumber"
-                            onChange={this.handleChange}
-                            value={this.state.guardian_mobilenumber}
-                            type="number"
-                            onfocus="this.placeholder = 'Menu Name'"
-                            onblur="this.placeholder = ''"
-                            placeholder=""
-                          />
-                          {this.validator.message(
-                            "Guardian Mobile Number",
-                            this.state.guardian_mobilenumber,
-                            "required|min:10|max:10"
-                          )}
-                          {this.state.mobile_message}
-                        </div>
-                      </div>
-
-                      {this.state.patient_at == "" ? (
-                        <></>
-                      ) : (
-                        <>
-                          <div className="col-lg-12 p-0">
-                            <div className="form-group tags-field row m-0">
-                              <label className="col-lg-2 p-0">Patient At</label>
-
-                              <div className="col-sm-3">
-                                <label className="radio-inline no-padd">
-                                  <input
-                                    type="radio"
-                                    name="patient_at"
-                                    value="Hospital"
-                                    onChange={this.handleChange}
-                                    checked={
-                                      this.state.patient_at === "Hospital"
-                                    }
-                                  />
-                                  Hospital
-                                </label>
-                              </div>
-                              <div className="col-sm-3">
-                                <label className="radio-inline no-padd">
-                                  <input
-                                    type="radio"
-                                    name="patient_at"
-                                    value="Home Isolation"
-                                    onChange={this.handleChange}
-                                    checked={
-                                      this.state.patient_at === "Home Isolation"
-                                    }
-                                  />
-                                  Home Isolation
-                                </label>
-                              </div>
-                              <div className="col-sm-3">
-                                <label className="radio-inline no-padd">
-                                  <input
-                                    type="radio"
-                                    name="patient_at"
-                                    value="At home"
-                                    onChange={this.handleChange}
-                                    checked={
-                                      this.state.patient_at === "At home"
-                                    }
-                                  />
-                                  At home
-                                </label>
-                              </div>
-
-                              {this.validator.message(
-                                "Patient At",
-                                this.state.patient_at,
-                                "required"
-                              )}
-                            </div>
-                          </div>
-                          <div className="col-lg-12 p-0">
-                            <div className="form-group tags-field row m-0">
-                              <label className="col-lg-2 p-0">
-                                Comorbidity conditions{" "}
-                              </label>
-                              <textarea
-                                className="form-control col-lg-10"
-                                name="comorbidity_conditions"
-                                onChange={this.handleChange}
-                                value={this.state.comorbidity_conditions}
-                                onfocus="this.placeholder = 'Menu Name'"
-                                onblur="this.placeholder = ''"
-                                placeholder=""
-                              />
-                              {this.validator.message(
-                                "Comorbidity conditions ",
-                                this.state.comorbidity_conditions,
-                                "required"
-                              )}
-                            </div>
-                          </div>
-                          <div className="col-lg-12 p-0">
-                            <div className="form-group tags-field row m-0">
-                              <label className="col-lg-2 p-0">
-                                Current SPO2
-                              </label>
-                              <input
-                                className="form-control col-lg-10"
-                                name="current_spo2"
-                                onChange={this.handleChange}
-                                value={this.state.current_spo2}
-                                type="text"
-                                onfocus="this.placeholder = 'Menu Name'"
-                                onblur="this.placeholder = ''"
-                                placeholder=""
-                              />
-                              {this.validator.message(
-                                "Current SPO2",
-                                this.state.current_spo2,
-                                "required"
-                              )}
-                            </div>
-                          </div>
-                          <div className="col-lg-12 p-0">
-                            <div className="form-group tags-field row m-0">
-                              <label className="col-lg-2 p-0">
-                                Patient Location
-                              </label>
-                              <input
-                                className="form-control col-lg-10"
-                                name="patient_location"
-                                onChange={this.handleChange}
-                                value={this.state.patient_location}
-                                type="text"
-                                onfocus="this.placeholder = 'Menu Name'"
-                                onblur="this.placeholder = ''"
-                                placeholder=""
-                              />
-                              {this.validator.message(
-                                "Patient Location",
-                                this.state.patient_location,
-                                "required"
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="col-lg-12 p-0">
-                            <div className="form-group tags-field row m-0">
-                              <label className="col-lg-2 p-0">Priority</label>
-
-                              <select
-                                name="Priority"
-                                id="select"
-                                value={this.state.Priority}
-                                onChange={this.handleChange}
-                                className="form-control col-lg-10"
-                              >
-                                <option value="select">select</option>
-                                <option value="Very High">Very High</option>
-                                <option value="High">High</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Low">Low</option>
-                              </select>
-
-                              {this.validator.message(
-                                "Priority",
-                                this.state.Priority,
-                                "required"
-                              )}
-                            </div>
-                          </div>
-                        </>
-                      )}
-
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field  row m-0">
-                          <label className="col-lg-2 p-0" />
-                          <div className="col-lg-6 p-0">
-                            <button
-                              className="button button-contactForm boxed-btn"
-                              type="submit"
-                            >
-                              Save
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+                <div className="table-responsive admin-table demo">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Patient At</b>
+                        </td>
+                        <td>{this.state.patient_at}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Comorbidity conditions</b>
+                        </td>
+                        <td>{this.state.comorbidity_conditions}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Current SPO2</b>
+                        </td>
+                        <td>{this.state.current_spo2}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Patient Location</b>
+                        </td>
+                        <td>{this.state.patient_location}</td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="150px;">
+                          <b> Priority</b>
+                        </td>
+                        <td>{this.state.Priority}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             ) : (
