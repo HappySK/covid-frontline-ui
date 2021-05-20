@@ -15,6 +15,13 @@ class AddRequest extends React.Component {
       guardian_mobilenumber: "",
       addedby: "",
       status: true,
+
+      patient_at: "",
+      current_spo2: "",
+      patient_location: "",
+      comorbidity_conditions: "",
+      Priority: "",
+
       data: Date.now(),
       mobile_message: "",
       validError: false,
@@ -112,7 +119,7 @@ class AddRequest extends React.Component {
   componentDidMount() {
     axios
       .get(`https://api.covidfrontline.net/resource/allresources`)
-      .then((res) => {
+      .then(res => {
         const resources = res.data;
         console.log(resources);
         this.setState({ resources, loading: true });
@@ -139,13 +146,19 @@ class AddRequest extends React.Component {
         guardian_name: this.state.guardian_name,
         guardian_mobilenumber: this.state.guardian_mobilenumber,
 
+        patient_at: "",
+        current_spo2: "",
+        patient_location: "",
+        comorbidity_conditions: "",
+        Priority: "",
+
         status: true,
         addedby: _id,
       };
       console.log(menu);
       axios
         .post(`https://api.covidfrontline.net/request/addrequest`, menu)
-        .then((res) => {
+        .then(res => {
           console.log(res);
           console.log(res.data);
         });

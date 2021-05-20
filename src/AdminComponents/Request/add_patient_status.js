@@ -4,19 +4,15 @@ import Sidebar from "../../AdminComponents/sidebar";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
-class EditRequest extends React.Component {
+class PatientStaus extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      patient_name: "",
-      patient_mobilenumber: "",
-      patient_requirement: "",
-      patient_stage: "",
-      guardian_name: "",
-      guardian_mobilenumber: "",
-      addedby: "",
-      status: true,
-      data: Date.now(),
+      patient_at: "",
+      current_spo2: "",
+      patient_location: "",
+      comorbidity_conditions: "",
+      Priority: "",
       mobile_message: "",
       validError: false,
     };
@@ -125,6 +121,12 @@ class EditRequest extends React.Component {
           guardian_name: res.data.guardian_name,
           guardian_mobilenumber: res.data.guardian_mobilenumber,
           addedby: res.data.addedby,
+
+          patient_at: res.data.patient_at,
+          current_spo2: res.data.current_spo2,
+          patient_location: res.data.patient_location,
+          comorbidity_conditions: res.data.comorbidity_conditions,
+          Priority: res.data.Priority,
         };
         console.log(menu.name);
         this.setState({
@@ -134,8 +136,13 @@ class EditRequest extends React.Component {
           patient_stage: menu.patient_stage,
           guardian_name: menu.guardian_name,
           guardian_mobilenumber: menu.guardian_mobilenumber,
-
           addedby: menu.addedby,
+
+          patient_at: menu.patient_at,
+          current_spo2: menu.current_spo2,
+          patient_location: menu.patient_location,
+          comorbidity_conditions: menu.comorbidity_conditions,
+          Priority: menu.Priority,
           loading: true,
         });
       });
@@ -167,8 +174,14 @@ class EditRequest extends React.Component {
         guardian_name: this.state.guardian_name,
         guardian_mobilenumber: this.state.guardian_mobilenumber,
         addedby: this.state.addedby,
+
+        patient_at: this.state.patient_at,
+        current_spo2: this.state.current_spo2,
+        patient_location: this.state.patient_location,
+        comorbidity_conditions: this.state.comorbidity_conditions,
+        Priority: this.state.Priority,
       };
-      console.log(this.state.name, this.state.addedby);
+
       axios
         .put(
           `https://api.covidfrontline.net/request/update_request_patch/${_id}`,
@@ -189,7 +202,7 @@ class EditRequest extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Edit Resource</div>
+            <div className="admin-head">Update Patient Status</div>
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
@@ -206,22 +219,109 @@ class EditRequest extends React.Component {
                   >
                     <div className="row m-0">
                       <div className="col-lg-12 p-0"></div>
+
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Patient Name</label>
+                          <label className="col-lg-2 p-0">Patient At</label>
+
+                          {/* <select
+                            name="patient_at"
+                            id="select"
+                            value={this.state.patient_at}
+                            onChange={this.handleChange}
+                            className="form-control col-lg-10"
+                          >
+                            <option value="select">select</option>
+                            <option value="Hospital">Hospital</option>
+                            <option value="Home Isolation">
+                              {" "}
+                              Home Isolation
+                            </option>
+                            <option value="At home">At home</option>
+                          </select> */}
+                          <div className="col-sm-3">
+                            <label className="radio-inline no-padd">
+                              <input
+                                type="radio"
+                                name="patient_at"
+                                value="Hospital"
+                                onChange={this.handleChange}
+                                checked={this.state.patient_at === "Hospital"}
+                              />
+                              Hospital
+                            </label>
+                          </div>
+                          <div className="col-sm-3">
+                            <label className="radio-inline no-padd">
+                              <input
+                                type="radio"
+                                name="patient_at"
+                                value="Home Isolation"
+                                onChange={this.handleChange}
+                                checked={
+                                  this.state.patient_at === "Home Isolation"
+                                }
+                              />
+                              Home Isolation
+                            </label>
+                          </div>
+                          <div className="col-sm-3">
+                            <label className="radio-inline no-padd">
+                              <input
+                                type="radio"
+                                name="patient_at"
+                                value="At home"
+                                onChange={this.handleChange}
+                                checked={this.state.patient_at === "At home"}
+                              />
+                              At home
+                            </label>
+                          </div>
+
+                          {this.validator.message(
+                            "Patient At",
+                            this.state.patient_at,
+                            "required"
+                          )}
+                        </div>
+                      </div>
+                      <div className="col-lg-12 p-0">
+                        <div className="form-group tags-field row m-0">
+                          <label className="col-lg-2 p-0">
+                            Comorbidity conditions{" "}
+                          </label>
+                          <textarea
+                            className="form-control col-lg-10"
+                            name="comorbidity_conditions"
+                            onChange={this.handleChange}
+                            value={this.state.comorbidity_conditions}
+                            onfocus="this.placeholder = 'Menu Name'"
+                            onblur="this.placeholder = ''"
+                            placeholder=""
+                          />
+                          {this.validator.message(
+                            "Comorbidity conditions ",
+                            this.state.comorbidity_conditions,
+                            "required|whitespace|min:30|max:100"
+                          )}
+                        </div>
+                      </div>
+                      <div className="col-lg-12 p-0">
+                        <div className="form-group tags-field row m-0">
+                          <label className="col-lg-2 p-0">Current SPO2</label>
                           <input
                             className="form-control col-lg-10"
-                            name="patient_name"
+                            name="current_spo2"
                             onChange={this.handleChange}
-                            value={this.state.patient_name}
+                            value={this.state.current_spo2}
                             type="text"
                             onfocus="this.placeholder = 'Menu Name'"
                             onblur="this.placeholder = ''"
-                            placeholder="Alt Text"
+                            placeholder=""
                           />
                           {this.validator.message(
-                            "Patient Name",
-                            this.state.patient_name,
+                            "Current SPO2",
+                            this.state.current_spo2,
                             "required|whitespace|min:1|max:20"
                           )}
                         </div>
@@ -229,81 +329,51 @@ class EditRequest extends React.Component {
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
                           <label className="col-lg-2 p-0">
-                            {" "}
-                            Patient Mobile Number
+                            Patient Location
                           </label>
                           <input
                             className="form-control col-lg-10"
-                            name="patient_mobilenumber"
+                            name="patient_location"
                             onChange={this.handleChange}
-                            value={this.state.patient_mobilenumber}
-                            type="number"
+                            value={this.state.patient_location}
+                            type="text"
                             onfocus="this.placeholder = 'Menu Name'"
                             onblur="this.placeholder = ''"
                             placeholder=""
                           />
                           {this.validator.message(
-                            "Patient Mobile Number",
-                            this.state.patient_mobilenumber,
-                            "required|min:10|max:10"
-                          )}
-                          {this.state.mobile_message}
-                        </div>
-                      </div>
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">
-                            Patient Requirement
-                          </label>
-
-                          <select
-                            className="form-control col-lg-10"
-                            name="patient_requirement"
-                            onChange={this.handleChange}
-                          >
-                            <option>{this.state.patient_requirement}</option>
-                            {this.state.resources &&
-                              this.state.resources.map((data, index) => {
-                                return (
-                                  <option value={data.name} key={index}>
-                                    {data.name}
-                                  </option>
-                                );
-                              })}
-                          </select>
-
-                          {this.validator.message(
-                            "Patient Requirement",
-                            this.state.patient_requirement,
-                            "required"
+                            "Patient Location",
+                            this.state.patient_location,
+                            "required|whitespace|min:1|max:20"
                           )}
                         </div>
                       </div>
 
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Patient Stage</label>
+                          <label className="col-lg-2 p-0">Priority</label>
 
                           <select
-                            name="patient_stage"
+                            name="Priority"
                             id="select"
-                            value={this.state.patient_stage}
+                            value={this.state.Priority}
                             onChange={this.handleChange}
                             className="form-control col-lg-10"
                           >
                             <option value="select">select</option>
-                            <option value="Critical ">Critical </option>
-                            <option value="Non Critical">Non Critical</option>
+                            <option value="Very High">Very High</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
                           </select>
 
                           {this.validator.message(
-                            "Patient Stage",
-                            this.state.patient_stage,
+                            "Priority",
+                            this.state.Priority,
                             "required"
                           )}
                         </div>
                       </div>
-
                       {/* <select
                       name="item_halal"
                       id="select"
@@ -316,50 +386,7 @@ class EditRequest extends React.Component {
                       <option value="NO">NO</option>
                       <option value="Not Applicable">Not Applicable</option>
                     </select> */}
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Guardian Name</label>
-                          <input
-                            className="form-control col-lg-10"
-                            name="guardian_name"
-                            onChange={this.handleChange}
-                            value={this.state.guardian_name}
-                            type="text"
-                            onfocus="this.placeholder = 'Menu Name'"
-                            onblur="this.placeholder = ''"
-                            placeholder="Alt Text"
-                          />
-                          {this.validator.message(
-                            "Guardian Name",
-                            this.state.guardian_name,
-                            "required|whitespace|min:1|max:20"
-                          )}
-                        </div>
-                      </div>
-                      <div className="col-lg-12 p-0">
-                        <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">
-                            {" "}
-                            Guardian Mobile Number
-                          </label>
-                          <input
-                            className="form-control col-lg-10"
-                            name="guardian_mobilenumber"
-                            onChange={this.handleChange}
-                            value={this.state.guardian_mobilenumber}
-                            type="number"
-                            onfocus="this.placeholder = 'Menu Name'"
-                            onblur="this.placeholder = ''"
-                            placeholder=""
-                          />
-                          {this.validator.message(
-                            "Guardian Mobile Number",
-                            this.state.guardian_mobilenumber,
-                            "required|min:10|max:10"
-                          )}
-                          {this.state.mobile_message}
-                        </div>
-                      </div>
+
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field  row m-0">
                           <label className="col-lg-2 p-0" />
@@ -396,4 +423,4 @@ class EditRequest extends React.Component {
   }
 }
 
-export default EditRequest;
+export default PatientStaus;

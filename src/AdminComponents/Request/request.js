@@ -26,14 +26,14 @@ class Request extends React.Component {
     console.log(_id);
     axios
       .get(`https://api.covidfrontline.net/request/requests/${_id}`)
-      .then((res) => {
+      .then(res => {
         const requests = res.data;
         console.log(requests);
         this.setState({ requests, loading: true });
       });
     this.unsubscribe = axios
       .get(`https://api.covidfrontline.net/request/requests/${_id}`)
-      .then((res) => {
+      .then(res => {
         const requests = res.data;
         console.log(requests);
         this.setState({ requests, loading: true });
@@ -51,14 +51,14 @@ class Request extends React.Component {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
+    }).then(willDelete => {
       if (willDelete) {
         console.log(_id);
         axios
           .delete(
             `https://api.covidfrontline.net/request/delete_request/${_id}`
           )
-          .then((res) => {
+          .then(res => {
             console.log(res);
             console.log(res.data);
           });
@@ -105,7 +105,7 @@ class Request extends React.Component {
               <td>
                 {request.status == true ? (
                   <button
-                    onClick={(e) => {
+                    onClick={e => {
                       e.preventDefault();
 
                       axios
@@ -134,7 +134,7 @@ class Request extends React.Component {
                   </button>
                 ) : (
                   <button
-                    onClick={(e) => {
+                    onClick={e => {
                       e.preventDefault();
 
                       axios
@@ -171,21 +171,11 @@ class Request extends React.Component {
                   Delete
                 </span>
               </td>
-              {/* <td>
-                <Link to={`/view_request/${request._id}`}>
-                  <span className="btn">View</span>
+              <td>
+                <Link to={`/add_patient_status/${request._id}`}>
+                  <span className="btn"> Verify Patient</span>
                 </Link>
-
-                <Link to={`/edit_request/${request._id}`}>
-                  <span className="btn">Edit</span>
-                </Link>
-                <span
-                  className="btn"
-                  onClick={this.deleteItem.bind(this, request._id)}
-                >
-                  Delete
-                </span>
-              </td> */}
+              </td>
             </tr>
           );
         });
@@ -219,6 +209,7 @@ class Request extends React.Component {
 
                       <th>Status</th>
                       <th>Action</th>
+                      <th>Verify</th>
                     </tr>
                   </thead>
                   <tbody>{currentPageData}</tbody>

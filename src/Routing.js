@@ -70,6 +70,7 @@ import Volunteers from "./AdminComponents/Volunteers/volunteers";
 import AddRequest from "./AdminComponents/Request/add_request";
 import EditRequest from "./AdminComponents/Request/edit_request";
 import Request from "./AdminComponents/Request/request";
+import PatientStaus from "./AdminComponents/Request/add_patient_status";
 
 function Routing() {
   return (
@@ -81,21 +82,17 @@ function Routing() {
         <Route exact path="/superadminlogin" component={Login}></Route>
         <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/change_password" exact component={Changepassword} />
-
         {/* Admin Users */}
         <Route path="/add_adminuser" exact component={AddAdminUser} />
         <Route path="/adminuser" exact component={AdminUsers} />
         <Route path="/edit_adminuser/:_id" exact component={EditAdminUsers} />
-
         {/* Administrator Duplicate */}
-
         <Route
           path="/add_administratoruser"
           exact
           component={AddAdministratorUser}
         />
         <Route path="/administratoruser" exact component={AdministratorUsers} />
-
         {/* Cities */}
         <Route path="/add_city" exact component={AddCity} />
         <Route path="/cities" exact component={City} />
@@ -104,7 +101,6 @@ function Routing() {
         <Route path="/add_country" exact component={AddCountry} />
         <Route path="/countries" exact component={Country} />
         <Route path="/edit_country/:_id" exact component={EditCountry} />
-
         {/* Blood Group */}
         <PrivateRoute path="/add_bloodgroup" exact component={AddBloodGroup} />
         <PrivateRoute
@@ -113,7 +109,6 @@ function Routing() {
           component={EditBloodGroup}
         />
         <PrivateRoute path="/bloodgroup" exact component={BloodGroup} />
-
         {/* Resource */}
         <PrivateRoute path="/add_resource" exact component={AddResource} />
         <PrivateRoute
@@ -127,7 +122,6 @@ function Routing() {
           component={ViewResource}
         />
         <PrivateRoute path="/resources" exact component={Resources} />
-
         {/* PrivacyPolicy */}
         <Route path="/add_privacypolicy" exact component={AddPrivacyPolicy} />
         <Route path="/privacypolicy" exact component={PrivacyPolicy} />
@@ -154,7 +148,6 @@ function Routing() {
           exact
           component={TermsOfservicePage}
         />
-
         {/*************************************   Admin *****************************************/}
         {/* Admin */}
         <Route exact path="/adminlogin" component={AdminLogin}></Route>
@@ -164,7 +157,6 @@ function Routing() {
           component={AdminChangepassword}
         />
         <Route path="/admindashboard" exact component={AdminDashboard} />
-
         {/* Resource 1*/}
         <PrivateRoute path="/add_resource1" exact component={AddResource1} />
         <PrivateRoute
@@ -178,7 +170,6 @@ function Routing() {
           component={ViewResource1}
         />
         <PrivateRoute path="/resources1" exact component={Resources1} />
-
         {/* Volunteers */}
         <PrivateRoute path="/add_volunteers" exact component={AddVolunteers} />
         <PrivateRoute
@@ -187,7 +178,6 @@ function Routing() {
           component={EditVolunteers}
         />
         <PrivateRoute path="/volunteers" exact component={Volunteers} />
-
         {/* Request*/}
         <PrivateRoute path="/add_request" exact component={AddRequest} />
         <PrivateRoute path="/edit_request/:_id" exact component={EditRequest} />
@@ -197,6 +187,11 @@ function Routing() {
           component={ViewResource1}
         /> */}
         <PrivateRoute path="/request" exact component={Request} />
+        <PrivateRoute
+          path="/add_patient_status/:_id"
+          exact
+          component={PatientStaus}
+        />
       </Switch>
     </HashRouter>
   );
