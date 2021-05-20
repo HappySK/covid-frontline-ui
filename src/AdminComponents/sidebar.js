@@ -51,12 +51,13 @@ function Sidebar() {
               </MenuItem>
               <MenuItem>
                 <Link to="/volunteers">
-                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> Volunteers
+                  <i className="fa fa-file" aria-hidden="true"></i> Volunteers
                 </Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/request">
-                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> Requests
+                  <i className="fa fa-rss-square" aria-hidden="true"></i>{" "}
+                  Requests
                 </Link>
               </MenuItem>
 

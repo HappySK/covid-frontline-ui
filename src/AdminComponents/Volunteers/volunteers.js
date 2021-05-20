@@ -113,7 +113,7 @@ class Volunteers extends React.Component {
                         )
                         .then(function (response) {
                           window.location.reload();
-                          alert("Admin User is Suspended!");
+                          alert("Volunteer is Suspended!");
                         })
                         .catch(function (error) {
                           // handle error
@@ -142,7 +142,7 @@ class Volunteers extends React.Component {
                         )
                         .then(function (response) {
                           window.location.reload();
-                          alert("Admin User is Live!");
+                          alert("Volunteer is Live!");
                         })
                         .catch(function (error) {
                           // handle error
