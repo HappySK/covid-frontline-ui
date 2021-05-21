@@ -210,7 +210,7 @@ class Request extends React.Component {
                         )
                         .then(function (response) {
                           window.location.reload();
-                          alert("Case Is Closing");
+                          alert("Are you sure you want to close the case?");
                         })
                         .catch(function (error) {
                           // handle error
