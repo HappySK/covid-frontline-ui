@@ -118,7 +118,9 @@ html {
   font-weight: 600;
   color: #000;
 }
-
+.border {
+  border: solid 5px #000;
+}
 .admin-data {
   float: left;
   width: 100%;
