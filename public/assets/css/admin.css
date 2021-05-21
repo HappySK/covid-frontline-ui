@@ -118,9 +118,7 @@ html {
   font-weight: 600;
   color: #000;
 }
-.border {
-  border: solid 5px #000;
-}
+
 .admin-data {
   float: left;
   width: 100%;
@@ -149,7 +147,9 @@ html {
   border-bottom: solid 1px #eaeaea;
   padding: 15px 10px;
 }
-
+.border {
+  border: solid 4px #ccc;
+}
 .admin-table table tbody tr td a {
   color: #147edc;
   font-weight: 600;
