@@ -234,3 +234,11 @@
   font-size: 15px;
   text-decoration: none;
 }
+.border {
+  border: solid 1px black !important;
+}
+.modalcontentsetting {
+  width: 50% !important;
+  margin-left: 475px;
+  margin-right: 475px;
+}

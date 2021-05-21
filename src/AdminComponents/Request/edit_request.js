@@ -4,7 +4,7 @@ import Sidebar from "../../AdminComponents/sidebar";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
-// import { Modal } from "react-responsive-modal";
+import { Modal } from "react-responsive-modal";
 import { isAutheticated, signout } from "../../auth";
 // import AddNote from "../../AdminComponents/Request/add_note";
 import * as moment from "moment";
@@ -32,7 +32,7 @@ class EditRequest extends React.Component {
       mobile_message: "",
       validError: false,
 
-      // open: false,
+      open: false,
       addedby: "",
       patientid: "",
       note: "",
@@ -41,6 +41,7 @@ class EditRequest extends React.Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.pagesend = this.pagesend.bind(this);
     this.validator = new SimpleReactValidator({
       className: "text-danger",
       validators: {
@@ -233,8 +234,18 @@ class EditRequest extends React.Component {
       this.forceUpdate();
     }
   }
+  pagesend() {
+    window.location.reload();
+  }
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
 
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
   render() {
+    const { open } = this.state;
     const {
       user: { name },
     } = isAutheticated();
@@ -253,7 +264,7 @@ class EditRequest extends React.Component {
                       <h4>Patient Details</h4>
                     </div>
                     <div className="col-lg-12 p-0 text-right mb-30">
-                      <button
+                      {/* <button
                         type="button"
                         className="button button-contactForm boxed-btn"
                         data-toggle="modal"
@@ -261,7 +272,16 @@ class EditRequest extends React.Component {
                         style={{ marginRight: "10px" }}
                       >
                         Add Note
+                      </button> */}
+                      <button
+                        type="button"
+                        className="button button-contactForm boxed-btn"
+                        onClick={this.onOpenModal}
+                        style={{ marginRight: "10px" }}
+                      >
+                        Add Note
                       </button>
+
                       <Link to="/request">
                         <button className="button button-contactForm boxed-btn">
                           Back
@@ -461,30 +481,15 @@ class EditRequest extends React.Component {
           </div>
         </div>
 
-        <div
-          class="modal fade"
-          id="exampleModalCenter"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
+        {open ? (
+          <Modal open={open} onClose={this.onCloseModal}>
+            <div className="modal-content modalcontentsetting">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLongTitle">
                   Note
                 </h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <form
                   className="form-contact contact_form"
                   onSubmit={this.handleSubmit}
@@ -527,18 +532,14 @@ class EditRequest extends React.Component {
                   </div>
                 </form>
               </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
+              <div className="modal-footer">
+                <button onClick={this.pagesend}>Close</button>
               </div>
             </div>
-          </div>
-        </div>
+          </Modal>
+        ) : (
+          ""
+        )}
       </>
     );
   }

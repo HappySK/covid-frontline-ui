@@ -147,9 +147,7 @@ html {
   border-bottom: solid 1px #eaeaea !important;
   padding: 15px 10px;
 }
-.border {
-  border: solid 1px black !important;
-}
+
 .admin-table table tbody tr td a {
   color: #147edc;
   font-weight: 600;
