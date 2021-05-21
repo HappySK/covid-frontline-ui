@@ -144,6 +144,7 @@ class EditRequest extends React.Component {
           comorbidity_conditions: res.data.comorbidity_conditions,
           Priority: res.data.Priority,
           updatedAt: res.data.updatedAt,
+          createdAt: res.data.createdAt,
         };
         console.log(menu.name);
         this.setState({
@@ -162,6 +163,7 @@ class EditRequest extends React.Component {
           comorbidity_conditions: menu.comorbidity_conditions,
           Priority: menu.Priority,
           updatedAt: menu.updatedAt,
+          createdAt: menu.createdAt,
           loading: true,
         });
       });
@@ -290,10 +292,10 @@ class EditRequest extends React.Component {
                             </td>
                             <td>
                               Added By {name} on{" "}
-                              {moment(this.state.updatedAt)
+                              {moment(this.state.createdAt)
                                 .locale("en")
                                 .format("DD-MM-YYYY")}{" "}
-                              {moment(this.state.updatedAt)
+                              {moment(this.state.createdAt)
                                 .locale("en")
                                 .format("HH:mm:ss")}
                             </td>
@@ -305,7 +307,8 @@ class EditRequest extends React.Component {
                 </div>
 
                 <div className="admin-data" style={{ marginTop: "-25px" }}>
-                  <div className="col-lg-12 p-0 text-right mb-30 ">
+                  <div className="col-lg-12 p-0 mb-30 ">
+                    <h4>Verification Details</h4>
                     {/* <Link to="/request">
                       <button className="button button-contactForm boxed-btn">
                         Back
@@ -345,6 +348,20 @@ class EditRequest extends React.Component {
                               <b> Priority</b>
                             </td>
                             <td>{this.state.Priority}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Verified By</b>
+                            </td>
+                            <td>
+                              Verified By {name} on{" "}
+                              {moment(this.state.updatedAt)
+                                .locale("en")
+                                .format("DD-MM-YYYY")}{" "}
+                              {moment(this.state.updatedAt)
+                                .locale("en")
+                                .format("HH:mm:ss")}
+                            </td>
                           </tr>
                         </tbody>
                       </table>

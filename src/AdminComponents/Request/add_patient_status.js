@@ -14,6 +14,7 @@ class PatientStaus extends React.Component {
       comorbidity_conditions: "",
       Priority: "",
       mobile_message: "",
+      comments: "",
       validError: false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -120,6 +121,8 @@ class PatientStaus extends React.Component {
           patient_stage: res.data.patient_stage,
           guardian_name: res.data.guardian_name,
           guardian_mobilenumber: res.data.guardian_mobilenumber,
+          comments: res.data.comments,
+
           addedby: res.data.addedby,
 
           patient_at: res.data.patient_at,
@@ -136,6 +139,7 @@ class PatientStaus extends React.Component {
           patient_stage: menu.patient_stage,
           guardian_name: menu.guardian_name,
           guardian_mobilenumber: menu.guardian_mobilenumber,
+          comments: menu.comments,
           addedby: menu.addedby,
 
           patient_at: menu.patient_at,
@@ -173,6 +177,7 @@ class PatientStaus extends React.Component {
         patient_stage: this.state.patient_stage,
         guardian_name: this.state.guardian_name,
         guardian_mobilenumber: this.state.guardian_mobilenumber,
+        comments: this.state.comments,
         addedby: this.state.addedby,
 
         patient_at: this.state.patient_at,
@@ -356,6 +361,28 @@ class PatientStaus extends React.Component {
                             "Priority",
                             this.state.Priority,
                             "required"
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="col-lg-12 p-0">
+                        <div className="form-group tags-field row m-0">
+                          <label className="col-lg-3 p-0">
+                            Additional Information/Comments
+                          </label>
+                          <textarea
+                            className="form-control col-lg-9"
+                            name="comments"
+                            onChange={this.handleChange}
+                            value={this.state.comments}
+                            onfocus="this.placeholder = 'Menu Name'"
+                            onblur="this.placeholder = ''"
+                            placeholder=""
+                          />
+                          {this.validator.message(
+                            "Comments",
+                            this.state.comments,
+                            "max:200"
                           )}
                         </div>
                       </div>

@@ -359,7 +359,7 @@ class AddRequest extends React.Component {
                         {this.validator.message(
                           "Comments",
                           this.state.comments,
-                          "required|min:200"
+                          "max:200"
                         )}
                       </div>
                     </div>
