@@ -13,6 +13,7 @@ class AddRequest extends React.Component {
       patient_stage: "",
       guardian_name: "",
       guardian_mobilenumber: "",
+      comments: "",
       addedby: "",
       status: true,
 
@@ -145,6 +146,7 @@ class AddRequest extends React.Component {
         patient_stage: this.state.patient_stage,
         guardian_name: this.state.guardian_name,
         guardian_mobilenumber: this.state.guardian_mobilenumber,
+        comments: this.state.comments,
 
         patient_at: "",
         current_spo2: "",
@@ -187,9 +189,9 @@ class AddRequest extends React.Component {
                     <div className="col-lg-12 p-0"></div>
                     <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">
-                        <label className="col-lg-2 p-0">Patient Name</label>
+                        <label className="col-lg-3 p-0">Patient Name</label>
                         <input
-                          className="form-control col-lg-10"
+                          className="form-control col-lg-9"
                           name="patient_name"
                           onChange={this.handleChange}
                           value={this.state.patient_name}
@@ -207,12 +209,12 @@ class AddRequest extends React.Component {
                     </div>
                     <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">
-                        <label className="col-lg-2 p-0">
+                        <label className="col-lg-3 p-0">
                           {" "}
                           Patient Mobile Number
                         </label>
                         <input
-                          className="form-control col-lg-10"
+                          className="form-control col-lg-9"
                           name="patient_mobilenumber"
                           onChange={this.handleChange}
                           value={this.state.patient_mobilenumber}
@@ -231,12 +233,12 @@ class AddRequest extends React.Component {
                     </div>
                     <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">
-                        <label className="col-lg-2 p-0">
+                        <label className="col-lg-3 p-0">
                           Patient Requirement
                         </label>
 
                         <select
-                          className="form-control col-lg-10"
+                          className="form-control col-lg-9"
                           name="patient_requirement"
                           onChange={this.handleChange}
                         >
@@ -261,14 +263,14 @@ class AddRequest extends React.Component {
 
                     <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">
-                        <label className="col-lg-2 p-0">Patient Stage</label>
+                        <label className="col-lg-3 p-0">Patient Stage</label>
 
                         <select
                           name="patient_stage"
                           id="select"
                           value={this.state.patient_stage}
                           onChange={this.handleChange}
-                          className="form-control col-lg-10"
+                          className="form-control col-lg-9"
                         >
                           <option value="select">select</option>
                           <option value="Critical ">Critical </option>
@@ -297,9 +299,9 @@ class AddRequest extends React.Component {
                     </select> */}
                     <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">
-                        <label className="col-lg-2 p-0">Guardian Name</label>
+                        <label className="col-lg-3 p-0">Guardian Name</label>
                         <input
-                          className="form-control col-lg-10"
+                          className="form-control col-lg-9"
                           name="guardian_name"
                           onChange={this.handleChange}
                           value={this.state.guardian_name}
@@ -317,12 +319,12 @@ class AddRequest extends React.Component {
                     </div>
                     <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">
-                        <label className="col-lg-2 p-0">
+                        <label className="col-lg-3 p-0">
                           {" "}
                           Guardian Mobile Number
                         </label>
                         <input
-                          className="form-control col-lg-10"
+                          className="form-control col-lg-9"
                           name="guardian_mobilenumber"
                           onChange={this.handleChange}
                           value={this.state.guardian_mobilenumber}
@@ -337,6 +339,28 @@ class AddRequest extends React.Component {
                           "required|min:10|max:10"
                         )}
                         {this.state.mobile_message}
+                      </div>
+                    </div>
+
+                    <div className="col-lg-12 p-0">
+                      <div className="form-group tags-field row m-0">
+                        <label className="col-lg-3 p-0">
+                          Additional Information/Comments
+                        </label>
+                        <textarea
+                          className="form-control col-lg-9"
+                          name="comments"
+                          onChange={this.handleChange}
+                          value={this.state.comments}
+                          onfocus="this.placeholder = 'Menu Name'"
+                          onblur="this.placeholder = ''"
+                          placeholder=""
+                        />
+                        {this.validator.message(
+                          "Comments",
+                          this.state.comments,
+                          "required|min:200"
+                        )}
                       </div>
                     </div>
                     <div className="col-lg-12 p-0">

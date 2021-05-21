@@ -144,11 +144,11 @@ html {
 .admin-table table tbody tr td {
   color: #000;
   font-size: 14px;
-  border-bottom: solid 1px #eaeaea;
+  border-bottom: solid 1px #eaeaea !important;
   padding: 15px 10px;
 }
 .border {
-  border: solid 4px #ccc;
+  border: solid 1px black !important;
 }
 .admin-table table tbody tr td a {
   color: #147edc;

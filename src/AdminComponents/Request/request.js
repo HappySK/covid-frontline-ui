@@ -83,7 +83,7 @@ class Request extends React.Component {
               <td>{request.patient_name}</td>
               <td>{request.patient_mobilenumber}</td>
               <td>{request.patient_requirement}</td>
-              {request.status == true ? (
+              {/* {request.status == true ? (
                 <td>
                   <span
                     className="badge badge-pill badge-soft-success font-size-12"
@@ -101,9 +101,9 @@ class Request extends React.Component {
                     Completed
                   </span>
                 </td>
-              )}
+              )} */}
               <td>
-                {request.status == true ? (
+                {/* {request.status == true ? (
                   <button
                     onClick={e => {
                       e.preventDefault();
@@ -160,7 +160,7 @@ class Request extends React.Component {
                   >
                     Completed
                   </button>
-                )}
+                )} */}
                 <Link to={`/edit_request/${request._id}`}>
                   <span className="btn">Update</span>
                 </Link>
@@ -223,7 +223,7 @@ class Request extends React.Component {
                       <th>Patient Mobile</th>
                       <th>Requirement</th>
 
-                      <th>Status</th>
+                      {/* <th>Status</th> */}
                       <th>Action</th>
                       <th>Verify</th>
                     </tr>

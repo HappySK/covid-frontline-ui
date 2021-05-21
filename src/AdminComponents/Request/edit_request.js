@@ -134,6 +134,8 @@ class EditRequest extends React.Component {
           patient_stage: res.data.patient_stage,
           guardian_name: res.data.guardian_name,
           guardian_mobilenumber: res.data.guardian_mobilenumber,
+          comments: res.data.comments,
+
           addedby: res.data.addedby,
 
           patient_at: res.data.patient_at,
@@ -151,6 +153,7 @@ class EditRequest extends React.Component {
           patient_stage: menu.patient_stage,
           guardian_name: menu.guardian_name,
           guardian_mobilenumber: menu.guardian_mobilenumber,
+          comments: menu.comments,
 
           addedby: menu.addedby,
           patient_at: menu.patient_at,
@@ -234,66 +237,74 @@ class EditRequest extends React.Component {
                       </button>
                     </Link> */}
                   </div>
+                  <div className="border">
+                    <div className="table-responsive admin-table demo border">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Patient Name</b>
+                            </td>
+                            <td>{this.state.patient_name}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Patient Mobile Number</b>
+                            </td>
+                            <td>{this.state.patient_mobilenumber}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Patient Requirement</b>
+                            </td>
+                            <td>{this.state.patient_requirement}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Patient Stage</b>
+                            </td>
+                            <td>{this.state.patient_stage}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Guardian Name</b>
+                            </td>
+                            <td>{this.state.guardian_name}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Guardian Mobile Number</b>
+                            </td>
+                            <td>{this.state.guardian_mobilenumber}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Comments</b>
+                            </td>
+                            <td>{this.state.comments}</td>
+                          </tr>
 
-                  <div className="table-responsive admin-table demo border">
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Patient Name</b>
-                          </td>
-                          <td>{this.state.patient_name}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Patient Mobile Number</b>
-                          </td>
-                          <td>{this.state.patient_mobilenumber}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Patient Requirement</b>
-                          </td>
-                          <td>{this.state.patient_requirement}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Patient Stage</b>
-                          </td>
-                          <td>{this.state.patient_stage}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Guardian Name</b>
-                          </td>
-                          <td>{this.state.guardian_name}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Guardian Mobile Number</b>
-                          </td>
-                          <td>{this.state.guardian_mobilenumber}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Added By </b>
-                          </td>
-                          <td>
-                            Added By {name} on{" "}
-                            {moment(this.state.updatedAt)
-                              .locale("en")
-                              .format("DD-MM-YYYY")}{" "}
-                            {moment(this.state.updatedAt)
-                              .locale("en")
-                              .format("HH:mm:ss")}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Added By </b>
+                            </td>
+                            <td>
+                              Added By {name} on{" "}
+                              {moment(this.state.updatedAt)
+                                .locale("en")
+                                .format("DD-MM-YYYY")}{" "}
+                              {moment(this.state.updatedAt)
+                                .locale("en")
+                                .format("HH:mm:ss")}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
 
-                <div className="admin-data">
+                <div className="admin-data" style={{ marginTop: "-25px" }}>
                   <div className="col-lg-12 p-0 text-right mb-30 ">
                     {/* <Link to="/request">
                       <button className="button button-contactForm boxed-btn">
@@ -301,42 +312,43 @@ class EditRequest extends React.Component {
                       </button>
                     </Link> */}
                   </div>
-
-                  <div className="table-responsive admin-table demo border">
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Patient At</b>
-                          </td>
-                          <td>{this.state.patient_at}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Comorbidity conditions</b>
-                          </td>
-                          <td>{this.state.comorbidity_conditions}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Current SPO2</b>
-                          </td>
-                          <td>{this.state.current_spo2}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Patient Location</b>
-                          </td>
-                          <td>{this.state.patient_location}</td>
-                        </tr>
-                        <tr>
-                          <td valign="top" width="200px;">
-                            <b> Priority</b>
-                          </td>
-                          <td>{this.state.Priority}</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <div className="border">
+                    <div className="table-responsive admin-table demo border">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Patient At</b>
+                            </td>
+                            <td>{this.state.patient_at}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Comorbidity conditions</b>
+                            </td>
+                            <td>{this.state.comorbidity_conditions}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Current SPO2</b>
+                            </td>
+                            <td>{this.state.current_spo2}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Patient Location</b>
+                            </td>
+                            <td>{this.state.patient_location}</td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="200px;">
+                              <b> Priority</b>
+                            </td>
+                            <td>{this.state.Priority}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </>
