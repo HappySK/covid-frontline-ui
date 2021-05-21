@@ -4,7 +4,9 @@ import Sidebar from "../../AdminComponents/sidebar";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
+// import { Modal } from "react-responsive-modal";
 import { isAutheticated, signout } from "../../auth";
+// import AddNote from "../../AdminComponents/Request/add_note";
 import * as moment from "moment";
 class EditRequest extends React.Component {
   constructor(props) {
@@ -29,6 +31,12 @@ class EditRequest extends React.Component {
       data: Date.now(),
       mobile_message: "",
       validError: false,
+
+      // open: false,
+      addedby: "",
+      patientid: "",
+      note: "",
+      loading: false,
     };
     this.handleChange = this.handleChange.bind(this);
 
@@ -129,6 +137,7 @@ class EditRequest extends React.Component {
       .then(res => {
         console.log(res.data);
         const menu = {
+          _id: res.data._id,
           patient_name: res.data.patient_name,
           patient_mobilenumber: res.data.patient_mobilenumber,
           patient_requirement: res.data.patient_requirement,
@@ -150,6 +159,7 @@ class EditRequest extends React.Component {
         };
         console.log(menu.name);
         this.setState({
+          _id: menu._id,
           patient_name: menu.patient_name,
           patient_mobilenumber: menu.patient_mobilenumber,
           patient_requirement: menu.patient_requirement,
@@ -175,8 +185,14 @@ class EditRequest extends React.Component {
       .then(res => {
         const resources = res.data;
         console.log(resources);
-        this.setState({ resources, loading: true });
+        this.setState({ resources });
       });
+
+    axios.get(`https://api.covidfrontline.net/note/notes/${_id}`).then(res => {
+      const notes = res.data;
+      console.log(notes);
+      this.setState({ notes });
+    });
   }
 
   handleChange(event) {
@@ -185,35 +201,33 @@ class EditRequest extends React.Component {
     });
   }
 
-  handleSubmit(e) {
-    const { _id } = this.props.match.params;
-
-    e.preventDefault();
+  handleSubmit(event) {
+    event.preventDefault();
     if (this.validator.allValid()) {
-      const menu = {
-        patient_name: this.state.patient_name,
-        patient_mobilenumber: this.state.patient_mobilenumber,
-        patient_requirement: this.state.patient_requirement,
-        patient_stage: this.state.patient_stage,
-        guardian_name: this.state.guardian_name,
-        guardian_mobilenumber: this.state.guardian_mobilenumber,
-        addedby: this.state.addedby,
+      const {
+        user: { _id },
+      } = isAutheticated();
 
-        patient_at: this.state.patient_at,
-        current_spo2: this.state.current_spo2,
-        patient_location: this.state.patient_location,
-        comorbidity_conditions: this.state.comorbidity_conditions,
-        Priority: this.state.Priority,
+      const { _id1 } = this.props.match.params;
+
+      console.log(_id1);
+
+      const menu = {
+        note: this.state.note,
+        patientid: this.state._id,
+        addedby: _id,
       };
-      console.log(this.state.name, this.state.addedby);
+      console.log(menu.patientid);
       axios
-        .put(
-          `https://api.covidfrontline.net/request/update_request_patch/${_id}`,
-          menu
-        )
-        .then(res => console.log(res.data));
-      this.forceUpdate();
+        .post(`https://api.covidfrontline.net/note/addnote`, menu)
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        });
+      // alert("note added sucessfully");
       this.props.history.push("/request");
+
+      // window.location.href = "/request";
     } else {
       this.validator.showMessages();
       this.forceUpdate();
@@ -226,99 +240,33 @@ class EditRequest extends React.Component {
     } = isAutheticated();
     console.log(name);
     return (
-      <div>
-        <Sidebar></Sidebar>
-        <div className="admin-wrapper col-12">
-          <div className="admin-content">
-            <div className="admin-head">Verified Patient</div>
-            {this.state.loading ? (
-              <>
-                <div className="admin-data ">
-                  <div className="col-lg-12 p-0  mb-30">
-                    <h4>Patient Details</h4>
-                    {/* <Link to="/request">
-                      <button className="button button-contactForm boxed-btn">
-                        Back
-                      </button>
-                    </Link> */}
-                  </div>
-                  <div className="border">
-                    <div className="table-responsive admin-table demo border">
-                      <table>
-                        <tbody>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Patient Name</b>
-                            </td>
-                            <td>{this.state.patient_name}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Patient Mobile Number</b>
-                            </td>
-                            <td>{this.state.patient_mobilenumber}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Patient Requirement</b>
-                            </td>
-                            <td>{this.state.patient_requirement}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Patient Stage</b>
-                            </td>
-                            <td>{this.state.patient_stage}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Guardian Name</b>
-                            </td>
-                            <td>{this.state.guardian_name}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Guardian Mobile Number</b>
-                            </td>
-                            <td>{this.state.guardian_mobilenumber}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Comments</b>
-                            </td>
-                            <td>{this.state.comments}</td>
-                          </tr>
-
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Added By </b>
-                            </td>
-                            <td>
-                              {name} on{" "}
-                              {moment(this.state.createdAt)
-                                .locale("en")
-                                .format("DD-MM-YYYY")}{" "}
-                              {moment(this.state.createdAt)
-                                .locale("en")
-                                .format("HH:mm:ss")}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+      <>
+        <div>
+          <Sidebar></Sidebar>
+          <div className="admin-wrapper col-12">
+            <div className="admin-content">
+              <div className="admin-head">Verified Patient</div>
+              {this.state.loading ? (
+                <>
+                  <div className="admin-data ">
+                    <div className="col-lg-12 p-0  mb-30">
+                      <h4>Patient Details</h4>
                     </div>
-                  </div>
-                </div>
-                {this.state.patient_at == "" ? (
-                  <></>
-                ) : (
-                  <div className="admin-data" style={{ marginTop: "-25px" }}>
-                    <div className="col-lg-12 p-0 mb-30 ">
-                      <h4>Verification Details</h4>
-                      {/* <Link to="/request">
-                      <button className="button button-contactForm boxed-btn">
-                        Back
+                    <div className="col-lg-12 p-0 text-right mb-30">
+                      <button
+                        type="button"
+                        className="button button-contactForm boxed-btn"
+                        data-toggle="modal"
+                        data-target="#exampleModalCenter"
+                        style={{ marginRight: "10px" }}
+                      >
+                        Add Note
                       </button>
-                    </Link> */}
+                      <Link to="/request">
+                        <button className="button button-contactForm boxed-btn">
+                          Back
+                        </button>
+                      </Link>
                     </div>
                     <div className="border">
                       <div className="table-responsive admin-table demo border">
@@ -326,50 +274,57 @@ class EditRequest extends React.Component {
                           <tbody>
                             <tr>
                               <td valign="top" width="200px;">
-                                <b> Patient At</b>
+                                <b> Patient Name</b>
                               </td>
-                              <td>{this.state.patient_at}</td>
+                              <td>{this.state.patient_name}</td>
                             </tr>
                             <tr>
                               <td valign="top" width="200px;">
-                                <b> Comorbidity conditions</b>
+                                <b> Patient Mobile Number</b>
                               </td>
-                              <td>{this.state.comorbidity_conditions}</td>
+                              <td>{this.state.patient_mobilenumber}</td>
                             </tr>
                             <tr>
                               <td valign="top" width="200px;">
-                                <b> Current SPO2</b>
+                                <b> Patient Requirement</b>
                               </td>
-                              <td>{this.state.current_spo2}</td>
+                              <td>{this.state.patient_requirement}</td>
                             </tr>
                             <tr>
                               <td valign="top" width="200px;">
-                                <b> Patient Location</b>
+                                <b> Patient Stage</b>
                               </td>
-                              <td>{this.state.patient_location}</td>
+                              <td>{this.state.patient_stage}</td>
                             </tr>
                             <tr>
                               <td valign="top" width="200px;">
-                                <b> Priority</b>
+                                <b> Guardian Name</b>
                               </td>
-                              <td>{this.state.Priority}</td>
+                              <td>{this.state.guardian_name}</td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="200px;">
+                                <b> Guardian Mobile Number</b>
+                              </td>
+                              <td>{this.state.guardian_mobilenumber}</td>
                             </tr>
                             <tr>
                               <td valign="top" width="200px;">
                                 <b> Comments</b>
                               </td>
-                              <td>{this.state.comments1}</td>
+                              <td>{this.state.comments}</td>
                             </tr>
+
                             <tr>
                               <td valign="top" width="200px;">
-                                <b> Verified By</b>
+                                <b> Added By </b>
                               </td>
                               <td>
                                 {name} on{" "}
-                                {moment(this.state.updatedAt)
+                                {moment(this.state.createdAt)
                                   .locale("en")
                                   .format("DD-MM-YYYY")}{" "}
-                                {moment(this.state.updatedAt)
+                                {moment(this.state.createdAt)
                                   .locale("en")
                                   .format("HH:mm:ss")}
                               </td>
@@ -379,23 +334,212 @@ class EditRequest extends React.Component {
                       </div>
                     </div>
                   </div>
-                )}
-              </>
-            ) : (
-              <div style={{ marginLeft: "500px", marginTop: "200px" }}>
-                {" "}
-                <Loader
-                  type="Circles"
-                  color="#f39510"
-                  height={100}
-                  width={100}
-                  timeout={3000} //3 secs
-                />
-              </div>
-            )}
+                  {this.state.patient_at == "" ? (
+                    <></>
+                  ) : (
+                    <div className="admin-data" style={{ marginTop: "-25px" }}>
+                      <div className="col-lg-12 p-0 mb-30 ">
+                        <h4>Verification Details</h4>
+                      </div>
+                      <div className="border">
+                        <div className="table-responsive admin-table demo border">
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td valign="top" width="200px;">
+                                  <b> Patient At</b>
+                                </td>
+                                <td>{this.state.patient_at}</td>
+                              </tr>
+                              <tr>
+                                <td valign="top" width="200px;">
+                                  <b> Comorbidity conditions</b>
+                                </td>
+                                <td>{this.state.comorbidity_conditions}</td>
+                              </tr>
+                              <tr>
+                                <td valign="top" width="200px;">
+                                  <b> Current SPO2</b>
+                                </td>
+                                <td>{this.state.current_spo2}</td>
+                              </tr>
+                              <tr>
+                                <td valign="top" width="200px;">
+                                  <b> Patient Location</b>
+                                </td>
+                                <td>{this.state.patient_location}</td>
+                              </tr>
+                              <tr>
+                                <td valign="top" width="200px;">
+                                  <b> Priority</b>
+                                </td>
+                                <td>{this.state.Priority}</td>
+                              </tr>
+                              <tr>
+                                <td valign="top" width="200px;">
+                                  <b> Comments</b>
+                                </td>
+                                <td>{this.state.comments1}</td>
+                              </tr>
+                              <tr>
+                                <td valign="top" width="200px;">
+                                  <b> Verified By</b>
+                                </td>
+                                <td>
+                                  {name} on{" "}
+                                  {moment(this.state.updatedAt)
+                                    .locale("en")
+                                    .format("DD-MM-YYYY")}{" "}
+                                  {moment(this.state.updatedAt)
+                                    .locale("en")
+                                    .format("HH:mm:ss")}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {this.state.notes && this.state.notes.length == 0 ? (
+                    <></>
+                  ) : (
+                    <div className="admin-data" style={{ marginTop: "-25px" }}>
+                      <div className="col-lg-12 p-0 mb-30 ">
+                        <h4>Note</h4>
+                      </div>
+                      <div className="border">
+                        <div className="table-responsive admin-table">
+                          <table>
+                            <thead>
+                              <tr>
+                                <th>S.No</th>
+                                <th>Note</th>
+                                <th>Added By</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {this.state.notes &&
+                                this.state.notes.map((data, index) => {
+                                  return (
+                                    <tr key={index}>
+                                      <td>{index + 1}</td>
+                                      <td>{data.note}</td>
+                                      <td>
+                                        {" "}
+                                        {name} on{" "}
+                                        {moment(data.createdAt)
+                                          .locale("en")
+                                          .format("DD-MM-YYYY")}{" "}
+                                        {moment(data.createdAt)
+                                          .locale("en")
+                                          .format("HH:mm:ss")}
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div style={{ marginLeft: "500px", marginTop: "200px" }}>
+                  {" "}
+                  <Loader
+                    type="Circles"
+                    color="#f39510"
+                    height={100}
+                    width={100}
+                    timeout={3000} //3 secs
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+
+        <div
+          class="modal fade"
+          id="exampleModalCenter"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                  Note
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form
+                  className="form-contact contact_form"
+                  onSubmit={this.handleSubmit}
+                >
+                  <div className="row m-0">
+                    <div className="col-lg-12 p-0"></div>
+
+                    <div className="col-lg-12 p-0">
+                      <div className="form-group tags-field row m-0">
+                        <label className="col-lg-3 p-0">Note</label>
+                        <textarea
+                          className="form-control col-lg-9"
+                          name="note"
+                          onChange={this.handleChange}
+                          value={this.state.note}
+                          onfocus="this.placeholder = 'Menu Name'"
+                          onblur="this.placeholder = ''"
+                          placeholder=""
+                        />
+                        {this.validator.message(
+                          "Note",
+                          this.state.note,
+                          "requires|min:1|max:200"
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-lg-12 p-0">
+                      <div className="form-group tags-field  row m-0">
+                        <label className="col-lg-2 p-0" />
+                        <div className="col-lg-6 p-0">
+                          <button
+                            className="button button-contactForm boxed-btn"
+                            type="submit"
+                          >
+                            Save
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 }

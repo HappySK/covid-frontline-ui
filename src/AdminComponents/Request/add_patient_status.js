@@ -241,7 +241,7 @@ class PatientStaus extends React.Component {
                                 value="Hospital"
                                 onChange={this.handleChange}
                                 checked={this.state.patient_at === "Hospital"}
-                              />
+                              />{" "}
                               Hospital
                             </label>
                           </div>
@@ -255,7 +255,7 @@ class PatientStaus extends React.Component {
                                 checked={
                                   this.state.patient_at === "Home Isolation"
                                 }
-                              />
+                              />{" "}
                               Home Isolation
                             </label>
                           </div>
@@ -267,7 +267,7 @@ class PatientStaus extends React.Component {
                                 value="At home"
                                 onChange={this.handleChange}
                                 checked={this.state.patient_at === "At home"}
-                              />
+                              />{" "}
                               At home
                             </label>
                           </div>

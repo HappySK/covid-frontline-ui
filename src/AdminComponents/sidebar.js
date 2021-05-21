@@ -38,15 +38,10 @@ function Sidebar() {
                   Dashboard
                 </Link>
               </MenuItem>
-              {/* <MenuItem>
-                <Link to="/dashboard">
-                  <i className="fa fa-tachometer" aria-hidden="true" />{" "}
-                  Volunteers
-                </Link>
-              </MenuItem> */}
               <MenuItem>
-                <Link to="/resources1">
-                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> Resources
+                <Link to="/request">
+                  <i className="fa fa-rss-square" aria-hidden="true"></i>{" "}
+                  Requests
                 </Link>
               </MenuItem>
               <MenuItem>
@@ -55,127 +50,11 @@ function Sidebar() {
                 </Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/request">
-                  <i className="fa fa-rss-square" aria-hidden="true"></i>{" "}
-                  Requests
+                <Link to="/resources1">
+                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> Resources
                 </Link>
               </MenuItem>
 
-              {/* <MenuItem>
-                <Link to="/dashboard">
-                  <i className="fa fa-tachometer" aria-hidden="true" /> Service
-                  Providers
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/dashboard">
-                  <i className="fa fa-tachometer" aria-hidden="true" /> Requests
-                </Link>
-              </MenuItem> */}
-              {/* <MenuItem>
-                <Link to="/changepassword">
-                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> Change
-                  Password
-                </Link>
-              </MenuItem> */}
-              {/* 
-              <MenuItem>
-                <Link to="/sub_menu">
-                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> Sub Menu
-                </Link>
-              </MenuItem>
-              <SubMenu
-                title="Home Page"
-                icon={<i className="fa fa-home" aria-hidden="true"></i>}
-              >
-                <MenuItem>
-                  {" "}
-                  <a
-                    href="/home1/608b912efcc7860015dce5b1"
-                    style={{ color: "white" }}
-                  >
-                    Section 1 Text
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <a href="/home_section_1_1" style={{ color: "white" }}>
-                    Section 1 Videos
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <a href="/home_section_2" style={{ color: "white" }}>
-                    Section 2
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <a href="/home_section_3" style={{ color: "white" }}>
-                    Section 3
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <a href="/home_section_4" style={{ color: "white" }}>
-                    Media Presence
-                  </a>
-                </MenuItem>
-              </SubMenu> */}
-              {/* <SubMenu title="Component 2">
-              <MenuItem>Component 2.1</MenuItem>
-              <MenuItem>Component 2.2</MenuItem>
-            </SubMenu> */}
-              {/* <SubMenu
-                title="About Us Page"
-                icon={<i class="fa fa-info-circle" aria-hidden="true"></i>}
-              >
-                <MenuItem>
-                  {" "}
-                  <a href="/about_section_2" style={{ color: "white" }}>
-                    Values
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <a href="/about_section_3" style={{ color: "white" }}>
-                    Leadership
-                  </a>
-                </MenuItem>
-              </SubMenu>
-
-              <SubMenu
-                title="Blog"
-                icon={<i className="fa fa-rss-square" aria-hidden="true"></i>}
-              >
-                <MenuItem>
-                  {" "}
-                  <a href="/blogcategory" style={{ color: "white" }}>
-                    Category
-                  </a>{" "}
-                </MenuItem>
-                <MenuItem>
-                  {" "}
-                  <li>
-                    {" "}
-                    <a href="/article" style={{ color: "white" }}>
-                      Articles
-                    </a>{" "}
-                  </li>
-                </MenuItem>
-              </SubMenu>
-
-              <MenuItem>
-                <Link to="/post">
-                  <i className="fa fa-upload" aria-hidden="true" /> Posts
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to="/privatepage">
-                  <i className="fa fa-file" aria-hidden="true"></i> Private
-                  Pages
-                </Link>
-              </MenuItem> */}
               <MenuItem>
                 <Link
                   to=""

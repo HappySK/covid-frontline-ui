@@ -79,11 +79,9 @@ class Request extends React.Component {
           return (
             <tr key={index}>
               <td>{index + 1}</td>
-
               <td>{request.patient_name}</td>
               <td>{request.patient_mobilenumber}</td>
               <td>{request.patient_requirement}</td>
-
               <td>
                 {request.patient_at == "" ? (
                   <Link to={`/add_patient_status/${request._id}`}>
@@ -164,9 +162,15 @@ class Request extends React.Component {
                     Completed
                   </button>
                 )} */}
-                <Link to={`/edit_request/${request._id}`}>
-                  <span className="btn">Update</span>
-                </Link>
+                {request.status == true ? (
+                  <Link to={`/edit_request/${request._id}`}>
+                    <span className="btn">Update</span>
+                  </Link>
+                ) : (
+                  <Link to={`/view_request/${request._id}`}>
+                    <span className="btn">View</span>
+                  </Link>
+                )}
                 {/* <span
                   className="btn"
                   onClick={this.deleteItem.bind(this, request._id)}
@@ -193,6 +197,48 @@ class Request extends React.Component {
                   </span>
                 </td>
               )} */}
+
+              {request.status == true ? (
+                <td>
+                  <button
+                    onClick={e => {
+                      e.preventDefault();
+
+                      axios
+                        .get(
+                          `https://api.covidfrontline.net/request/Inactivate/${request._id}`
+                        )
+                        .then(function (response) {
+                          window.location.reload();
+                          alert("Case Is Closing");
+                        })
+                        .catch(function (error) {
+                          // handle error
+                          console.log(error);
+                        });
+                    }}
+                    className="btn btn-success btn-sm  waves-effect waves-light btn-table"
+                    style={{
+                      borderRadius: "5px",
+                      fontSize: "16px",
+                      padding: "5px 15px",
+                      marginRight: "2px",
+                      backgroundColor: "red",
+                    }}
+                  >
+                    Close Case
+                  </button>
+                </td>
+              ) : (
+                <td>
+                  <span
+                    className="badge badge-pill badge-soft-success font-size-12"
+                    style={{ fontSize: "16px" }}
+                  >
+                    Case Closed
+                  </span>
+                </td>
+              )}
             </tr>
           );
         });
@@ -205,48 +251,48 @@ class Request extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Request</div>
-            {/* {this.state.loading ? ( */}
-            <div className="admin-data">
-              <div className="col-lg-12 p-0 text-right mb-30">
-                <Link to="/add_request">
-                  <button className="button button-contactForm boxed-btn">
-                    + Add New
-                  </button>
-                </Link>
-              </div>
-              <div className="table-responsive admin-table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>S.No</th>
-                      <th>Patient Name</th>
-                      <th>Patient Mobile</th>
-                      <th>Requirement</th>
-                      <th>Verify</th>
-                      <th>Action</th>
+            <div className="admin-head">Requests</div>
+            {this.state.loading ? (
+              <div className="admin-data">
+                <div className="col-lg-12 p-0 text-right mb-30">
+                  <Link to="/add_request">
+                    <button className="button button-contactForm boxed-btn">
+                      + Add New
+                    </button>
+                  </Link>
+                </div>
+                <div className="table-responsive admin-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>S.No</th>
+                        <th>Patient Name</th>
+                        <th>Patient Mobile</th>
+                        <th>Requirement</th>
+                        <th>Verify</th>
+                        <th>Action</th>
 
-                      <th>Case Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>{currentPageData}</tbody>
-                </table>
+                        <th>Case Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>{currentPageData}</tbody>
+                  </table>
+                </div>
+                <div className="paginationstyle">
+                  <ReactPaginate
+                    previousLabel={"Previous"}
+                    nextLabel={"Next"}
+                    pageCount={pageCount}
+                    onPageChange={this.handlePageClick.bind(this)}
+                    containerClassName={"pagination"}
+                    previousLinkClassName={"pagination__link"}
+                    nextLinkClassName={"pagination__link"}
+                    disabledClassName={"pagination__link--disabled"}
+                    activeClassName={"pagination__link--active"}
+                  />
+                </div>
               </div>
-              <div className="paginationstyle">
-                <ReactPaginate
-                  previousLabel={"Previous"}
-                  nextLabel={"Next"}
-                  pageCount={pageCount}
-                  onPageChange={this.handlePageClick.bind(this)}
-                  containerClassName={"pagination"}
-                  previousLinkClassName={"pagination__link"}
-                  nextLinkClassName={"pagination__link"}
-                  disabledClassName={"pagination__link--disabled"}
-                  activeClassName={"pagination__link--active"}
-                />
-              </div>
-            </div>
-            {/* ) : (
+            ) : (
               <div style={{ marginLeft: "500px", marginTop: "200px" }}>
                 {" "}
                 <Loader
@@ -257,7 +303,7 @@ class Request extends React.Component {
                   timeout={3000} //3 secs
                 />
               </div>
-            )} */}
+            )}
           </div>
         </div>
       </div>

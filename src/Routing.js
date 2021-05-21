@@ -69,6 +69,7 @@ import Volunteers from "./AdminComponents/Volunteers/volunteers";
 
 import AddRequest from "./AdminComponents/Request/add_request";
 import EditRequest from "./AdminComponents/Request/edit_request";
+import ViewRequest from "./AdminComponents/Request/view_request";
 import Request from "./AdminComponents/Request/request";
 import PatientStaus from "./AdminComponents/Request/add_patient_status";
 
@@ -181,11 +182,7 @@ function Routing() {
         {/* Request*/}
         <PrivateRoute path="/add_request" exact component={AddRequest} />
         <PrivateRoute path="/edit_request/:_id" exact component={EditRequest} />
-        {/* <PrivateRoute
-          path="/view_resource1/:_id"
-          exact
-          component={ViewResource1}
-        /> */}
+        <PrivateRoute path="/view_request/:_id" exact component={ViewRequest} />
         <PrivateRoute path="/request" exact component={Request} />
         <PrivateRoute
           path="/add_patient_status/:_id"

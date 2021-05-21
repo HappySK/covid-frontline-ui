@@ -43,5 +43,10 @@
 
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/bs_leftnavi.js"></script>
+    <script>
+      $("#myModal").on("shown.bs.modal", function () {
+        $("#myInput").trigger("focus");
+      });
+    </script>
   </body>
 </html>
