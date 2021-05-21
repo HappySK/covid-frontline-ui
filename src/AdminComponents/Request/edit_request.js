@@ -24,6 +24,7 @@ class EditRequest extends React.Component {
       patient_location: "",
       comorbidity_conditions: "",
       Priority: "",
+      comments1: "",
 
       data: Date.now(),
       mobile_message: "",
@@ -143,6 +144,7 @@ class EditRequest extends React.Component {
           patient_location: res.data.patient_location,
           comorbidity_conditions: res.data.comorbidity_conditions,
           Priority: res.data.Priority,
+          comments1: res.data.comments1,
           updatedAt: res.data.updatedAt,
           createdAt: res.data.createdAt,
         };
@@ -162,6 +164,7 @@ class EditRequest extends React.Component {
           patient_location: menu.patient_location,
           comorbidity_conditions: menu.comorbidity_conditions,
           Priority: menu.Priority,
+          comments1: menu.comments1,
           updatedAt: menu.updatedAt,
           createdAt: menu.createdAt,
           loading: true,
@@ -291,7 +294,7 @@ class EditRequest extends React.Component {
                               <b> Added By </b>
                             </td>
                             <td>
-                              Added By {name} on{" "}
+                              {name} on{" "}
                               {moment(this.state.createdAt)
                                 .locale("en")
                                 .format("DD-MM-YYYY")}{" "}
@@ -305,69 +308,78 @@ class EditRequest extends React.Component {
                     </div>
                   </div>
                 </div>
-
-                <div className="admin-data" style={{ marginTop: "-25px" }}>
-                  <div className="col-lg-12 p-0 mb-30 ">
-                    <h4>Verification Details</h4>
-                    {/* <Link to="/request">
+                {this.state.patient_at == "" ? (
+                  <></>
+                ) : (
+                  <div className="admin-data" style={{ marginTop: "-25px" }}>
+                    <div className="col-lg-12 p-0 mb-30 ">
+                      <h4>Verification Details</h4>
+                      {/* <Link to="/request">
                       <button className="button button-contactForm boxed-btn">
                         Back
                       </button>
                     </Link> */}
-                  </div>
-                  <div className="border">
-                    <div className="table-responsive admin-table demo border">
-                      <table>
-                        <tbody>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Patient At</b>
-                            </td>
-                            <td>{this.state.patient_at}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Comorbidity conditions</b>
-                            </td>
-                            <td>{this.state.comorbidity_conditions}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Current SPO2</b>
-                            </td>
-                            <td>{this.state.current_spo2}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Patient Location</b>
-                            </td>
-                            <td>{this.state.patient_location}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Priority</b>
-                            </td>
-                            <td>{this.state.Priority}</td>
-                          </tr>
-                          <tr>
-                            <td valign="top" width="200px;">
-                              <b> Verified By</b>
-                            </td>
-                            <td>
-                              Verified By {name} on{" "}
-                              {moment(this.state.updatedAt)
-                                .locale("en")
-                                .format("DD-MM-YYYY")}{" "}
-                              {moment(this.state.updatedAt)
-                                .locale("en")
-                                .format("HH:mm:ss")}
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    </div>
+                    <div className="border">
+                      <div className="table-responsive admin-table demo border">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td valign="top" width="200px;">
+                                <b> Patient At</b>
+                              </td>
+                              <td>{this.state.patient_at}</td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="200px;">
+                                <b> Comorbidity conditions</b>
+                              </td>
+                              <td>{this.state.comorbidity_conditions}</td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="200px;">
+                                <b> Current SPO2</b>
+                              </td>
+                              <td>{this.state.current_spo2}</td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="200px;">
+                                <b> Patient Location</b>
+                              </td>
+                              <td>{this.state.patient_location}</td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="200px;">
+                                <b> Priority</b>
+                              </td>
+                              <td>{this.state.Priority}</td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="200px;">
+                                <b> Comments</b>
+                              </td>
+                              <td>{this.state.comments1}</td>
+                            </tr>
+                            <tr>
+                              <td valign="top" width="200px;">
+                                <b> Verified By</b>
+                              </td>
+                              <td>
+                                {name} on{" "}
+                                {moment(this.state.updatedAt)
+                                  .locale("en")
+                                  .format("DD-MM-YYYY")}{" "}
+                                {moment(this.state.updatedAt)
+                                  .locale("en")
+                                  .format("HH:mm:ss")}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </>
             ) : (
               <div style={{ marginLeft: "500px", marginTop: "200px" }}>

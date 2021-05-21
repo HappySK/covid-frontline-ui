@@ -22,6 +22,7 @@ class AddRequest extends React.Component {
       patient_location: "",
       comorbidity_conditions: "",
       Priority: "",
+      comments1: "",
 
       data: Date.now(),
       mobile_message: "",
@@ -153,6 +154,7 @@ class AddRequest extends React.Component {
         patient_location: "",
         comorbidity_conditions: "",
         Priority: "",
+        comments1: "",
 
         status: true,
         addedby: _id,

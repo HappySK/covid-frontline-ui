@@ -15,6 +15,7 @@ class PatientStaus extends React.Component {
       Priority: "",
       mobile_message: "",
       comments: "",
+      comments1: "",
       validError: false,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -130,6 +131,7 @@ class PatientStaus extends React.Component {
           patient_location: res.data.patient_location,
           comorbidity_conditions: res.data.comorbidity_conditions,
           Priority: res.data.Priority,
+          comments1: res.data.comments1,
         };
         console.log(menu.name);
         this.setState({
@@ -147,6 +149,7 @@ class PatientStaus extends React.Component {
           patient_location: menu.patient_location,
           comorbidity_conditions: menu.comorbidity_conditions,
           Priority: menu.Priority,
+          comments1: menu.comments1,
           loading: true,
         });
       });
@@ -185,6 +188,7 @@ class PatientStaus extends React.Component {
         patient_location: this.state.patient_location,
         comorbidity_conditions: this.state.comorbidity_conditions,
         Priority: this.state.Priority,
+        comments1: this.state.comments1,
       };
 
       axios
@@ -227,7 +231,7 @@ class PatientStaus extends React.Component {
 
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Patient At</label>
+                          <label className="col-lg-3 p-0">Patient At</label>
 
                           <div className="col-sm-3">
                             <label className="radio-inline no-padd">
@@ -277,11 +281,11 @@ class PatientStaus extends React.Component {
                       </div>
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">
+                          <label className="col-lg-3 p-0">
                             Comorbidity conditions{" "}
                           </label>
                           <textarea
-                            className="form-control col-lg-10"
+                            className="form-control col-lg-9"
                             name="comorbidity_conditions"
                             onChange={this.handleChange}
                             value={this.state.comorbidity_conditions}
@@ -289,18 +293,18 @@ class PatientStaus extends React.Component {
                             onblur="this.placeholder = ''"
                             placeholder=""
                           />
-                          {this.validator.message(
+                          {/* {this.validator.message(
                             "Comorbidity conditions ",
                             this.state.comorbidity_conditions,
                             "required"
-                          )}
+                          )} */}
                         </div>
                       </div>
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Current SPO2</label>
+                          <label className="col-lg-3 p-0">Current SPO2</label>
                           <input
-                            className="form-control col-lg-10"
+                            className="form-control col-lg-9"
                             name="current_spo2"
                             onChange={this.handleChange}
                             value={this.state.current_spo2}
@@ -309,20 +313,20 @@ class PatientStaus extends React.Component {
                             onblur="this.placeholder = ''"
                             placeholder=""
                           />
-                          {this.validator.message(
+                          {/* {this.validator.message(
                             "Current SPO2",
                             this.state.current_spo2,
                             "required"
-                          )}
+                          )} */}
                         </div>
                       </div>
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">
+                          <label className="col-lg-3 p-0">
                             Patient Location
                           </label>
                           <input
-                            className="form-control col-lg-10"
+                            className="form-control col-lg-9"
                             name="patient_location"
                             onChange={this.handleChange}
                             value={this.state.patient_location}
@@ -341,14 +345,14 @@ class PatientStaus extends React.Component {
 
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
-                          <label className="col-lg-2 p-0">Priority</label>
+                          <label className="col-lg-3 p-0">Priority</label>
 
                           <select
                             name="Priority"
                             id="select"
                             value={this.state.Priority}
                             onChange={this.handleChange}
-                            className="form-control col-lg-10"
+                            className="form-control col-lg-9"
                           >
                             <option value="select">select</option>
                             <option value="Very High">Very High</option>
@@ -372,16 +376,16 @@ class PatientStaus extends React.Component {
                           </label>
                           <textarea
                             className="form-control col-lg-9"
-                            name="comments"
+                            name="comments1"
                             onChange={this.handleChange}
-                            value={this.state.comments}
+                            value={this.state.comments1}
                             onfocus="this.placeholder = 'Menu Name'"
                             onblur="this.placeholder = ''"
                             placeholder=""
                           />
                           {this.validator.message(
                             "Comments",
-                            this.state.comments,
+                            this.state.comments1,
                             "max:200"
                           )}
                         </div>
@@ -401,7 +405,7 @@ class PatientStaus extends React.Component {
 
                       <div className="col-lg-12 p-0">
                         <div className="form-group tags-field  row m-0">
-                          <label className="col-lg-2 p-0" />
+                          <label className="col-lg-3 p-0" />
                           <div className="col-lg-6 p-0">
                             <button
                               className="button button-contactForm boxed-btn"

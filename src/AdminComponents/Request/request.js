@@ -83,25 +83,28 @@ class Request extends React.Component {
               <td>{request.patient_name}</td>
               <td>{request.patient_mobilenumber}</td>
               <td>{request.patient_requirement}</td>
-              {/* {request.status == true ? (
-                <td>
-                  <span
-                    className="badge badge-pill badge-soft-success font-size-12"
-                    style={{ fontSize: "16px" }}
-                  >
-                    Pending
-                  </span>
-                </td>
-              ) : (
-                <td>
-                  <span
-                    className="badge badge-pill badge-soft-success font-size-12"
-                    style={{ fontSize: "16px" }}
-                  >
-                    Completed
-                  </span>
-                </td>
-              )} */}
+
+              <td>
+                {request.patient_at == "" ? (
+                  <Link to={`/add_patient_status/${request._id}`}>
+                    <span className="btn" style={{ background: "#5a6ceb" }}>
+                      {" "}
+                      Verify{" "}
+                    </span>
+                  </Link>
+                ) : (
+                  <>
+                    {" "}
+                    <span
+                      className="btn btn-success btn-sm  waves-effect waves-light btn-table "
+                      style={{ background: "green" }}
+                    >
+                      {" "}
+                      Verified{" "}
+                    </span>
+                  </>
+                )}{" "}
+              </td>
               <td>
                 {/* {request.status == true ? (
                   <button
@@ -171,27 +174,25 @@ class Request extends React.Component {
                   Delete
                 </span> */}
               </td>
-              <td>
-                {request.patient_at == "" ? (
-                  <Link to={`/add_patient_status/${request._id}`}>
-                    <span className="btn" style={{ background: "#5a6ceb" }}>
-                      {" "}
-                      Verify{" "}
-                    </span>
-                  </Link>
-                ) : (
-                  <>
-                    {" "}
-                    <span
-                      className="btn btn-success btn-sm  waves-effect waves-light btn-table "
-                      style={{ background: "green" }}
-                    >
-                      {" "}
-                      Verified{" "}
-                    </span>
-                  </>
-                )}{" "}
-              </td>
+              {/* {request.status == true ? (
+                <td>
+                  <span
+                    className="badge badge-pill badge-soft-success font-size-12"
+                    style={{ fontSize: "16px" }}
+                  >
+                    Pending
+                  </span>
+                </td>
+              ) : (
+                <td>
+                  <span
+                    className="badge badge-pill badge-soft-success font-size-12"
+                    style={{ fontSize: "16px" }}
+                  >
+                    Completed
+                  </span>
+                </td>
+              )} */}
             </tr>
           );
         });
@@ -222,10 +223,10 @@ class Request extends React.Component {
                       <th>Patient Name</th>
                       <th>Patient Mobile</th>
                       <th>Requirement</th>
-
-                      {/* <th>Status</th> */}
-                      <th>Action</th>
                       <th>Verify</th>
+                      <th>Action</th>
+
+                      <th>Case Status</th>
                     </tr>
                   </thead>
                   <tbody>{currentPageData}</tbody>
