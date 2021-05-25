@@ -65,6 +65,14 @@ function Login() {
                 Click here to login as Administrator
               </Link>
             </p>
+
+   <p>
+              <Link to="/volunteerlogin">
+                {" "}
+                Click here to login as Volunteer
+              </Link>
+            </p>
+
           </div>
         </div>
       </div>

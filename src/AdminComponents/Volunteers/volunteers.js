@@ -26,14 +26,14 @@ class Volunteers extends React.Component {
     console.log(_id);
     axios
       .get(`https://api.covidfrontline.net/volunteers/volunteers/${_id}`)
-      .then((res) => {
+      .then(res => {
         const menus = res.data;
         console.log(menus);
         this.setState({ menus, loading: true });
       });
     this.unsubscribe = axios
       .get(`https://api.covidfrontline.net/volunteers/volunteers/${_id}`)
-      .then((res) => {
+      .then(res => {
         const menus = res.data;
         console.log(menus);
         this.setState({ menus, loading: true });
@@ -51,14 +51,14 @@ class Volunteers extends React.Component {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
+    }).then(willDelete => {
       if (willDelete) {
         console.log(_id);
         axios
           .delete(
             `https://api.covidfrontline.net/volunteers/delete_volunteers/${_id}`
           )
-          .then((res) => {
+          .then(res => {
             console.log(res);
             console.log(res.data);
           });
@@ -104,7 +104,7 @@ class Volunteers extends React.Component {
               <td>
                 {menu.status == true ? (
                   <button
-                    onClick={(e) => {
+                    onClick={e => {
                       e.preventDefault();
 
                       axios
@@ -133,7 +133,7 @@ class Volunteers extends React.Component {
                   </button>
                 ) : (
                   <button
-                    onClick={(e) => {
+                    onClick={e => {
                       e.preventDefault();
 
                       axios

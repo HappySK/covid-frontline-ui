@@ -512,7 +512,7 @@ class EditRequest extends React.Component {
                         {this.validator.message(
                           "Note",
                           this.state.note,
-                          "requires|min:1|max:200"
+                          "requires|min:1|max:500"
                         )}
                       </div>
                     </div>

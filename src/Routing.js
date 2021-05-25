@@ -73,6 +73,16 @@ import ViewRequest from "./AdminComponents/Request/view_request";
 import Request from "./AdminComponents/Request/request";
 import PatientStaus from "./AdminComponents/Request/add_patient_status";
 
+
+/////Volunteers  Details///////////////////////////////////////////////////////////////////////////////
+import VolunteerLogin from "./Volunteers/login_volunteers"; 
+
+import VolunteerAddRequest from "./Volunteers/Request/add_request";
+import VolunteerEditRequest from "./Volunteers/Request/edit_request";
+import VolunteerViewRequest from "./Volunteers/Request/view_request";
+import VolunteerRequest from "./Volunteers/Request/request";
+import VolunteerPatientStaus from "./Volunteers/Request/add_patient_status";
+
 function Routing() {
   return (
     <HashRouter>
@@ -189,6 +199,24 @@ function Routing() {
           exact
           component={PatientStaus}
         />
+
+{/****************************** Volunteers Details **************************************************/}
+
+
+  <Route exact path="/volunteerlogin" component={VolunteerLogin}></Route>
+   
+   <PrivateRoute path="/volunteer_add_request" exact component={VolunteerAddRequest} />
+        <PrivateRoute path="/volunteer_edit_request/:_id" exact component={VolunteerEditRequest} />
+        <PrivateRoute path="/volunteer_view_request/:_id" exact component={VolunteerViewRequest} />
+        <PrivateRoute path="/volunteer_request" exact component={VolunteerRequest} />
+        <PrivateRoute
+          path="/volunteer_add_patient_status/:_id"
+          exact
+          component={VolunteerPatientStaus}
+        />
+
+
+
       </Switch>
     </HashRouter>
   );

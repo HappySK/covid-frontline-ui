@@ -388,7 +388,7 @@
 
 import axios from "axios";
 import React from "react";
-import Sidebar from "../../AdminComponents/sidebar";
+import Sidebar from "../../Volunteers/sidebar";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
@@ -396,7 +396,7 @@ import { Modal } from "react-responsive-modal";
 import { isAutheticated, signout } from "../../auth";
 // import AddNote from "../../AdminComponents/Request/add_note";
 import * as moment from "moment";
-class ViewRequest extends React.Component {
+class VolunteerViewRequest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -614,7 +614,7 @@ class ViewRequest extends React.Component {
           console.log(res.data);
         });
       // alert("note added sucessfully");
-      this.props.history.push("/request");
+      this.props.history.push("/volunteer_request");
 
       // window.location.href = "/request";
     } else {
@@ -670,7 +670,7 @@ class ViewRequest extends React.Component {
                         Add Note
                       </button> */}
 
-                      <Link to="/request">
+                      <Link to="/volunteer_request">
                         <button className="button button-contactForm boxed-btn">
                           Back
                         </button>
@@ -933,4 +933,4 @@ class ViewRequest extends React.Component {
   }
 }
 
-export default ViewRequest;
+export default VolunteerViewRequest;

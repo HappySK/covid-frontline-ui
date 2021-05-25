@@ -26,14 +26,14 @@ class BloodGroup extends React.Component {
     console.log(_id);
     axios
       .get(`https://api.covidfrontline.net/bloodgroup/allbloodgroups`)
-      .then((res) => {
+      .then(res => {
         const resources = res.data;
         console.log(resources);
         this.setState({ resources, loading: true });
       });
     this.unsubscribe = axios
       .get(`https://api.covidfrontline.net/bloodgroup/allbloodgroups`)
-      .then((res) => {
+      .then(res => {
         const resources = res.data;
         console.log(resources);
         this.setState({ resources, loading: true });
@@ -51,14 +51,14 @@ class BloodGroup extends React.Component {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
+    }).then(willDelete => {
       if (willDelete) {
         console.log(_id);
         axios
           .delete(
             `https://api.covidfrontline.net/bloodgroup/delete_bloodgroup/${_id}`
           )
-          .then((res) => {
+          .then(res => {
             console.log(res);
             console.log(res.data);
           });

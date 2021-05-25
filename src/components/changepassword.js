@@ -14,11 +14,11 @@ function Changepassword() {
     passwordnew: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setPassword({ password: e.target.value });
   };
 
-  const handleChang = (e) => {
+  const handleChang = e => {
     setPassword({ passwordnew: e.target.value });
   };
 
@@ -26,7 +26,7 @@ function Changepassword() {
   //   e.preventDefault();
 
   //   axios
-  //     .post("http://localhost:5050/superadmin/superadminchangepassword", {
+  //     .post("https://api.covidfrontline.net/superadmin/superadminchangepassword", {
   //       userid: _id,
   //       password: Password.password,
   //       passwordnew: Password.passwordnew,
@@ -48,18 +48,15 @@ function Changepassword() {
   //     });
   // };
 
-  const updatepassword = (e) => {
+  const updatepassword = e => {
     e.preventDefault();
 
     axios
-      .post(
-        "https://api.covidfrontline.net/superadmin/superadminchangepassword",
-        {
-          userid: _id,
-          password: Password.password,
-          passwordnew: Password.passwordnew,
-        }
-      )
+      .post("https://api.covidfrontline.net/superadmin/superadminchangepassword", {
+        userid: _id,
+        password: Password.password,
+        passwordnew: Password.passwordnew,
+      })
       .then(function (response) {
         // handle success
 
