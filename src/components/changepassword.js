@@ -5,33 +5,58 @@ import { Link, Route, useParams, Redirect, useHistory } from "react-router-dom";
 import { isAutheticated } from "../auth";
 
 function Changepassword() {
-  const {
-    user: { name, _id, email },
-  } = isAutheticated();
+  // const {
+  //   user: { name, _id, email },
+  // } = isAutheticated();
 
-  const [Password, setPassword] = useState({
-    password: "",
-    passwordnew: "",
-  });
+  // const [Password, setPassword] = useState({
+  //   password: "",
+  //   passwordnew: "",
+  // });
 
-  const handleChange = e => {
-    setPassword({ password: e.target.value });
-  };
+  // const handleChange = e => {
+  //   setPassword({ password: e.target.value });
+  // };
 
-  const handleChang = e => {
-    setPassword({ passwordnew: e.target.value });
-  };
+  // const handleChang = e => {
+  //   setPassword({ passwordnew: e.target.value });
+  // };
 
-  // const updatepassword = (e) => {
+  // // const updatepassword = (e) => {
+  // //   e.preventDefault();
+
+  // //   axios
+  // //     .post(" https://api.covidfrontline.net/superadmin/superadminchangepassword", {
+  // //       userid: _id,
+  // //       password: Password.password,
+  // //       passwordnew: Password.passwordnew,
+  // //     })
+
+  // //     .then(function (response) {
+  // //       // handle success
+
+  // //       if (response.data) {
+  // //         alert(response.data);
+  // //       } else {
+  // //         setPassword(response.data);
+  // //       }
+  // //     })
+  // //     .catch(function (error) {
+  // //       // handle error
+  // //       console.log(error);
+  // //       console.log("fsdfsdfsdf");
+  // //     });
+  // // };
+
+  // const updatepassword = e => {
   //   e.preventDefault();
 
   //   axios
-  //     .post("https://api.covidfrontline.net/superadmin/superadminchangepassword", {
+  //     .post(" https://api.covidfrontline.net/superadmin/superadminchangepassword", {
   //       userid: _id,
   //       password: Password.password,
   //       passwordnew: Password.passwordnew,
   //     })
-
   //     .then(function (response) {
   //       // handle success
 
@@ -44,34 +69,46 @@ function Changepassword() {
   //     .catch(function (error) {
   //       // handle error
   //       console.log(error);
-  //       console.log("fsdfsdfsdf");
   //     });
   // };
+const {user : {name, _id, email}} = isAutheticated();
 
-  const updatepassword = e => {
+
+  const [Password, setPassword] = useState({
+    password : '',
+    passwordnew : '' 
+  }) 
+
+  const handleChange = (e) => {
+    setPassword({ password : e.target.value });
+  };
+  
+  const handleChang = (e) => {
+    setPassword({ passwordnew : e.target.value });
+  };
+  
+  const updatepassword = (e) => {
     e.preventDefault();
 
-    axios
-      .post("https://api.covidfrontline.net/superadmin/superadminchangepassword", {
-        userid: _id,
-        password: Password.password,
-        passwordnew: Password.passwordnew,
-      })
-      .then(function (response) {
-        // handle success
+    axios.post('https://api.covidfrontline.net/superadmin/superadminchangepassword', {userid : _id, password : Password.password, passwordnew : Password.passwordnew  })
+    .then(function (response) {
+      // handle success
 
-        if (response.data) {
-          alert(response.data);
-        } else {
-          setPassword(response.data);
-        }
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
-  };
+      if(response.data){
+      alert(response.data)
+      }
+      else{
+       setPassword(response.data)
+      }
+  
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+   })
 
+  }
+    
   return (
     <div>
       <Sidebar></Sidebar>

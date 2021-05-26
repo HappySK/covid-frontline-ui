@@ -15,6 +15,9 @@ class AddRequest extends React.Component {
       guardian_mobilenumber: "",
       comments: "",
       addedby: "",
+      adminid:'',
+       adddedname:'',
+    verifiedname:'',
       status: true,
 
       patient_at: "",
@@ -120,7 +123,7 @@ class AddRequest extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(`https://api.covidfrontline.net/resource/allresources`)
+      .get(` https://api.covidfrontline.net/resource/allresources`)
       .then(res => {
         const resources = res.data;
         console.log(resources);
@@ -140,6 +143,9 @@ class AddRequest extends React.Component {
       const {
         user: { _id },
       } = isAutheticated();
+       const {
+        user: { name },
+      } = isAutheticated();
       const menu = {
         patient_name: this.state.patient_name,
         patient_mobilenumber: this.state.patient_mobilenumber,
@@ -158,10 +164,13 @@ class AddRequest extends React.Component {
 
         status: true,
         addedby: _id,
+        adminid:_id,
+          adddedname:name,
+        verifiedname:'',
       };
       console.log(menu);
       axios
-        .post(`https://api.covidfrontline.net/request/addrequest`, menu)
+        .post(` https://api.covidfrontline.net/request/addrequest`, menu)
         .then(res => {
           console.log(res);
           console.log(res.data);

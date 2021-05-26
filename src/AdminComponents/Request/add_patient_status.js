@@ -4,6 +4,7 @@ import Sidebar from "../../AdminComponents/sidebar";
 import Loader from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import SimpleReactValidator from "simple-react-validator";
+import { isAutheticated, signout } from "../../auth";
 class PatientStaus extends React.Component {
   constructor(props) {
     super(props);
@@ -112,7 +113,7 @@ class PatientStaus extends React.Component {
 
     console.log(_id);
     axios
-      .get(`https://api.covidfrontline.net/request/update_request/${_id}`)
+      .get(` https://api.covidfrontline.net/request/update_request/${_id}`)
       .then(res => {
         console.log(res.data);
         const menu = {
@@ -125,6 +126,11 @@ class PatientStaus extends React.Component {
           comments: res.data.comments,
 
           addedby: res.data.addedby,
+           adminid: res.data.adminid,
+           
+            adddedname:res.data.adddedname,
+        verifiedname:res.data.verifiedname,
+
 
           patient_at: res.data.patient_at,
           current_spo2: res.data.current_spo2,
@@ -143,7 +149,9 @@ class PatientStaus extends React.Component {
           guardian_mobilenumber: menu.guardian_mobilenumber,
           comments: menu.comments,
           addedby: menu.addedby,
-
+adminid:menu.adminid,
+  adddedname:menu.adddedname,
+        verifiedname:menu.verifiedname,
           patient_at: menu.patient_at,
           current_spo2: menu.current_spo2,
           patient_location: menu.patient_location,
@@ -154,7 +162,7 @@ class PatientStaus extends React.Component {
         });
       });
     axios
-      .get(`https://api.covidfrontline.net/resource/allresources`)
+      .get(` https://api.covidfrontline.net/resource/allresources`)
       .then(res => {
         const resources = res.data;
         console.log(resources);
@@ -170,7 +178,9 @@ class PatientStaus extends React.Component {
 
   handleSubmit(e) {
     const { _id } = this.props.match.params;
-
+ const {
+        user: { name },
+      } = isAutheticated();
     e.preventDefault();
     if (this.validator.allValid()) {
       const menu = {
@@ -182,7 +192,9 @@ class PatientStaus extends React.Component {
         guardian_mobilenumber: this.state.guardian_mobilenumber,
         comments: this.state.comments,
         addedby: this.state.addedby,
-
+        adminid:this.state.adminid,
+  adddedname:this.state.adddedname,
+        verifiedname:name,
         patient_at: this.state.patient_at,
         current_spo2: this.state.current_spo2,
         patient_location: this.state.patient_location,
@@ -193,7 +205,7 @@ class PatientStaus extends React.Component {
 
       axios
         .put(
-          `https://api.covidfrontline.net/request/update_request_patch/${_id}`,
+          ` https://api.covidfrontline.net/request/update_request_patch/${_id}`,
           menu
         )
         .then(res => console.log(res.data));

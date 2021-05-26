@@ -133,7 +133,7 @@
 //     console.log(_id);
 
 //     axios
-//       .get(`https://api.covidfrontline.net/request/update_request/${_id}`)
+//       .get(` https://api.covidfrontline.net/request/update_request/${_id}`)
 //       .then(res => {
 //         console.log(res.data);
 //         const menu = {
@@ -181,14 +181,14 @@
 //         });
 //       });
 //     axios
-//       .get(`https://api.covidfrontline.net/resource/allresources`)
+//       .get(` https://api.covidfrontline.net/resource/allresources`)
 //       .then(res => {
 //         const resources = res.data;
 //         console.log(resources);
 //         this.setState({ resources });
 //       });
 
-//     axios.get(`https://api.covidfrontline.net/note/notes/${_id}`).then(res => {
+//     axios.get(` https://api.covidfrontline.net/note/notes/${_id}`).then(res => {
 //       const notes = res.data;
 //       console.log(notes);
 //       this.setState({ notes });
@@ -219,7 +219,7 @@
 //       };
 //       console.log(menu.patientid);
 //       axios
-//         .post(`https://api.covidfrontline.net/note/addnote`, menu)
+//         .post(` https://api.covidfrontline.net/note/addnote`, menu)
 //         .then(res => {
 //           console.log(res);
 //           console.log(res.data);
@@ -407,6 +407,9 @@ class ViewRequest extends React.Component {
       guardian_name: "",
       guardian_mobilenumber: "",
       addedby: "",
+      adminid:'',
+        adddedname:"",
+        verifiedname:"",
       status: true,
 
       patient_at: "",
@@ -522,7 +525,7 @@ class ViewRequest extends React.Component {
     console.log(_id);
 
     axios
-      .get(`https://api.covidfrontline.net/request/update_request/${_id}`)
+      .get(` https://api.covidfrontline.net/request/update_request/${_id}`)
       .then(res => {
         console.log(res.data);
         const menu = {
@@ -536,7 +539,9 @@ class ViewRequest extends React.Component {
           comments: res.data.comments,
 
           addedby: res.data.addedby,
-
+adminid:res.data.adminid,
+  adddedname:res.data.adddedname,
+        verifiedname:res.data.verifiedname,
           patient_at: res.data.patient_at,
           current_spo2: res.data.current_spo2,
           patient_location: res.data.patient_location,
@@ -558,6 +563,9 @@ class ViewRequest extends React.Component {
           comments: menu.comments,
 
           addedby: menu.addedby,
+adminid:menu.adminid,
+    adddedname:menu.adddedname,
+        verifiedname:menu.verifiedname,
           patient_at: menu.patient_at,
           current_spo2: menu.current_spo2,
           patient_location: menu.patient_location,
@@ -570,14 +578,14 @@ class ViewRequest extends React.Component {
         });
       });
     axios
-      .get(`https://api.covidfrontline.net/resource/allresources`)
+      .get(` https://api.covidfrontline.net/resource/allresources`)
       .then(res => {
         const resources = res.data;
         console.log(resources);
         this.setState({ resources });
       });
 
-    axios.get(`https://api.covidfrontline.net/note/notes/${_id}`).then(res => {
+    axios.get(` https://api.covidfrontline.net/note/notes/${_id}`).then(res => {
       const notes = res.data;
       console.log(notes);
       this.setState({ notes });
@@ -596,6 +604,9 @@ class ViewRequest extends React.Component {
       const {
         user: { _id },
       } = isAutheticated();
+        const {
+        user: { name },
+      } = isAutheticated();
 
       const { _id1 } = this.props.match.params;
 
@@ -605,10 +616,12 @@ class ViewRequest extends React.Component {
         note: this.state.note,
         patientid: this.state._id,
         addedby: _id,
+         addedname:name,
+        adminid:_id,
       };
       console.log(menu.patientid);
       axios
-        .post(`https://api.covidfrontline.net/note/addnote`, menu)
+        .post(` https://api.covidfrontline.net/note/addnote`, menu)
         .then(res => {
           console.log(res);
           console.log(res.data);
@@ -728,7 +741,7 @@ class ViewRequest extends React.Component {
                                 <b> Added By </b>
                               </td>
                               <td>
-                                {name} on{" "}
+                                {this.state.addedname} on{" "}
                                 {moment(this.state.createdAt)
                                   .locale("en")
                                   .format("DD-MM-YYYY")}{" "}
@@ -794,7 +807,7 @@ class ViewRequest extends React.Component {
                                   <b> Verified By</b>
                                 </td>
                                 <td>
-                                  {name} on{" "}
+                                  {this.state.verifiedname} on{" "}
                                   {moment(this.state.updatedAt)
                                     .locale("en")
                                     .format("DD-MM-YYYY")}{" "}
@@ -835,7 +848,7 @@ class ViewRequest extends React.Component {
                                       <td>{data.note}</td>
                                       <td>
                                         {" "}
-                                        {name} on{" "}
+                                        {data.addedname} on{" "}
                                         {moment(data.createdAt)
                                           .locale("en")
                                           .format("DD-MM-YYYY")}{" "}

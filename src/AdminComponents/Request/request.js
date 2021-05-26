@@ -25,14 +25,14 @@ class Request extends React.Component {
     } = isAutheticated();
     console.log(_id);
     axios
-      .get(`https://api.covidfrontline.net/request/requests/${_id}`)
+      .get(` https://api.covidfrontline.net/request/requests/${_id}`)
       .then(res => {
         const requests = res.data;
         console.log(requests);
         this.setState({ requests, loading: true });
       });
     this.unsubscribe = axios
-      .get(`https://api.covidfrontline.net/request/requests/${_id}`)
+      .get(` https://api.covidfrontline.net/request/requests/${_id}`)
       .then(res => {
         const requests = res.data;
         console.log(requests);
@@ -56,7 +56,7 @@ class Request extends React.Component {
         console.log(_id);
         axios
           .delete(
-            `https://api.covidfrontline.net/request/delete_request/${_id}`
+            ` https://api.covidfrontline.net/request/delete_request/${_id}`
           )
           .then(res => {
             console.log(res);
@@ -111,7 +111,7 @@ class Request extends React.Component {
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/request/Inactivate/${request._id}`
+                          ` https://api.covidfrontline.net/request/Inactivate/${request._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
@@ -140,7 +140,7 @@ class Request extends React.Component {
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/request/Activate/${request._id}`
+                          ` https://api.covidfrontline.net/request/Activate/${request._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
@@ -206,7 +206,7 @@ class Request extends React.Component {
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/request/Inactivate/${request._id}`
+                          ` https://api.covidfrontline.net/request/Inactivate/${request._id}`
                         )
                         .then(function (response) {
                           window.location.reload();

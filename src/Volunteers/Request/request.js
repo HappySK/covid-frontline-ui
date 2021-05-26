@@ -20,19 +20,22 @@ class VolunteerRequest extends React.Component {
   }
 
   componentDidMount() {
-    const {
-      user: { _id },
+    // const {
+    //   user: { _id },
+    // } = isAutheticated();
+       const {
+      user: { addedby },
     } = isAutheticated();
-    console.log(_id);
+    // console.log(_id);
     axios
-      .get(`https://api.covidfrontline.net/request/requests/${_id}`)
+      .get(` https://api.covidfrontline.net/request/requests/${addedby}`)
       .then(res => {
         const requests = res.data;
         console.log(requests);
         this.setState({ requests, loading: true });
       });
     this.unsubscribe = axios
-      .get(`https://api.covidfrontline.net/request/requests/${_id}`)
+      .get(` https://api.covidfrontline.net/request/requests/${addedby}`)
       .then(res => {
         const requests = res.data;
         console.log(requests);
@@ -56,7 +59,7 @@ class VolunteerRequest extends React.Component {
         console.log(_id);
         axios
           .delete(
-            `https://api.covidfrontline.net/request/delete_request/${_id}`
+            ` https://api.covidfrontline.net/request/delete_request/${_id}`
           )
           .then(res => {
             console.log(res);
@@ -111,7 +114,7 @@ class VolunteerRequest extends React.Component {
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/request/Inactivate/${request._id}`
+                          ` https://api.covidfrontline.net/request/Inactivate/${request._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
@@ -140,7 +143,7 @@ class VolunteerRequest extends React.Component {
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/request/Activate/${request._id}`
+                          ` https://api.covidfrontline.net/request/Activate/${request._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
@@ -206,7 +209,7 @@ class VolunteerRequest extends React.Component {
 
                       axios
                         .get(
-                          `https://api.covidfrontline.net/request/Inactivate/${request._id}`
+                          ` https://api.covidfrontline.net/request/Inactivate/${request._id}`
                         )
                         .then(function (response) {
                           window.location.reload();
