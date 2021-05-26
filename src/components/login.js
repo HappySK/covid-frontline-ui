@@ -67,7 +67,7 @@ function Login() {
                     type="text"
                     onfocus="this.placeholder = ''"
                     onblur="this.placeholder = 'Username'"
-                    placeholder="Username*"
+                    placeholder="Email*"
                   />
                 </div>
               </div>
