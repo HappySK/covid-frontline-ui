@@ -55,7 +55,7 @@ function AdminLogin() {
             {/* <span>
               <strong style={{ fontSize: "20px" }}>COVID HELP - ADMIN</strong>
             </span> */}
-              <img src="/assets/img/logo/covid_logo.jfif" />
+              <img src="/assets/img/covid_logo.png" />
             {/* <img src="assets/img/logo/deepthoughtlogo.svg" /> */}
           </div>
           <form className="form-contact contact_form">

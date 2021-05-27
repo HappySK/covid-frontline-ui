@@ -53,7 +53,7 @@ function VolunteerLogin() {
                 COVID HELP - Volunteer
               </strong>
             </span> */}
-             <img src="/assets/img/logo/covid_logo.jfif" />
+           <img src="/assets/img/covid_logo.png" />
             {/* <img src="assets/img/logo/deepthoughtlogo.svg" alt="COVID HELP"/> */}
           </div>
           <form className="form-contact contact_form">

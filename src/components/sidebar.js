@@ -28,7 +28,7 @@ function Sidebar() {
               {/* <strong style={{ fontSize: "25px", color: "#f39510" }}>
                 COVID HELP
               </strong> */}
-              <img src="/assets/img/covid_logo.jfif" />
+              <img src="/assets/img/covid_logo.png" />
             </div>
           </SidebarHeader>
           <SidebarContent>
