@@ -19,7 +19,7 @@ class AddMenu extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-   this.handleChange1 = this.handleChange1.bind(this);
+  //  this.handleChange1 = this.handleChange1.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validator = new SimpleReactValidator({
       className: "text-danger",
