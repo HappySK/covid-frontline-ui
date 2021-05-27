@@ -247,14 +247,23 @@ logo */
 .login-logo img {
   height: 100px;
 }
-/* .admin-logo img {
+.admin-logo img {
   height: 105px;
   width: 200px;
   margin: 15px 0px;
-} */
+}
 
 .admin-logo {
   width: 260px;
   padding: 15px 20px;
-  border-bottom: solid 1px #6b93de;
+  border-bottom: solid 1px black;
 }
+/* .pro-sidebar .pro-menu {
+  background-color: #f7f4f4 !important;
+}
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-content {
+  background-color: #f7f4f4 !important;
+}
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout {
+  display: flex !important;
+} */

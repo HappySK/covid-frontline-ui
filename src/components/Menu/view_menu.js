@@ -2,14 +2,14 @@ import axios from "axios";
 import React from "react";
 import {Link} from "react-router-dom";
 import Sidebar from "../../components/sidebar";
-import renderHTML from "react-render-html";
+// import renderHTML from "react-render-html";
 import Loader from "react-loader-spinner";
 class ViewMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     
-      description: "",
+      // description: "",
       menu: "",
   
       loading: false,
@@ -24,13 +24,13 @@ class ViewMenu extends React.Component {
         console.log(res.data);
         const post = {
           menu: res.data.menu,
-          description: res.data.description,
+          // description: res.data.description,
           addedby: res.data.addedby,
         };
         console.log(post.title);
         this.setState({
           menu: post.menu,
-          description: post.description,
+          // description: post.description,
           addedby: post.addedby,
           loading: true,
         });
@@ -63,12 +63,12 @@ class ViewMenu extends React.Component {
                         </td>
                         <td>{this.state.menu}</td>
                       </tr>
-                      <tr>
+                      {/* <tr>
                         <td valign="top" width="150px;">
                           <b>Description</b>
                         </td>
                         <td>{renderHTML(this.state.description)}</td>
-                      </tr>
+                      </tr> */}
                     
                     </tbody>
                   </table>

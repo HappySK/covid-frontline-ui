@@ -2,18 +2,18 @@ import axios from "axios";
 import React from "react";
 import Sidebar from "../../components/sidebar";
 import SimpleReactValidator from "simple-react-validator";
-import PropTypes from "prop-types";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+// import PropTypes from "prop-types";
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
 import Loader from "react-loader-spinner";
 class EditMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       menu: "",
-      description: "",
+      // description: "",
     
-      theme: "snow",
+      // theme: "snow",
       mobile_message: "",
       validError: false,
       loading: false,
@@ -117,13 +117,13 @@ class EditMenu extends React.Component {
         console.log(res.data);
         const post = {
           menu: res.data.menu,
-          description: res.data.description,
+          // description: res.data.description,
           addedby: res.data.addedby,
         };
         console.log(post.title);
         this.setState({
           menu: post.menu,
-          description: post.description,
+          // description: post.description,
           addedby: post.addedby,
           loading: true,
         });
@@ -132,19 +132,19 @@ class EditMenu extends React.Component {
   
   }
 
-  handleChange(html) {
-    this.setState({ description: html });
-  }
+  // handleChange(html) {
+  //   this.setState({ description: html });
+  // }
   onChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
 
-  handleThemeChange(newTheme) {
-    if (newTheme === "core") newTheme = null;
-    this.setState({ theme: newTheme });
-  }
+  // handleThemeChange(newTheme) {
+  //   if (newTheme === "core") newTheme = null;
+  //   this.setState({ theme: newTheme });
+  // }
 
  
   handleSubmit(e) {
@@ -153,7 +153,7 @@ class EditMenu extends React.Component {
     if (this.validator.allValid()) {
       const post = {
         menu: this.state.menu,
-        description: this.state.description,
+        // description: this.state.description,
         addedby: this.state.addedby,
       };
       axios
@@ -214,7 +214,7 @@ class EditMenu extends React.Component {
                         
                         </div>
                       
-                        <div className="form-group tags-field row m-0">
+                        {/* <div className="form-group tags-field row m-0">
                           <label className="col-lg-2 p-0">Description</label>
                          
                           <ReactQuill
@@ -233,7 +233,7 @@ class EditMenu extends React.Component {
                             this.state.description,
                             "required"
                           )}
-                        </div>
+                        </div> */}
                       </div>
 
                       <br />
@@ -274,43 +274,43 @@ class EditMenu extends React.Component {
     );
   }
 }
-EditMenu.modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image", "video"],
-    ["clean"],
-  ],
-  clipboard: {
-    matchVisual: false,
-  },
-};
+// EditMenu.modules = {
+//   toolbar: [
+//     [{ header: "1" }, { header: "2" }, { font: [] }],
+//     [{ size: [] }],
+//     ["bold", "italic", "underline", "strike", "blockquote"],
+//     [
+//       { list: "ordered" },
+//       { list: "bullet" },
+//       { indent: "-1" },
+//       { indent: "+1" },
+//     ],
+//     ["link", "image", "video"],
+//     ["clean"],
+//   ],
+//   clipboard: {
+//     matchVisual: false,
+//   },
+// };
 
-EditMenu.formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "video",
-];
+// EditMenu.formats = [
+//   "header",
+//   "font",
+//   "size",
+//   "bold",
+//   "italic",
+//   "underline",
+//   "strike",
+//   "blockquote",
+//   "list",
+//   "bullet",
+//   "indent",
+//   "link",
+//   "image",
+//   "video",
+// ];
 
-EditMenu.propTypes = {
-  placeholder: PropTypes.string,
-};
+// EditMenu.propTypes = {
+//   placeholder: PropTypes.string,
+// };
 export default EditMenu;

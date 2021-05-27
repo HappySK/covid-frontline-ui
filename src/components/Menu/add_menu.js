@@ -2,16 +2,16 @@ import axios from "axios";
 import React from "react";
 import Sidebar from "../../components/sidebar";
 import SimpleReactValidator from "simple-react-validator";
-import PropTypes from "prop-types";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+// import PropTypes from "prop-types";
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
 import { isAutheticated, signout } from "../../auth";
 class AddMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       menu: "",
-      description:'',
+      // description:'',
       addedby:'',
       mobile_message: "",
       validError: false,
@@ -113,13 +113,13 @@ class AddMenu extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
- handleChange1(html) {
-    this.setState({ description: html });
-  }
-   handleThemeChange(newTheme) {
-    if (newTheme === "core") newTheme = null;
-    this.setState({ theme: newTheme });
-  }
+//  handleChange1(html) {
+//     this.setState({ description: html });
+//   }
+//    handleThemeChange(newTheme) {
+//     if (newTheme === "core") newTheme = null;
+//     this.setState({ theme: newTheme });
+//   }
   handleSubmit(event) {
         const {
     user: {  _id },
@@ -128,7 +128,7 @@ class AddMenu extends React.Component {
     if (this.validator.allValid()) {
       const menu = {
         menu: this.state.menu,
-        description:this.state.description,
+        // description:this.state.description,
         addedby:_id,
       };
       console.log(menu);
@@ -152,7 +152,7 @@ class AddMenu extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Blood Group - Add New</div>
+            <div className="admin-head">Menu - Add New</div>
             <div className="admin-data">
               <div className="container-fluid p-0">
                 <form
@@ -182,7 +182,7 @@ class AddMenu extends React.Component {
                          </div>
 
                     </div>
-                    <div className="col-lg-12 p-0">
+                    {/* <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">
                         <label className="col-lg-2 p-0">Description</label>
                       
@@ -203,7 +203,7 @@ class AddMenu extends React.Component {
                           "required"
                         )}
                       </div>
-                      </div>
+                      </div> */}
 
                     <div className="col-lg-12 p-0">
                       <div className="form-group tags-field  row m-0">
@@ -228,43 +228,43 @@ class AddMenu extends React.Component {
     );
   }
 }
-AddMenu.modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image", "video"],
-    ["clean"],
-  ],
-  clipboard: {
-    matchVisual: false,
-  },
-};
+// AddMenu.modules = {
+//   toolbar: [
+//     [{ header: "1" }, { header: "2" }, { font: [] }],
+//     [{ size: [] }],
+//     ["bold", "italic", "underline", "strike", "blockquote"],
+//     [
+//       { list: "ordered" },
+//       { list: "bullet" },
+//       { indent: "-1" },
+//       { indent: "+1" },
+//     ],
+//     ["link", "image", "video"],
+//     ["clean"],
+//   ],
+//   clipboard: {
+//     matchVisual: false,
+//   },
+// };
 
-AddMenu.formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "video",
-];
+// AddMenu.formats = [
+//   "header",
+//   "font",
+//   "size",
+//   "bold",
+//   "italic",
+//   "underline",
+//   "strike",
+//   "blockquote",
+//   "list",
+//   "bullet",
+//   "indent",
+//   "link",
+//   "image",
+//   "video",
+// ];
 
-AddMenu.propTypes = {
-  placeholder: PropTypes.string,
-};
+// AddMenu.propTypes = {
+//   placeholder: PropTypes.string,
+// };
 export default AddMenu;
