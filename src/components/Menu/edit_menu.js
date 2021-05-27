@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import {Link} from 'react-router-dom'
 import Sidebar from "../../components/sidebar";
 import SimpleReactValidator from "simple-react-validator";
 // import PropTypes from "prop-types";
@@ -180,11 +181,11 @@ class EditMenu extends React.Component {
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <a href="/menu">
+                  <Link to="/menu">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>
-                  </a>
+                  </Link>
                 </div>
                 <div className="container-fluid p-0">
                   <form
