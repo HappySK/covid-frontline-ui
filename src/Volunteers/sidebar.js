@@ -27,7 +27,7 @@ function VolunteerSidebar() {
               {/* <strong style={{ fontSize: "25px", color: "#f39510" }}>
                 COVID HELP
               </strong> */}
-                <img src="/assets/img/logo/covid_logo.jfif" />
+               <img src="/assets/img/covid_logo.jfif" />
               {/* <img src="/assets/img/logo/deepthoughtlogo.svg" /> */}
             </div>
           </SidebarHeader>
