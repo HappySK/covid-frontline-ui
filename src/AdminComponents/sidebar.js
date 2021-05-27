@@ -35,23 +35,23 @@ function Sidebar() {
               <MenuItem>
                 <Link to="/admindashboard">
                   <i className="fa fa-tachometer" aria-hidden="true" />{" "}
-                  Dashboard
+                  <span className="color">Dashboard</span>
                 </Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/request">
                   <i className="fa fa-rss-square" aria-hidden="true"></i>{" "}
-                  Requests
+                 <span className="color"> Requests</span>
                 </Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/volunteers">
-                  <i className="fa fa-file" aria-hidden="true"></i> Volunteers
+                  <i className="fa fa-file" aria-hidden="true"></i><span className="color"> Volunteers</span>
                 </Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/resources1">
-                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> Resources
+                  <i class="fa fa-book fa-fw" aria-hidden="true"></i><span className="color"> Resources</span>
                 </Link>
               </MenuItem>
 
@@ -65,7 +65,7 @@ function Sidebar() {
                   }}
                 >
                   <i class="fa fa-sign-out" aria-hidden="true"></i>
-                  Logout {name}
+                 <span className="color"> Logout {name}</span>
                 </Link>
               </MenuItem>
             </Menu>

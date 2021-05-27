@@ -56,6 +56,13 @@ import AddMenu from "./components/Menu/add_menu";
 import EditMenu from "./components/Menu/edit_menu";
 import ViewMenu from "./components/Menu/view_menu";
 
+//SubMenu
+import AddSubMenu from "./components/Submenu/add_submenu";
+import  SubMenu  from  "./components/Submenu/submenu";
+import EditSubMenu from "./components/Submenu/edit_submenu";
+import ViewSubMenu from "./components/Submenu/view_submenu";
+
+
 ////////////////////Admin/////////////////////////////////////////////////////////////////////////////////////////////
 import AdminLogin from "./AdminComponents/login";
 import AdminDashboard from "./AdminComponents/dashboard";
@@ -88,6 +95,7 @@ import VolunteerEditRequest from "./Volunteers/Request/edit_request";
 import VolunteerViewRequest from "./Volunteers/Request/view_request";
 import VolunteerRequest from "./Volunteers/Request/request";
 import VolunteerPatientStaus from "./Volunteers/Request/add_patient_status";
+
 
 function Routing() {
   return (
@@ -172,6 +180,12 @@ function Routing() {
         <Route path="/menu" exact component={Menu} />
          <Route path="/edit_menu/:_id" exact component={EditMenu} />
          <Route path="/view_menu/:_id" exact component={ViewMenu} />
+
+         
+  <Route path="/add_submenu" exact component={AddSubMenu} />
+        <Route path="/submenu" exact component={SubMenu} />
+         <Route path="/edit_submenu/:_id" exact component={EditSubMenu} />
+         <Route path="/view_submenu/:_id" exact component={ViewSubMenu} />
 
         {/*************************************   Admin *****************************************/}
         {/* Admin */}

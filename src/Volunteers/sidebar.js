@@ -37,7 +37,7 @@ function VolunteerSidebar() {
               <MenuItem>
                 <Link to="/request">
                   <i className="fa fa-rss-square" aria-hidden="true"></i>{" "}
-                  Requests
+                 <span className="color"> Requests</span>
                 </Link>
               </MenuItem>
              
@@ -53,7 +53,7 @@ function VolunteerSidebar() {
                   }}
                 >
                   <i class="fa fa-sign-out" aria-hidden="true"></i>
-                  Logout {name}
+                 <span className="color"> Logout {name}</span>
                 </Link>
               </MenuItem>
             </Menu>

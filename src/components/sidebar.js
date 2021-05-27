@@ -36,12 +36,12 @@ function Sidebar() {
               <MenuItem>
                 <Link to="/dashboard">
                   <i className="fa fa-tachometer" aria-hidden="true" />{" "}
-                  Dashboard
+                  <span className="color">Dashboard</span>
                 </Link>
               </MenuItem>
               <MenuItem>
                 <Link to="/adminuser">
-                  <i className="fa fa-upload" aria-hidden="true" /> Admin User
+                  <i className="fa fa-upload" aria-hidden="true" /><span className="color"> Admin User</span>
                 </Link>
               </MenuItem>
               {/* <MenuItem>
@@ -107,7 +107,13 @@ function Sidebar() {
                 <MenuItem>
                 <Link to="/menu">
                   <i class="fa fa-book fa-fw" aria-hidden="true"></i> 
-                  Menu
+                   <span className="color"> Menu</span>
+                </Link>
+              </MenuItem>
+               <MenuItem>
+                <Link to="/submenu">
+                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> 
+                   <span className="color"> Sub Menu</span>
                 </Link>
               </MenuItem>
               {/* <MenuItem>
@@ -175,7 +181,7 @@ function Sidebar() {
                   }}
                 >
                   <i class="fa fa-sign-out" aria-hidden="true"></i>
-                  Logout {name}
+                  <span className="color"> Logout {name}</span>
                 </Link>
               </MenuItem>
             </Menu>

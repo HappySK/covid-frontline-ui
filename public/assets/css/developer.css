@@ -256,14 +256,34 @@ logo */
 .admin-logo {
   width: 260px;
   padding: 15px 20px;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px #eaeaea;
+  background-color: #eaeaea !important;
 }
-/* .pro-sidebar .pro-menu {
-  background-color: #f7f4f4 !important;
+.pro-sidebar .pro-menu {
+  background-color: #eaeaea !important;
 }
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-content {
-  background-color: #f7f4f4 !important;
+  background-color: #eaeaea !important;
+  color: black !important;
 }
-.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout {
-  display: flex !important;
-} */
+.pro-sidebar
+  .pro-menu
+  .pro-menu-item
+  > .pro-inner-item
+  > .pro-icon-wrapper
+  .pro-icon {
+  color: #eaeaea !important;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-item-content {
+  color: black;
+}
+.fa-fw {
+  color: black;
+}
+.fa {
+  color: black;
+}
+.color {
+  color: black;
+}
