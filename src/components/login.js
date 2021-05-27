@@ -48,11 +48,12 @@ function Login() {
       <div className="h-100 w-100 bg-color">
         <div className="login-box">
           <div className="login-logo">
-            <span>
+            {/* <span>
               <strong style={{ fontSize: "20px" }}>
                 COVID HELP - SUPER ADMIN
               </strong>
-            </span>
+            </span> */}
+             <img src="/assets/img/logo/covid_logo.jfif" />
             {/* <img src="assets/img/logo/deepthoughtlogo.svg" alt="COVID HELP"/> */}
           </div>
           <form className="form-contact contact_form">

@@ -242,3 +242,19 @@
   margin-left: 475px;
   margin-right: 475px;
 }
+/* 
+logo */
+.login-logo img {
+  height: 100px;
+}
+/* .admin-logo img {
+  height: 105px;
+  width: 200px;
+  margin: 15px 0px;
+} */
+
+.admin-logo {
+  width: 260px;
+  padding: 15px 20px;
+  border-bottom: solid 1px #6b93de;
+}

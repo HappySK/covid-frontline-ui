@@ -5,109 +5,48 @@ import { Link, Route, useParams, Redirect, useHistory } from "react-router-dom";
 import { isAutheticated } from "../auth";
 
 function Changepassword() {
-  // const {
-  //   user: { name, _id, email },
-  // } = isAutheticated();
-
-  // const [Password, setPassword] = useState({
-  //   password: "",
-  //   passwordnew: "",
-  // });
-
-  // const handleChange = e => {
-  //   setPassword({ password: e.target.value });
-  // };
-
-  // const handleChang = e => {
-  //   setPassword({ passwordnew: e.target.value });
-  // };
-
-  // // const updatepassword = (e) => {
-  // //   e.preventDefault();
-
-  // //   axios
-  // //     .post(" https://api.covidfrontline.net/superadmin/superadminchangepassword", {
-  // //       userid: _id,
-  // //       password: Password.password,
-  // //       passwordnew: Password.passwordnew,
-  // //     })
-
-  // //     .then(function (response) {
-  // //       // handle success
-
-  // //       if (response.data) {
-  // //         alert(response.data);
-  // //       } else {
-  // //         setPassword(response.data);
-  // //       }
-  // //     })
-  // //     .catch(function (error) {
-  // //       // handle error
-  // //       console.log(error);
-  // //       console.log("fsdfsdfsdf");
-  // //     });
-  // // };
-
-  // const updatepassword = e => {
-  //   e.preventDefault();
-
-  //   axios
-  //     .post(" https://api.covidfrontline.net/superadmin/superadminchangepassword", {
-  //       userid: _id,
-  //       password: Password.password,
-  //       passwordnew: Password.passwordnew,
-  //     })
-  //     .then(function (response) {
-  //       // handle success
-
-  //       if (response.data) {
-  //         alert(response.data);
-  //       } else {
-  //         setPassword(response.data);
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       // handle error
-  //       console.log(error);
-  //     });
-  // };
-const {user : {name, _id, email}} = isAutheticated();
-
+  const {
+    user: { name, _id, email },
+  } = isAutheticated();
 
   const [Password, setPassword] = useState({
-    password : '',
-    passwordnew : '' 
-  }) 
+    password: "",
+    newpassword: "",
+  });
 
-  const handleChange = (e) => {
-    setPassword({ password : e.target.value });
+  const handleChange = e => {
+    setPassword({ password: e.target.value });
   };
-  
-  const handleChang = (e) => {
-    setPassword({ passwordnew : e.target.value });
+
+  const handleChang = e => {
+    setPassword({ newpassword: e.target.value });
   };
+
   
-  const updatepassword = (e) => {
+  const updatepassword = e => {
     e.preventDefault();
 
-    axios.post('https://api.covidfrontline.net/superadmin/superadminchangepassword', {userid : _id, password : Password.password, passwordnew : Password.passwordnew  })
-    .then(function (response) {
-      // handle success
+    axios
+      .post(" https://api.covidfrontline.net/superadmin/superadminchangepassword", {
+        userid: _id,
+        password: Password.password,
+        newpassword: Password.newpassword,
+      })
+      .then(function (response) {
+        // handle success
 
-      if(response.data){
-      alert(response.data)
-      }
-      else{
-       setPassword(response.data)
-      }
-  
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-   })
+        if (response.data) {
+          alert(response.data);
+        } else {
+          setPassword(response.data);
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  };
 
-  }
     
   return (
     <div>
@@ -142,7 +81,7 @@ const {user : {name, _id, email}} = isAutheticated();
                       <input
                         className="form-control col-lg-6"
                         onChange={handleChang}
-                        value={Password.passwordnew}
+                        value={Password.newpassword}
                         type="password"
                         onfocus="this.placeholder = ''"
                         onblur="this.placeholder = ''"

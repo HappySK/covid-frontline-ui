@@ -36,14 +36,9 @@ html {
 
 /* .admin-logo {
   width: 260px;
-  padding: 15px 20px;
-  border-bottom: solid 1px #6b93de;
-} */
-.admin-logo {
-  width: 260px;
   padding: 26.5px 20px;
   border-bottom: solid 1px #6b93de;
-}
+} */
 
 .admin-logo img {
   height: 30px;
@@ -56,9 +51,9 @@ html {
   text-align: center;
 }
 
-.login-logo img {
+/* .login-logo img {
   height: 45px;
-}
+} */
 
 .admin-menu,
 .admin-menu ul,

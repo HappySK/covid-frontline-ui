@@ -25,10 +25,10 @@ function Sidebar() {
         <ProSidebar>
           <SidebarHeader>
             <div className="admin-logo">
-              <strong style={{ fontSize: "25px", color: "#f39510" }}>
+              {/* <strong style={{ fontSize: "25px", color: "#f39510" }}>
                 COVID HELP
-              </strong>
-              {/* <img src="/assets/img/logo/deepthoughtlogo.svg" /> */}
+              </strong> */}
+              <img src="/assets/img/logo/covid_logo.jfif" />
             </div>
           </SidebarHeader>
           <SidebarContent>
@@ -104,6 +104,12 @@ function Sidebar() {
                   </Link>
                 </MenuItem>
               </SubMenu>
+                <MenuItem>
+                <Link to="/menu">
+                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> 
+                  Menu
+                </Link>
+              </MenuItem>
               {/* <MenuItem>
                 <Link to="/change_password">
                   <i class="fa fa-book fa-fw" aria-hidden="true"></i> Change

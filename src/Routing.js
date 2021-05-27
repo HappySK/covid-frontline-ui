@@ -50,6 +50,12 @@ import TermsOfservice from "./components/TermsOfServices/termsofservice";
 import EditTermsOfservice from "./components/TermsOfServices/edit_termsofservice";
 import TermsOfservicePage from "./components/TermsOfServices/termsofservicessingle";
 
+//Menu
+import Menu from "./components/Menu/menu";
+import AddMenu from "./components/Menu/add_menu";
+import EditMenu from "./components/Menu/edit_menu";
+import ViewMenu from "./components/Menu/view_menu";
+
 ////////////////////Admin/////////////////////////////////////////////////////////////////////////////////////////////
 import AdminLogin from "./AdminComponents/login";
 import AdminDashboard from "./AdminComponents/dashboard";
@@ -159,6 +165,14 @@ function Routing() {
           exact
           component={TermsOfservicePage}
         />
+
+{/*888888888888888888888888888888888888888 Menu 888888888888888888888888888888888888888888888888888*/}
+
+  <Route path="/add_menu" exact component={AddMenu} />
+        <Route path="/menu" exact component={Menu} />
+         <Route path="/edit_menu/:_id" exact component={EditMenu} />
+         <Route path="/view_menu/:_id" exact component={ViewMenu} />
+
         {/*************************************   Admin *****************************************/}
         {/* Admin */}
         <Route exact path="/adminlogin" component={AdminLogin}></Route>
