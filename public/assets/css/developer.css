@@ -284,10 +284,10 @@ logo */
   color: black;
 }
 .fa-fw {
-  color: #ed1b25;
+  color: #da1e1e;
 }
 .fa {
-  color: #ed1b25;
+  color: #da1e1e;
 }
 .color {
   color: black;
@@ -295,4 +295,21 @@ logo */
 
 .pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-header {
   border-bottom: 1px solid #eaeaea !important;
+}
+
+.pro-sidebar
+  .pro-menu
+  .pro-menu-item
+  > .pro-inner-item
+  > .pro-icon-wrapper
+  .pro-icon {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #eaeaea;
+}
+.pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
+  position: relative;
+  background-color: #eaeaea !important;
 }

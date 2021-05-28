@@ -9,6 +9,7 @@ import {
 } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { isAutheticated, signout } from "../auth";
+
 import { Link, Route, useParams, Redirect, useHistory } from "react-router-dom";
 function Sidebar() {
   const {
@@ -58,26 +59,26 @@ function Sidebar() {
                 <MenuItem>
                   {" "}
                   <Link to="/countries" style={{ color: "white" }}>
-                    Countries
+                    <span className="color"> Countries</span>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   {" "}
                   <Link to="/cities" style={{ color: "white" }}>
-                    Cities
+                   <span className="color">  Cities</span>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   {" "}
                   <Link to="/bloodgroup" style={{ color: "white" }}>
-                    Blood Group
+                    <span className="color">  Blood Group</span>
                   </Link>
                 </MenuItem>
 
                 <MenuItem>
                   {" "}
                   <Link to="/resources" style={{ color: "white" }}>
-                    Resources
+                    <span className="color">  Resources</span>
                   </Link>
                 </MenuItem>
               </SubMenu>
@@ -91,7 +92,7 @@ function Sidebar() {
                     to="/privacypolicypage/60a2573033be630015d6fcad"
                     style={{ color: "white" }}
                   >
-                    Privacy Policy
+                    <span className="color">  Privacy Policy</span>
                   </Link>
                 </MenuItem>
                 <MenuItem>
@@ -100,7 +101,7 @@ function Sidebar() {
                     to="/termsofservicepage/60a25d9c33be630015d6fcaf"
                     style={{ color: "white" }}
                   >
-                    Terms of Service
+                   <span className="color">   Terms of Service</span>
                   </Link>
                 </MenuItem>
               </SubMenu>
@@ -114,6 +115,12 @@ function Sidebar() {
                 <Link to="/submenu">
                   <i class="fa fa-book fa-fw" aria-hidden="true"></i> 
                    <span className="color"> Sub Menu</span>
+                </Link>
+              </MenuItem>
+               <MenuItem>
+                <Link to="/page">
+                  <i class="fa fa-book fa-fw" aria-hidden="true"></i> 
+                   <span className="color"> Page</span>
                 </Link>
               </MenuItem>
               {/* <MenuItem>
