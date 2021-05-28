@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import {Link} from 'react-router-dom'
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../sidebar";
 import SimpleReactValidator from "simple-react-validator";
 import { isAutheticated, signout } from "../../auth";
 import Loader from "react-loader-spinner";
@@ -248,7 +248,7 @@ addedby:'',
 
                     </div>
 
-                          <div className="col-lg-12 p-0">
+                          {/* <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
                           <label className="col-lg-3 p-0">Select Option</label>
 
@@ -302,11 +302,6 @@ addedby:'',
                             })}
                         </select>
 
-                        {/* {this.validator.message(
-                          "Menu Name",
-                          this.state.menu,
-                          "required"
-                        )} */}
                       
                       </div>
                       </>:
@@ -334,17 +329,13 @@ addedby:'',
                               );
                             })}
                         </select>
-                        {/* {this.validator.message(
-                          "Sub Menu Name",
-                          this.state.submenu,
-                          "required"
-                        )} */}
+                     
                          </div>
 
                     </div>
                       </>:
                        
-                  null}
+                  null} */}
                   
                       <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">

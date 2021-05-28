@@ -80,9 +80,9 @@ class Page extends React.Component {
             <tr key={index}>
               <td>{index + 1}</td>
 <td>{page.title}</td>
-              <td>{page.menu?page.menu:"Nill"}</td>
+              {/* <td>{page.menu?page.menu:"Nill"}</td>
               
-               <td>{page.submenu?page.submenu:"Nill"}</td>
+               <td>{page.submenu?page.submenu:"Nill"}</td> */}
                  
 
               <td>
@@ -127,8 +127,8 @@ class Page extends React.Component {
                       <tr>
                         <th>S.No</th>
                              <th> Title</th>
-                        <th>Menu</th>
-                          <th>Sub Menu</th>
+                        {/* <th>Menu</th>
+                          <th>Sub Menu</th> */}
                      
 
                         <th>Action</th>

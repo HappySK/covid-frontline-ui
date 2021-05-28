@@ -213,7 +213,7 @@ handleChange1(html) {
 
                     </div>
 
-                          <div className="col-lg-12 p-0">
+                          {/* <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
                           <label className="col-lg-3 p-0">Select Option</label>
 
@@ -267,11 +267,7 @@ handleChange1(html) {
                             })}
                         </select>
 
-                        {/* {this.validator.message(
-                          "Menu Name",
-                          this.state.menu,
-                          "required"
-                        )} */}
+                   
                       
                       </div>
                       </>:
@@ -299,17 +295,13 @@ handleChange1(html) {
                               );
                             })}
                         </select>
-                        {/* {this.validator.message(
-                          "Sub Menu Name",
-                          this.state.submenu,
-                          "required"
-                        )} */}
+                      
                          </div>
 
                     </div>
                       </>:
                        
-                  null}
+                  null} */}
                   
                       <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">

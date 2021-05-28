@@ -83,10 +83,10 @@ function Sidebar() {
                 </MenuItem>
               </SubMenu>
               <SubMenu
-                title="CMS"
+                title="Content Management System"
                 icon={<i className="fa fa-home" aria-hidden="true"></i>}
               >
-                <MenuItem>
+                {/* <MenuItem>
                   {" "}
                   <Link
                     to="/privacypolicypage/60a2573033be630015d6fcad"
@@ -103,7 +103,7 @@ function Sidebar() {
                   >
                    <span className="color">   Terms of Service</span>
                   </Link>
-                </MenuItem>
+                </MenuItem> */}
                  <MenuItem>
                 <Link to="/menu">
                   {/* <i class="fa fa-book fa-fw" aria-hidden="true"></i>  */}
