@@ -3,6 +3,10 @@ import logo from "./logo.svg";
 import { BrowserRouter, Switch, Route, HashRouter } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Empty from "./empty";
+
+
+// ////////////////FrontEnd/////////////////////////////////////////
+import Home from "./Frontend/home";
 /////////////////////SuperAdmin/////////////////////////////////////////////
 import Login from "./components/login";
 import Changepassword from "./components/changepassword";
@@ -102,13 +106,17 @@ import VolunteerRequest from "./Volunteers/Request/request";
 import VolunteerPatientStaus from "./Volunteers/Request/add_patient_status";
 
 
-
+import PrivacyPolicy1 from "./Frontend/privacypolicy"
+import TermsOfServices1 from "./Frontend/termsofservices";
 
 function Routing() {
   return (
     <HashRouter>
       <Switch>
-        <Route exact path="/" component={Empty}></Route>
+        {/* <Route exact path="/" component={Empty}></Route> */}
+         <Route exact path="/" component={Home}></Route>
+          <Route exact path="/privacy_policy" component={PrivacyPolicy1}></Route>
+           <Route exact path="/terms_of_services" component={TermsOfServices1}></Route>
         <Route exact path="/login" component={Empty}></Route>
         {/*************************************  Super Admin *****************************************/}
         <Route exact path="/superadminlogin" component={Login}></Route>
