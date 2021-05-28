@@ -42,7 +42,7 @@ function Sidebar() {
               </MenuItem>
               <MenuItem>
                 <Link to="/adminuser">
-                  <i className="fa fa-upload" aria-hidden="true" /><span className="color"> Admin User</span>
+                  <i className="fa fa-upload" aria-hidden="true" /><span className="color"> Administrators</span>
                 </Link>
               </MenuItem>
               {/* <MenuItem>
@@ -54,7 +54,7 @@ function Sidebar() {
 
               <SubMenu
                 title="Master Data"
-                icon={<i class="fa fa-info-circle" aria-hidden="true"></i>}
+                icon={ <MenuItem><i class="fa fa-info-circle" aria-hidden="true"></i></MenuItem>}
               >
                 <MenuItem>
                   {" "}
@@ -84,7 +84,7 @@ function Sidebar() {
               </SubMenu>
               <SubMenu
                 title="Content Management System"
-                icon={<i className="fa fa-home" aria-hidden="true"></i>}
+                icon={ <MenuItem><i className="fa fa-home" aria-hidden="true"></i></MenuItem>}
               >
                 {/* <MenuItem>
                   {" "}

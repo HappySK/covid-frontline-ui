@@ -176,7 +176,7 @@ class AddAdminUser extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Admin User - Add New</div>
+            <div className="admin-head">Administrator - Add New</div>
             <div className="admin-data">
               <div className="container-fluid p-0">
                 <form

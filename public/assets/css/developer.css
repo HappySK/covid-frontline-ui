@@ -260,7 +260,7 @@ logo */
 
 .admin-logo {
   /* width: 260px; */
-  padding: 15px 20px;
+  padding: 1px 20px;
   border-bottom: solid 1px #eaeaea;
   background-color: #eaeaea !important;
 }
@@ -312,4 +312,23 @@ logo */
 .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item {
   position: relative;
   background-color: #eaeaea !important;
+}
+
+/* .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 2px 35px 2px 20px !important;
+  cursor: pointer;
+} */
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 35px 0px 20px !important;
+  cursor: pointer;
+}
+.pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item > div > ul {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }

@@ -192,11 +192,11 @@ class EditAdminUsers extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">Edit Admin User</div>
+            <div className="admin-head">Edit Administrator</div>
             {this.state.loading ? (
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">
-                  <Link to="/menu">
+                  <Link to="/adminuser">
                     <button className="button button-contactForm boxed-btn">
                       Back
                     </button>
