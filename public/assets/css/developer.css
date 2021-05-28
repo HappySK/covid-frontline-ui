@@ -247,14 +247,19 @@ logo */
 .login-logo img {
   height: 100px;
 }
-.admin-logo img {
+/* .admin-logo img {
   height: 100px;
   width: 200px;
+  margin: 15px 0px;
+} */
+.admin-logo img {
+  height: 60px;
+  width: 150px;
   margin: 15px 0px;
 }
 
 .admin-logo {
-  width: 260px;
+  /* width: 260px; */
   padding: 15px 20px;
   border-bottom: solid 1px #eaeaea;
   background-color: #eaeaea !important;
@@ -279,11 +284,15 @@ logo */
   color: black;
 }
 .fa-fw {
-  color: black;
+  color: #ed1b25;
 }
 .fa {
-  color: black;
+  color: #ed1b25;
 }
 .color {
   color: black;
+}
+
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-header {
+  border-bottom: 1px solid #eaeaea !important;
 }
