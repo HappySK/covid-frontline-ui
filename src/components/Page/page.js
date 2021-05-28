@@ -91,13 +91,13 @@ class Page extends React.Component {
                 </Link>
                  {/* <Link to={`/view_page/${page._id}`}>
                   <span className="btn">View</span>
-                </Link> */}
+                </Link>
                 <span
                   className="btn"
                   onClick={this.deleteItem.bind(this, page._id)}
                 >
                   Delete
-                </span>
+                </span> */}
               </td>
             </tr>
           );
@@ -111,7 +111,7 @@ class Page extends React.Component {
         <Sidebar></Sidebar>
         <div className="admin-wrapper col-12">
           <div className="admin-content">
-            <div className="admin-head">page</div>
+            <div className="admin-head">Pages</div>
             {/* {this.state.loading ? ( */}
               <div className="admin-data">
                 <div className="col-lg-12 p-0 text-right mb-30">

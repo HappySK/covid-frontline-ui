@@ -65,7 +65,8 @@ import ViewSubMenu from "./components/Submenu/view_submenu";
 ///Page
 import AddPage from "./components/Page/add_page";
 import  Page  from  "./components/Page/page";
-import EditPage from "./components/Page/edit_page.";
+import EditPage from "./components/Page/edit_page";
+import ViewPage from "./components/Page/view_page";
 
 ////////////////////Admin/////////////////////////////////////////////////////////////////////////////////////////////
 import AdminLogin from "./AdminComponents/login";
@@ -99,6 +100,7 @@ import VolunteerEditRequest from "./Volunteers/Request/edit_request";
 import VolunteerViewRequest from "./Volunteers/Request/view_request";
 import VolunteerRequest from "./Volunteers/Request/request";
 import VolunteerPatientStaus from "./Volunteers/Request/add_patient_status";
+
 
 
 
@@ -196,7 +198,7 @@ function Routing() {
         <Route path="/page" exact component={Page} />
          <Route path="/edit_page/:_id" exact component={EditPage} />
         
-
+<Route path="/view_page/:_id" exact component={ViewPage} />
 
         {/*************************************   Admin *****************************************/}
         {/* Admin */}
