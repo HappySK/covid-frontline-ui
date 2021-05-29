@@ -109,6 +109,8 @@ import VolunteerPatientStaus from "./Volunteers/Request/add_patient_status";
 import PrivacyPolicy1 from "./Frontend/privacypolicy"
 import TermsOfServices1 from "./Frontend/termsofservices";
 import AboutUs from "./Frontend/aboutus";
+import MenuList from "./Frontend/menulist";
+import SubMenuList from "./Frontend/submenulist";
 
 function Routing() {
   return (
@@ -120,6 +122,9 @@ function Routing() {
           <Route exact path="/privacy_policy" component={PrivacyPolicy1}></Route>
            <Route exact path="/terms_of_services" component={TermsOfServices1}></Route>
              <Route exact path="/about_us" component={AboutUs}></Route>
+
+              <Route path="/MenuList/:plpID" component={MenuList} />
+               <Route path="/SubMenuList/:plpID" component={SubMenuList} />
         <Route exact path="/login" component={Empty}></Route>
         {/*************************************  Super Admin *****************************************/}
         <Route exact path="/superadminlogin" component={Login}></Route>

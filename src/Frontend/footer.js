@@ -94,7 +94,7 @@ class Footer extends React.Component {
           <div className="container size-h-4 p-tb-15 bdr-top-fotter">
             <div className="row">
               <span className="f1-s-1 cl0 txt-left col-md-6 p-0 line-copy">
-                © Copyright 2021. All Rights Reserved.
+             An initiative of <a href="https://kp.foundation" target="_blank">KP Foundation</a>
               </span>
               <span className="f1-s-1 cl0 txt-right col-md-6 p-0">
                 <ul className="social-links">

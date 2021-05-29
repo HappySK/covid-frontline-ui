@@ -80,16 +80,18 @@ class Page extends React.Component {
             <tr key={index}>
               <td>{index + 1}</td>
 <td>{page.title}</td>
-              {/* <td>{page.menu?page.menu:"Nill"}</td>
+              <td>{page.menu?page.menu:"Nill"}</td>
               
-               <td>{page.submenu?page.submenu:"Nill"}</td> */}
+               <td>{page.submenu?page.submenu:"Nill"}</td>
                  
 
               <td>
                 <Link to={`/edit_page/${page._id}`}>
                   <span className="btn">Edit</span>
                 </Link>
-                 {/* <Link to={`/view_page/${page._id}`}>
+                {page.selectoption==""?null:
+<>
+                 <Link to={`/view_page/${page._id}`}>
                   <span className="btn">View</span>
                 </Link>
                 <span
@@ -97,7 +99,9 @@ class Page extends React.Component {
                   onClick={this.deleteItem.bind(this, page._id)}
                 >
                   Delete
-                </span> */}
+                </span>
+                </>
+                }
               </td>
             </tr>
           );
@@ -127,8 +131,8 @@ class Page extends React.Component {
                       <tr>
                         <th>S.No</th>
                              <th> Title</th>
-                        {/* <th>Menu</th>
-                          <th>Sub Menu</th> */}
+                        <th>Menu</th>
+                          <th>Sub Menu</th>
                      
 
                         <th>Action</th>

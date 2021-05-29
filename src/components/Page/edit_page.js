@@ -247,8 +247,9 @@ addedby:'',
                          </div>
 
                     </div>
-
-                          {/* <div className="col-lg-12 p-0">
+                    {this.state.selectoption==""?null:
+<>
+                          <div className="col-lg-12 p-0">
                         <div className="form-group tags-field row m-0">
                           <label className="col-lg-3 p-0">Select Option</label>
 
@@ -335,8 +336,9 @@ addedby:'',
                     </div>
                       </>:
                        
-                  null} */}
-                  
+                  null}
+                  </>
+                  }
                       <div className="col-lg-12 p-0">
                       <div className="form-group tags-field row m-0">
                         <label className="col-lg-2 p-0">Description</label>

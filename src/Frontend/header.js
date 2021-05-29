@@ -23,20 +23,7 @@ class Header extends React.Component {
         this.setState({ menus, loading: true });
       });
 
-    // axios
-    //   .get(
-    //     `https://deepthoughts-nodejs.herokuapp.com/blog/update_blog/608a5f3bb23d99001525b0ce`
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     const blog = {
-    //       url: res.data.url,
-    //     };
-    //     console.log(blog.url);
-    //     this.setState({
-    //       url: blog.url,
-    //     });
-    //   });
+  
   }
   handleSidebar() {
     this.setState({
@@ -65,34 +52,38 @@ class Header extends React.Component {
             </button>
           
           </div>
-          <nav>
+            <nav>
             <ul
               className="mainNav"
               style={this.state.sideBar ? { transform: "translateX(0)" } : null}
             >
+                <li>
+                <Link to="/home" className="mainNavLink">
+                  Home
+                </Link>
+              </li>
               {this.state.menus &&
                 this.state.menus.map((menu, index) => {
                   return (
                     <li>
-                      <a
-                        href={`/SubMenuList/${menu.menu}`}
+                      <Link to={`/MenuList/${menu.menu}`}
                         className={
-                          this.isPathActive(`/SubMenuList/${menu.menu}`)
+                          this.isPathActive(`/MenuList/${menu.menu}`)
                             ? "active"
                             : null
                         }
                         className="mainNavLink"
                       >
                         {menu.menu}
-                      </a>
+                      </Link>
                     </li>
                   );
                 })}
 
             
+             
             </ul>
           </nav>
-
           {/* <!-- Menu Mobile --> */}
 
           <div className="menu-mobile">
@@ -120,33 +111,26 @@ class Header extends React.Component {
                         Home
                       </Link>
                     </li>
-                    <li>
-                      <Link to="/about_us"
-                        className={
-                          this.isPathActive("/about_us") ? "active" : null
-                        }
-                      >
-                        About Us{" "}
-                      </Link>
-                    </li>
-                    {/* {this.state.menus &&
+                  
+                 
+                    {this.state.menus &&
                       this.state.menus.map((menu, index) => {
                         return (
                           <li className="mega-menu-item">
-                            <a
-                              href={`/SubMenuList/${menu.menu}`}
+                            <Link to
+                              ={`/MenuList/${menu.menu}`}
                               className={
-                                this.isPathActive(`/SubMenuList/${menu.menu}`)
+                                this.isPathActive(`/MenuList/${menu.menu}`)
                                   ? "active"
                                   : null
                               }
                             >
                               {menu.menu}
-                            </a>
+                            </Link>
                             <SubMenuView MenuName={menu.menu} />{" "}
                           </li>
                         );
-                      })} */}
+                      })}
 
                   
                   </ul>
@@ -201,13 +185,11 @@ class SubMenuView extends React.Component {
                 <img src={data.image} />
              
 
-              <a
-               
-                href={`/PostList/${data.submenu}/${data.menu}`}
+              <Link to={`/SubMenuList/${data.submenu}/${data.menu}`}
                
               >
                 {data.submenu}
-              </a>
+              </Link>
             </h1>
             <p>{data.description}</p>
           </div>

@@ -51,7 +51,7 @@ function Sidebar() {
               </MenuItem>
               <MenuItem>
                 <Link to="/resources1">
-                  <i class="fa fa-book fa-fw" aria-hidden="true"></i><span className="color"> Resources</span>
+                  <i className="fa fa-book" aria-hidden="true"></i><span className="color"> Resources</span>
                 </Link>
               </MenuItem>
 
