@@ -45,7 +45,7 @@ class Home extends React.Component {
         <>
           <Helmet>
             <meta charSet="utf-8" />
-            <title>Covid Frontline - Home</title>
+            <title> Home</title>
             <link rel="canonical" href="https://mysite.com/example" />
           </Helmet>
           <Header />

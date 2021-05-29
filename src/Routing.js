@@ -108,6 +108,7 @@ import VolunteerPatientStaus from "./Volunteers/Request/add_patient_status";
 
 import PrivacyPolicy1 from "./Frontend/privacypolicy"
 import TermsOfServices1 from "./Frontend/termsofservices";
+import AboutUs from "./Frontend/aboutus";
 
 function Routing() {
   return (
@@ -115,8 +116,10 @@ function Routing() {
       <Switch>
         {/* <Route exact path="/" component={Empty}></Route> */}
          <Route exact path="/" component={Home}></Route>
+            <Route exact path="/home" component={Home}></Route>
           <Route exact path="/privacy_policy" component={PrivacyPolicy1}></Route>
            <Route exact path="/terms_of_services" component={TermsOfServices1}></Route>
+             <Route exact path="/about_us" component={AboutUs}></Route>
         <Route exact path="/login" component={Empty}></Route>
         {/*************************************  Super Admin *****************************************/}
         <Route exact path="/superadminlogin" component={Login}></Route>

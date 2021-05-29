@@ -45,7 +45,7 @@ class PrivacyPolicy1 extends React.Component {
         <>
           <Helmet>
             <meta charSet="utf-8" />
-            <title>Covid Frontline - Privacy Policy</title>
+            <title> Privacy Policy</title>
             <link rel="canonical" href="https://mysite.com/example" />
           </Helmet>
           <Header />

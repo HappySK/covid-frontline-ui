@@ -113,7 +113,23 @@ class Header extends React.Component {
               <div className="main-nav">
                 <nav className="menu-desktop">
                   <ul className="main-menu">
-                    {this.state.menus &&
+                         <li>
+                      <Link to="/home"
+                        className={this.isPathActive("/home") ? "active" : null}
+                      >
+                        Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/about_us"
+                        className={
+                          this.isPathActive("/about_us") ? "active" : null
+                        }
+                      >
+                        About Us{" "}
+                      </Link>
+                    </li>
+                    {/* {this.state.menus &&
                       this.state.menus.map((menu, index) => {
                         return (
                           <li className="mega-menu-item">
@@ -130,7 +146,7 @@ class Header extends React.Component {
                             <SubMenuView MenuName={menu.menu} />{" "}
                           </li>
                         );
-                      })}
+                      })} */}
 
                   
                   </ul>

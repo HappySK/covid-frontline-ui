@@ -5,7 +5,7 @@ import renderHTML from "react-render-html";
 import Header from "./header";
 import Footer from "./footer";
 import { Link, withRouter } from "react-router-dom";
-class TermsOfServices1 extends React.Component {
+class AboutUs extends React.Component {
   constructor(props) {
     super(props);
     this.state = { title: "", description: "", loading: false };
@@ -13,9 +13,9 @@ class TermsOfServices1 extends React.Component {
 
   componentDidMount() {
   
- 
+  
         axios
-      .get(`https://api.covidfrontline.net/page/update_page/60b0d1f4604e3a16bcb38d63`)
+      .get(`https://api.covidfrontline.net/page/update_page/60b1e7925708625c14510166`)
       .then((res) => {
         console.log(res.data);
         const post = {
@@ -45,7 +45,7 @@ class TermsOfServices1 extends React.Component {
         <>
           <Helmet>
             <meta charSet="utf-8" />
-            <title>Terms Of Services</title>
+            <title>About Us</title>
             <link rel="canonical" href="https://mysite.com/example" />
           </Helmet>
           <Header />
@@ -91,4 +91,4 @@ class TermsOfServices1 extends React.Component {
   }
 }
 
-export default TermsOfServices1;
+export default AboutUs;
