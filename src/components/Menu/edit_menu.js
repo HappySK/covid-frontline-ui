@@ -170,7 +170,27 @@ class EditMenu extends React.Component {
       this.forceUpdate();
     }
   }
+setMenuName=(e)=>{
+  this.setState({
+      menu: e.target.value,
+    });
+    axios
+      .get(` https://api.covidfrontline.net/menu/menuvalidation/${e.target.value}`)
+      .then((res) => {
+        const pagevalues = res.data;
+        console.log(pagevalues);
+         if (pagevalues > 1 && this.state.validError != true) {
+            this.setState({
+              mobile_message: "Menu Name already exist",
+              validError: false,
+            });
+         
+          } else {
+            this.setState({ mobile_message: "", validError: true });
+          }
+      });
 
+}
   render() {
     return (
       <div>
@@ -200,7 +220,7 @@ class EditMenu extends React.Component {
                           <input
                             className="form-control col-lg-10"
                             name="menu"
-                            onChange={this.onChange}
+                            onChange={this.setMenuName}
                             value={this.state.menu}
                             type="text"
                             onfocus="this.placeholder = 'Menu Name'"
@@ -212,7 +232,7 @@ class EditMenu extends React.Component {
                             this.state.menu,
                             "required|whitespace|min:1|max:20"
                           )}
-                        
+                          <div style={{color:'red'}}>{this.state.mobile_message}</div> 
                         </div>
                       
                         {/* <div className="form-group tags-field row m-0">

@@ -179,7 +179,27 @@ class EditSubMenu extends React.Component {
       this.forceUpdate();
     }
   }
+setSubMenuName=(e)=>{
+  this.setState({
+      submenu: e.target.value,
+    });
+    axios
+      .get(`https://api.covidfrontline.net/submenu/submenuvalidation/${e.target.value}`)
+      .then((res) => {
+        const pagevalues = res.data;
+        console.log(pagevalues);
+         if (pagevalues > 0 && this.state.validError != true) {
+            this.setState({
+              mobile_message: "Sub Menu Name already exist",
+              validError: false,
+            });
+         
+          } else {
+            this.setState({ mobile_message: "", validError: true });
+          }
+      });
 
+}
   render() {
     return (
       <div>
@@ -209,7 +229,7 @@ class EditSubMenu extends React.Component {
                           <input
                             className="form-control col-lg-10"
                             name="submenu"
-                            onChange={this.onChange}
+                            onChange={this.setSubMenuName}
                             value={this.state.submenu}
                             type="text"
                             onfocus="this.placeholder = 'Menu Name'"
@@ -221,7 +241,7 @@ class EditSubMenu extends React.Component {
                             this.state.submenu,
                             "required|whitespace|min:1|max:20"
                           )}
-                        
+                         <div style={{color:'red'}}>{this.state.mobile_message}</div> 
                         </div>
                        <div className="col-lg-12 p-0">
                          <div className="form-group tags-field row m-0">
