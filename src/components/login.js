@@ -20,7 +20,7 @@ function Login() {
 
   const Lo = () => {
     axios
-      .post("https://api.covidfrontline.net/superadmin/superadminlogin", {
+      .post(`${process.env.REACT_APP_BASE_URL}/superadmin/superadminlogin`, {
         email: email,
         password: password,
       })
@@ -66,8 +66,8 @@ function Login() {
                     value={email}
                     name="email"
                     type="text"
-                    onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Username'"
+                    // onFocus="this.placeholder = ''"
+                    // onBlur="this.placeholder = 'Username'"
                     placeholder="Email*"
                   />
                 </div>
@@ -80,8 +80,8 @@ function Login() {
                     onChange={handleChange("password")}
                     value={password}
                     name="password"
-                    onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = '******'"
+                    // onfocus="this.placeholder = ''"
+                    // onblur="this.placeholder = '******'"
                     placeholder="******"
                   />
                 </div>
@@ -91,7 +91,9 @@ function Login() {
               <div className="w-100 btn  boxed-btn" onClick={Lo()}>
                 Login
               </div>
-
+              <p>
+                <Link to="/change_password">Forgot Password ?</Link>
+              </p>
               <p>
                 If you want to login as Admin ?{" "}
                 <Link to="/adminlogin">Admin Login</Link>
