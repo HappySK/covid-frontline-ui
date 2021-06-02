@@ -98,7 +98,7 @@ import PatientStaus from "./AdminComponents/Request/add_patient_status";
 
 /////Volunteers  Details///////////////////////////////////////////////////////////////////////////////
 import VolunteerLogin from "./Volunteers/login_volunteers"; 
-
+import VolunteerChangePassword from './Volunteers/changepassword'
 import VolunteerAddRequest from "./Volunteers/Request/add_request";
 import VolunteerEditRequest from "./Volunteers/Request/edit_request";
 import VolunteerViewRequest from "./Volunteers/Request/view_request";
@@ -261,6 +261,7 @@ function Routing() {
 
 
   <Route exact path="/volunteerlogin" component={VolunteerLogin}></Route>
+  <Route exact path="/volunteer_change_password" component={VolunteerChangePassword}></Route>
    
    <PrivateRoute path="/volunteer_add_request" exact component={VolunteerAddRequest} />
         <PrivateRoute path="/volunteer_edit_request/:_id" exact component={VolunteerEditRequest} />

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
-import { Link, Route, useParams, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useFormik, Field, ErrorMessage, Formik, Form } from "formik";
 import { Button } from "@material-ui/core";
 import * as Yup from "yup";
@@ -24,9 +24,16 @@ function AdminLogin() {
 		axios
 			.post(`${process.env.REACT_APP_BASE_URL}/admin/adminlogin`, values)
 			.then((res) => {
-				console.log(res);
 				sessionStorage.setItem("user", JSON.stringify(res.data));
-				history.push("/dashboard");
+				const {
+					data: {
+						user: { isFirstLogin },
+						token,
+					},
+				} = res;
+				isFirstLogin
+					? history.push("/adminchange_password")
+					: history.push("/dashboard");
 			})
 			.catch((err) => {
 				if (err) actions.setFieldError("password", "Invalid Credentials");
@@ -46,9 +53,7 @@ function AdminLogin() {
 				<div className="login-box">
 					<div className="login-logo">
 						<span>
-							<strong style={{ fontSize: "20px" }}>
-								COVID HELP - ADMIN
-							</strong>
+							<strong style={{ fontSize: "20px" }}>COVID HELP - ADMIN</strong>
 						</span>
 						<img src="/assets/img/covid_logo.png" />
 						{/* <img src="assets/img/logo/deepthoughtlogo.svg" alt="COVID HELP"/> */}
@@ -95,9 +100,6 @@ function AdminLogin() {
 											{formik.isSubmitting ? `Loading` : `Submit`}
 										</Button>
 									</div>
-									<p>
-										<Link to="/change_password">Forgot Password ?</Link>
-									</p>
 									<p>
 										If you want to login as Admin ?{" "}
 										<Link to="/adminlogin">Admin Login</Link>

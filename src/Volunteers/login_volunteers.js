@@ -28,8 +28,16 @@ function VolunteerLogin() {
 			)
 			.then((res) => {
 				console.log(res);
+				const {
+					data: {
+						user: { isFirstLogin },
+						token,
+					},
+				} = res;
 				sessionStorage.setItem("user", JSON.stringify(res.data));
-				history.push("/dashboard");
+				isFirstLogin
+					? history.push("/volunteer_change_password")
+					: history.push("/dashboard");
 			})
 			.catch((err) => {
 				if (err) actions.setFieldError("password", "Invalid Credentials");

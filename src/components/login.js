@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { Button } from "@material-ui/core";
-import { Link, Route, useParams, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -27,13 +27,18 @@ function Login() {
 				values
 			)
 			.then((res) => {
-        console.log(res);
-        sessionStorage.setItem("user", JSON.stringify(res.data));
-        history.push("/dashboard");
-			}).catch(err => {
-        if(err) actions.setFieldError('password', "Invalid Credentials")
-        actions.setSubmitting(false)
-      });
+				const {
+					user: { isFirstLogin },
+				} = res.data;
+				sessionStorage.setItem("user", JSON.stringify(res.data));
+				isFirstLogin
+					? history.push("/change_password")
+					: history.push("/dashboard");
+			})
+			.catch((err) => {
+				if (err) actions.setFieldError("password", "Invalid Credentials");
+				actions.setSubmitting(false);
+			});
 	};
 
 	const formik = useFormik({
@@ -88,13 +93,15 @@ function Login() {
 								</div>
 								<div className="form-group mt-3 mb-0">
 									<div className="w-100 btn  boxed-btn">
-										<Button type="submit" className="btn boxed-btn" fullWidth diabled={!formik.isSubmitting}>
+										<Button
+											type="submit"
+											className="btn boxed-btn"
+											fullWidth
+											diabled={!formik.isSubmitting}
+										>
 											{formik.isSubmitting ? `Loading` : `Submit`}
 										</Button>
 									</div>
-									<p>
-										<Link to="/change_password">Forgot Password ?</Link>
-									</p>
 									<p>
 										If you want to login as Admin ?{" "}
 										<Link to="/adminlogin">Admin Login</Link>
