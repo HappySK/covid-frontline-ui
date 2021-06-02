@@ -6,6 +6,9 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import swal from "sweetalert";
+
+import { TextError } from "../TextError";
 
 function Changepassword() {
 	const {
@@ -17,11 +20,20 @@ function Changepassword() {
 	const initialValues = {
 		password: "",
 		newpassword: "",
+		confirmpassword: "",
 	};
 
 	const validationSchema = Yup.object({
 		password: Yup.string().required("Old Password is required"),
-		newpassword: Yup.string().required("New Password is required"),
+		newpassword: Yup.string()
+			.min("8", "Password shoudl contain 8 to 15 characters")
+			.max("15", "Password should contain 8 to 15 characters")
+			.required("New Password is required"),
+		confirmpassword: Yup.string()
+			.oneOf([Yup.ref("newpassword")], "Passwords must match")
+			.min("8", "Password shoudl contain 8 to 15 characters")
+			.max("15", "Password should contain 8 to 15 characters")
+			.required("Confirm Password is required"),
 	});
 
 	const onSubmit = (values, actions) => {
@@ -42,8 +54,13 @@ function Changepassword() {
 			)
 			.then(({ data: { success, message } }) => {
 				success
-					? history.push("/dashboard")
-					: actions.setFieldError("password", message);
+					? swal({
+							title: "Password reset successful",
+							text: "Redirecting to the dashboard",
+							icon: "success",
+							timer: 2000,
+					  }).then(() => history.push("/dashboard"))
+					: actions.setFieldError("password", "", swal("", message, "error"));
 			})
 			.catch(function (error) {
 				// handle error
@@ -77,7 +94,10 @@ function Changepassword() {
 															name="password"
 															placeholder="*****"
 														/>
-														<ErrorMessage name="password" />
+														<ErrorMessage
+															component={TextError}
+															name="password"
+														/>
 													</div>
 												</div>
 												<div className="col-lg-12 p-0">
@@ -89,7 +109,27 @@ function Changepassword() {
 															name="newpassword"
 															placeholder="*****"
 														/>
-														<ErrorMessage name="newpassword" />
+														<ErrorMessage
+															component={TextError}
+															name="newpassword"
+														/>
+													</div>
+												</div>
+												<div className="col-lg-12 p-0">
+													<div className="form-group tags-field  row m-0">
+														<label className="col-lg-2 p-0">
+															Confirm Password
+														</label>
+														<Field
+															className="form-control col-lg-6"
+															type="password"
+															name="confirmpassword"
+															placeholder="*****"
+														/>
+														<ErrorMessage
+															component={TextError}
+															name="confirmpassword"
+														/>
 													</div>
 												</div>
 
