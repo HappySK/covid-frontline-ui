@@ -107,9 +107,6 @@ function VolunteerLogin() {
 										</Button>
 									</div>
 									<p>
-										<Link to="/change_password">Forgot Password ?</Link>
-									</p>
-									<p>
 										If you want to login as Admin ?{" "}
 										<Link to="/adminlogin">Admin Login</Link>
 									</p>
