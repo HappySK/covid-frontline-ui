@@ -33,7 +33,7 @@ function AdminLogin() {
 				} = res;
 				isFirstLogin
 					? history.push("/adminchange_password")
-					: history.push("/dashboard");
+					: history.push("/admindashboard");
 			})
 			.catch((err) => {
 				if (err) actions.setFieldError("password", "Invalid Credentials");

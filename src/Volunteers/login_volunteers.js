@@ -37,7 +37,7 @@ function VolunteerLogin() {
 				sessionStorage.setItem("user", JSON.stringify(res.data));
 				isFirstLogin
 					? history.push("/volunteer_change_password")
-					: history.push("/dashboard");
+					: history.push("/volunteer_request");
 			})
 			.catch((err) => {
 				if (err) actions.setFieldError("password", "Invalid Credentials");

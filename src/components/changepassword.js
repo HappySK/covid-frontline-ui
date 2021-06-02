@@ -21,9 +21,7 @@ function Changepassword() {
 
 	const validationSchema = Yup.object({
 		password: Yup.string().required("Old Password is required"),
-		newpassword: Yup.string()
-			.oneOf([Yup.ref("password")], "Passwords must match")
-			.required("New Password is required"),
+		newpassword: Yup.string().required("New Password is required"),
 	});
 
 	const onSubmit = (values, actions) => {
@@ -45,10 +43,7 @@ function Changepassword() {
 			.then(({ data: { success, message } }) => {
 				success
 					? history.push("/dashboard")
-					: actions.setFieldError(
-							"newpassword",
-							"Something Went wrong please try again later."
-					  );
+					: actions.setFieldError("password", message);
 			})
 			.catch(function (error) {
 				// handle error
