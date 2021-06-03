@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route, HashRouter } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Empty from "./empty";
 
-
 // ////////////////FrontEnd/////////////////////////////////////////
 import Home from "./Frontend/home";
 /////////////////////SuperAdmin/////////////////////////////////////////////
@@ -62,13 +61,13 @@ import ViewMenu from "./components/Menu/view_menu";
 
 //SubMenu
 import AddSubMenu from "./components/Submenu/add_submenu";
-import  SubMenu  from  "./components/Submenu/submenu";
+import SubMenu from "./components/Submenu/submenu";
 import EditSubMenu from "./components/Submenu/edit_submenu";
 import ViewSubMenu from "./components/Submenu/view_submenu";
 
 ///Page
 import AddPage from "./components/Page/add_page";
-import  Page  from  "./components/Page/page";
+import Page from "./components/Page/page";
 import EditPage from "./components/Page/edit_page";
 import ViewPage from "./components/Page/view_page";
 
@@ -95,189 +94,259 @@ import ViewRequest from "./AdminComponents/Request/view_request";
 import Request from "./AdminComponents/Request/request";
 import PatientStaus from "./AdminComponents/Request/add_patient_status";
 
-
 /////Volunteers  Details///////////////////////////////////////////////////////////////////////////////
-import VolunteerLogin from "./Volunteers/login_volunteers"; 
-import VolunteerChangePassword from './Volunteers/changepassword'
+import VolunteerLogin from "./Volunteers/login_volunteers";
+import VolunteerChangePassword from "./Volunteers/changepassword";
 import VolunteerAddRequest from "./Volunteers/Request/add_request";
 import VolunteerEditRequest from "./Volunteers/Request/edit_request";
 import VolunteerViewRequest from "./Volunteers/Request/view_request";
 import VolunteerRequest from "./Volunteers/Request/request";
 import VolunteerPatientStaus from "./Volunteers/Request/add_patient_status";
 
-
-import PrivacyPolicy1 from "./Frontend/privacypolicy"
+//Pages
+import PrivacyPolicy1 from "./Frontend/privacypolicy";
 import TermsOfServices1 from "./Frontend/termsofservices";
 import AboutUs from "./Frontend/aboutus";
 import MenuList from "./Frontend/menulist";
 import SubMenuList from "./Frontend/submenulist";
+import GDPRPolicy from "./Frontend/GDPRPolicy";
+import CookiePolicy from "./Frontend/CookiePolicy";
+import DevelopmentRoadMap from "./Frontend/DevelopmentRoadmap";
+
+// Institution Details
+import { AddInstitutionDetails } from "./components/InstitutionDetails/AddInstitutionDetails";
+import { InstitutionDetails } from "./components/InstitutionDetails/InstitutionDetails";
+import { EditInstitutionDetails } from "./components/InstitutionDetails/EditInstitutionDetails";
+import { ViewInstitutionDetails } from "./components/InstitutionDetails/ViewInstitutionDetails";
+
+// Social Media Details
+import { SocialMediaDetails } from "./components/SocialMedia";
 
 function Routing() {
-  return (
-    <HashRouter>
-      <Switch>
-        {/* <Route exact path="/" component={Empty}></Route> */}
-         <Route exact path="/" component={Home}></Route>
-            <Route exact path="/home" component={Home}></Route>
-          <Route exact path="/privacy_policy" component={PrivacyPolicy1}></Route>
-           <Route exact path="/terms_of_services" component={TermsOfServices1}></Route>
-             <Route exact path="/about_us" component={AboutUs}></Route>
+	return (
+		<HashRouter>
+			<Switch>
+				{/* <Route exact path="/" component={Empty}></Route> */}
+				<Route exact path="/" component={Home}></Route>
+				<Route exact path="/home" component={Home}></Route>
+				<Route exact path="/privacy_policy" component={PrivacyPolicy1}></Route>
+				<Route
+					exact
+					path="/terms_of_services"
+					component={TermsOfServices1}
+				></Route>
+				<Route exact path="/about_us" component={AboutUs}></Route>
 
-              <Route path="/MenuList/:plpID" component={MenuList} />
-               <Route path="/SubMenuList/:plpID" component={SubMenuList} />
-        <Route exact path="/login" component={Empty}></Route>
-        {/*************************************  Super Admin *****************************************/}
-        <Route exact path="/superadminlogin" component={Login}></Route>
-        <Route path="/dashboard" exact component={Dashboard} />
-        <Route path="/change_password" exact component={Changepassword} />
-        {/* Admin Users */}
-        <Route path="/add_adminuser" exact component={AddAdminUser} />
-        <Route path="/adminuser" exact component={AdminUsers} />
-        <Route path="/edit_adminuser/:_id" exact component={EditAdminUsers} />
-        {/* Administrator Duplicate */}
-        <Route
-          path="/add_administratoruser"
-          exact
-          component={AddAdministratorUser}
-        />
-        <Route path="/administratoruser" exact component={AdministratorUsers} />
-        {/* Cities */}
-        <Route path="/add_city" exact component={AddCity} />
-        <Route path="/cities" exact component={City} />
-        <Route path="/edit_city/:_id" exact component={EditCity} />
-        {/* Countries */}
-        <Route path="/add_country" exact component={AddCountry} />
-        <Route path="/countries" exact component={Country} />
-        <Route path="/edit_country/:_id" exact component={EditCountry} />
-        {/* Blood Group */}
-        <PrivateRoute path="/add_bloodgroup" exact component={AddBloodGroup} />
-        <PrivateRoute
-          path="/edit_bloodgroup/:_id"
-          exact
-          component={EditBloodGroup}
-        />
-        <PrivateRoute path="/bloodgroup" exact component={BloodGroup} />
-        {/* Resource */}
-        <PrivateRoute path="/add_resource" exact component={AddResource} />
-        <PrivateRoute
-          path="/edit_resource/:_id"
-          exact
-          component={EditResource}
-        />
-        <PrivateRoute
-          path="/view_resource/:_id"
-          exact
-          component={ViewResource}
-        />
-        <PrivateRoute path="/resources" exact component={Resources} />
-        {/* PrivacyPolicy */}
-        <Route path="/add_privacypolicy" exact component={AddPrivacyPolicy} />
-        <Route path="/privacypolicy" exact component={PrivacyPolicy} />
-        <Route
-          path="/edit_privacypolicy/:_id"
-          exact
-          component={EditPrivacyPolicy}
-        />
-        <Route
-          path="/privacypolicypage/60a2573033be630015d6fcad"
-          exact
-          component={PrivacyPolicyPage}
-        />
-        {/* terms of service */}
-        <Route path="/add_termsofservice" exact component={AddTermsOfservice} />
-        <Route path="/termsofservice" exact component={TermsOfservice} />
-        <Route
-          path="/edit_termsofservice/:_id"
-          exact
-          component={EditTermsOfservice}
-        />
-        <Route
-          path="/termsofservicepage/60a25d9c33be630015d6fcaf"
-          exact
-          component={TermsOfservicePage}
-        />
+				<Route path="/MenuList/:plpID" component={MenuList} />
+				<Route path="/SubMenuList/:plpID" component={SubMenuList} />
+				<Route exact path="/login" component={Empty}></Route>
+				{/*************************************  Super Admin *****************************************/}
+				<Route exact path="/superadminlogin" component={Login}></Route>
+				<Route path="/dashboard" exact component={Dashboard} />
+				<Route path="/change_password" exact component={Changepassword} />
+				{/* Admin Users */}
+				<Route path="/add_adminuser" exact component={AddAdminUser} />
+				<Route path="/adminuser" exact component={AdminUsers} />
+				<Route path="/edit_adminuser/:_id" exact component={EditAdminUsers} />
+				{/* Administrator Duplicate */}
+				<Route
+					path="/add_administratoruser"
+					exact
+					component={AddAdministratorUser}
+				/>
+				<Route path="/administratoruser" exact component={AdministratorUsers} />
+				{/* Cities */}
+				<Route path="/add_city" exact component={AddCity} />
+				<Route path="/cities" exact component={City} />
+				<Route path="/edit_city/:_id" exact component={EditCity} />
+				{/* Countries */}
+				<Route path="/add_country" exact component={AddCountry} />
+				<Route path="/countries" exact component={Country} />
+				<Route path="/edit_country/:_id" exact component={EditCountry} />
+				{/* Blood Group */}
+				<PrivateRoute path="/add_bloodgroup" exact component={AddBloodGroup} />
+				<PrivateRoute
+					path="/edit_bloodgroup/:_id"
+					exact
+					component={EditBloodGroup}
+				/>
+				<PrivateRoute path="/bloodgroup" exact component={BloodGroup} />
+				{/* Resource */}
+				<PrivateRoute path="/add_resource" exact component={AddResource} />
+				<PrivateRoute
+					path="/edit_resource/:_id"
+					exact
+					component={EditResource}
+				/>
+				<PrivateRoute
+					path="/view_resource/:_id"
+					exact
+					component={ViewResource}
+				/>
+				<PrivateRoute path="/resources" exact component={Resources} />
+				{/* PrivacyPolicy */}
+				<Route path="/add_privacypolicy" exact component={AddPrivacyPolicy} />
+				<Route path="/privacypolicy" exact component={PrivacyPolicy} />
+				<Route
+					path="/edit_privacypolicy/:_id"
+					exact
+					component={EditPrivacyPolicy}
+				/>
+				<Route
+					path="/privacypolicypage/60a2573033be630015d6fcad"
+					exact
+					component={PrivacyPolicyPage}
+				/>
+				{/* terms of service */}
+				<Route path="/add_termsofservice" exact component={AddTermsOfservice} />
+				<Route path="/termsofservice" exact component={TermsOfservice} />
+				<Route
+					path="/edit_termsofservice/:_id"
+					exact
+					component={EditTermsOfservice}
+				/>
+				<Route
+					path="/termsofservicepage/60a25d9c33be630015d6fcaf"
+					exact
+					component={TermsOfservicePage}
+				/>
 
-{/*888888888888888888888888888888888888888 Menu 888888888888888888888888888888888888888888888888888*/}
+				{/* GDPR Policy */}
+				<Route path="/gdpr_policy" exact component={GDPRPolicy} />
 
-  <Route path="/add_menu" exact component={AddMenu} />
-        <Route path="/menu" exact component={Menu} />
-         <Route path="/edit_menu/:_id" exact component={EditMenu} />
-         <Route path="/view_menu/:_id" exact component={ViewMenu} />
+				{/* CookiePolicy */}
+				<Route path="/cookie_policy" exact component={CookiePolicy} />
 
-         
-  <Route path="/add_submenu" exact component={AddSubMenu} />
-        <Route path="/submenu" exact component={SubMenu} />
-         <Route path="/edit_submenu/:_id" exact component={EditSubMenu} />
-         <Route path="/view_submenu/:_id" exact component={ViewSubMenu} />
+				{/* DevelopmentRoadMap */}
+				<Route
+					path="/development_roadmap"
+					exact
+					component={DevelopmentRoadMap}
+				/>
 
-<Route path="/add_page" exact component={AddPage} />
-        <Route path="/page" exact component={Page} />
-         <Route path="/edit_page/:_id" exact component={EditPage} />
-        
-<Route path="/view_page/:_id" exact component={ViewPage} />
+				{/*888888888888888888888888888888888888888 Menu 888888888888888888888888888888888888888888888888888*/}
 
-        {/*************************************   Admin *****************************************/}
-        {/* Admin */}
-        <Route exact path="/adminlogin" component={AdminLogin}></Route>
-        <Route
-          path="/adminchange_password"
-          exact
-          component={AdminChangepassword}
-        />
-        <Route path="/admindashboard" exact component={AdminDashboard} />
-        {/* Resource 1*/}
-        <PrivateRoute path="/add_resource1" exact component={AddResource1} />
-        <PrivateRoute
-          path="/edit_resource1/:_id"
-          exact
-          component={EditResource1}
-        />
-        <PrivateRoute
-          path="/view_resource1/:_id"
-          exact
-          component={ViewResource1}
-        />
-        <PrivateRoute path="/resources1" exact component={Resources1} />
-        {/* Volunteers */}
-        <PrivateRoute path="/add_volunteers" exact component={AddVolunteers} />
-        <PrivateRoute
-          path="/edit_volunteers/:_id"
-          exact
-          component={EditVolunteers}
-        />
-        <PrivateRoute path="/volunteers" exact component={Volunteers} />
-        {/* Request*/}
-        <PrivateRoute path="/add_request" exact component={AddRequest} />
-        <PrivateRoute path="/edit_request/:_id" exact component={EditRequest} />
-        <PrivateRoute path="/view_request/:_id" exact component={ViewRequest} />
-        <PrivateRoute path="/request" exact component={Request} />
-        <PrivateRoute
-          path="/add_patient_status/:_id"
-          exact
-          component={PatientStaus}
-        />
+				<Route path="/add_menu" exact component={AddMenu} />
+				<Route path="/menu" exact component={Menu} />
+				<Route path="/edit_menu/:_id" exact component={EditMenu} />
+				<Route path="/view_menu/:_id" exact component={ViewMenu} />
 
-{/****************************** Volunteers Details **************************************************/}
+				<Route path="/add_submenu" exact component={AddSubMenu} />
+				<Route path="/submenu" exact component={SubMenu} />
+				<Route path="/edit_submenu/:_id" exact component={EditSubMenu} />
+				<Route path="/view_submenu/:_id" exact component={ViewSubMenu} />
 
+				<Route path="/add_page" exact component={AddPage} />
+				<Route path="/page" exact component={Page} />
+				<Route path="/edit_page/:_id" exact component={EditPage} />
+				<Route path="/view_page/:_id" exact component={ViewPage} />
 
-  <Route exact path="/volunteerlogin" component={VolunteerLogin}></Route>
-  <Route exact path="/volunteer_change_password" component={VolunteerChangePassword}></Route>
-   
-   <PrivateRoute path="/volunteer_add_request" exact component={VolunteerAddRequest} />
-        <PrivateRoute path="/volunteer_edit_request/:_id" exact component={VolunteerEditRequest} />
-        <PrivateRoute path="/volunteer_view_request/:_id" exact component={VolunteerViewRequest} />
-        <PrivateRoute path="/volunteer_request" exact component={VolunteerRequest} />
-        <PrivateRoute
-          path="/volunteer_add_patient_status/:_id"
-          exact
-          component={VolunteerPatientStaus}
-        />
+				<Route
+					path="/add_institution_details"
+					exact
+					component={AddInstitutionDetails}
+				/>
+				<Route
+					path="/institution_details"
+					exact
+					component={InstitutionDetails}
+				/>
+				<Route
+					path="/edit_institution_details/:_id"
+					exact
+					component={EditInstitutionDetails}
+				/>
+				<Route
+					path="/view_institution_details/:_id"
+					exact
+					component={ViewInstitutionDetails}
+				/>
 
+				{/* ********************************Social Media Details**************************** */}
+				<Route
+					path="/view_social_media_details"
+					exact
+					component={SocialMediaDetails}
+				/>
 
+				{/*************************************   Admin *****************************************/}
+				{/* Admin */}
+				<Route exact path="/adminlogin" component={AdminLogin}></Route>
+				<Route
+					path="/adminchange_password"
+					exact
+					component={AdminChangepassword}
+				/>
+				<Route path="/admindashboard" exact component={AdminDashboard} />
+				{/* Resource 1*/}
+				<PrivateRoute path="/add_resource1" exact component={AddResource1} />
+				<PrivateRoute
+					path="/edit_resource1/:_id"
+					exact
+					component={EditResource1}
+				/>
+				<PrivateRoute
+					path="/view_resource1/:_id"
+					exact
+					component={ViewResource1}
+				/>
+				<PrivateRoute path="/resources1" exact component={Resources1} />
+				{/* Volunteers */}
+				<PrivateRoute path="/add_volunteers" exact component={AddVolunteers} />
+				<PrivateRoute
+					path="/edit_volunteers/:_id"
+					exact
+					component={EditVolunteers}
+				/>
+				<PrivateRoute path="/volunteers" exact component={Volunteers} />
+				{/* Request*/}
+				<PrivateRoute path="/add_request" exact component={AddRequest} />
+				<PrivateRoute path="/edit_request/:_id" exact component={EditRequest} />
+				<PrivateRoute path="/view_request/:_id" exact component={ViewRequest} />
+				<PrivateRoute path="/request" exact component={Request} />
+				<PrivateRoute
+					path="/add_patient_status/:_id"
+					exact
+					component={PatientStaus}
+				/>
 
-      </Switch>
-    </HashRouter>
-  );
+				{/****************************** Volunteers Details **************************************************/}
+
+				<Route exact path="/volunteerlogin" component={VolunteerLogin}></Route>
+				<Route
+					exact
+					path="/volunteer_change_password"
+					component={VolunteerChangePassword}
+				></Route>
+
+				<PrivateRoute
+					path="/volunteer_add_request"
+					exact
+					component={VolunteerAddRequest}
+				/>
+				<PrivateRoute
+					path="/volunteer_edit_request/:_id"
+					exact
+					component={VolunteerEditRequest}
+				/>
+				<PrivateRoute
+					path="/volunteer_view_request/:_id"
+					exact
+					component={VolunteerViewRequest}
+				/>
+				<PrivateRoute
+					path="/volunteer_request"
+					exact
+					component={VolunteerRequest}
+				/>
+				<PrivateRoute
+					path="/volunteer_add_patient_status/:_id"
+					exact
+					component={VolunteerPatientStaus}
+				/>
+			</Switch>
+		</HashRouter>
+	);
 }
 
 export default Routing;

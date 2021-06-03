@@ -1,54 +1,138 @@
 import React from "react";
 import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
+
+import MenuList from "./menulist";
 class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  componentDidMount() {
-    axios
-      .get(`https://deepthoughts-nodejs.herokuapp.com/private/privatepages`)
-      .then((res) => {
-        const PrivatePages = res.data;
-        console.log(PrivatePages);
-        this.setState({ PrivatePages });
-      });
+	constructor(props) {
+		super(props);
+		this.state = {
+			PrivatePages: "",
+			menus: [],
+			socialmedia: {},
+		};
+	}
+	componentDidMount() {
+		axios
+			.get(`https://deepthoughts-nodejs.herokuapp.com/private/privatepages`)
+			.then((res) => {
+				const PrivatePages = res.data;
+				this.setState({ ...this.state, PrivatePages: PrivatePages });
+			});
+		axios.get(`https://api.covidfrontline.net/menu/menus`).then((res) => {
+			const menus = res.data;
+			this.setState({ ...this.state, menus: menus });
+		});
+		axios
+			.get(`${process.env.REACT_APP_BASE_URL}/socialmedia/getsocialmedia`)
+			.then(({ data: { success, message } }) => {
+				success && this.setState({ ...this.state, socialmedia: message });
+			});
+	}
 
-  }
+	render() {
+		return (
+			<footer>
+				<div className="bg12 footer-space">
+					<div className="container">
+						<div className="row">
+							<div className="footer-box-1 col-lg-3 col-md-3 p-b-20 p-l-0">
+								<div className="footer-menu">
+									<h1>COVID FRONTLINE</h1>
+									<p>
+										<br></br>
+										<ul>
+											<li>
+												<Link to="institutiondetails">Institution Details</Link>
+											</li>
+										</ul>
+									</p>
+								</div>
+							</div>
+							<div className="footer-box-2 col-lg-3 col-md-3 p-b-20 p-l-0">
+								<div className="footer-menu">
+									<h1>Links</h1>
+									<p>
+										<br></br>
+										<ul>
+											{this.state.menus.map(({ menu }) => (
+												<li>
+													<Link to={`/MenuList/${menu}`}>{menu}</Link>
+												</li>
+											))}
+										</ul>
+									</p>
+								</div>
+							</div>
+							<div className="footer-box-2 col-lg-3 col-md-3 p-b-20 p-l-0">
+								<div className="footer-menu">
+									<h1>COMPLIANCE</h1>
+									<p>
+										<br></br>
+										<ul>
+											<li>
+												<Link to="/privacy_policy">Privacy Policy</Link>
+											</li>
+											<li>
+												<Link to="/terms_of_services">Terms Of Services</Link>
+											</li>
+											<li>
+												<Link to="/gdpr_policy">GDPR Policy</Link>
+											</li>
+											<li>
+												<Link to="/cookie_policy">Cookie Policy</Link>
+											</li>
+											<li>
+												<Link to="/development_roadmap">
+													Development Roadmap
+												</Link>
+											</li>
+										</ul>
+									</p>
+								</div>
+							</div>
 
-  render() {
-    return (
-      <footer>
-        <div className="bg12 footer-space">
-          <div className="container">
-            <div className="row">
-              <div className="footer-box-1 col-lg-7 col-md-6 p-b-20 p-l-0">
-                <div className="footer-menu">
-                  <h1>COVID FRONTLINE</h1>
-                  <p>
-                  <br></br>
-                    Hyderabad
-                  </p>
-                </div>
-              </div>
+							<div className="footer-box-2 col-lg-3 col-md-3 p-b-20">
+								<div className="footer-menu">
+									<h1>Social Media</h1>
+									<div className="d-flex align-items-center">
+										<div>
+											<Link
+												to={`${this.state.socialmedia.facebook}`}
+												className="p-1"
+											>
+												<i class="fa fa-facebook" aria-hidden="true"></i>
+											</Link>
+										</div>
+										<Link
+											to={`${this.state.socialmedia.twitter}`}
+											className="p-1"
+										>
+											<i class="fa fa-twitter" aria-hidden="true"></i>
+										</Link>
+										<Link
+											to={`${this.state.socialmedia.linkedin}`}
+											className="p-1"
+										>
+											<i class="fa fa-linkedin" aria-hidden="true"></i>
+										</Link>
+										<Link
+											to={`${this.state.socialmedia.instagram}`}
+											className="p-1"
+										>
+											<i class="fa fa-instagram" aria-hidden="true"></i>
+										</Link>
+										<Link
+											to={`${this.state.socialmedia.youtube}`}
+											className="p-1"
+										>
+											<i class="fa fa-youtube" aria-hidden="true"></i>
+										</Link>
+									</div>
+								</div>
+							</div>
 
-              <div className="footer-box-2 col-lg-3 col-md-3 p-b-20">
-                <div className="footer-menu">
-                  <h1>Explore</h1>
-                  <ul>
-                    <li>
-                      <Link to="/privacy_policy">Privacy Policy</Link>
-                    </li>
-                    <li>
-                      <Link to="/terms_of_services">Terms Of Services</Link>
-                    </li>
-                   
-                  </ul>
-                </div>
-              </div>
-
-              {/* <div className="footer-box-3 col-lg-2 col-md-3 p-b-20 p-r-0">
+							{/* <div className="footer-box-3 col-lg-2 col-md-3 p-b-20 p-r-0">
                 <div className="footer-menu">
                   <h1>Resources</h1>
                   <ul>
@@ -64,7 +148,7 @@ class Footer extends React.Component {
                   </ul>
                 </div>
               </div> */}
-              {/* <div className="footer-box-3 col-lg-2 col-md-3 p-b-20 p-r-0">
+							{/* <div className="footer-box-3 col-lg-2 col-md-3 p-b-20 p-r-0">
                 <div className="footer-menu">
                   <h1>Private Pages</h1>
                   <ul>
@@ -86,41 +170,44 @@ class Footer extends React.Component {
                   </ul>
                 </div>
               </div> */}
-            </div>
-          </div>
-        </div>
+						</div>
+					</div>
+				</div>
 
-        <div className="bg12">
-          <div className="container size-h-4 p-tb-15 bdr-top-fotter">
-            <div className="row">
-              <span className="f1-s-1 cl0 txt-left col-md-6 p-0 line-copy">
-             An initiative of <a href="https://kp.foundation" target="_blank">KP Foundation</a>
-              </span>
-              <span className="f1-s-1 cl0 txt-right col-md-6 p-0">
-                <ul className="social-links">
-                  <li>
-                    <Link to="#">
-                      <i className="fab fa-twitter"></i>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="#">
-                      <i className="fab fa-facebook-f"></i>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="#">
-                      <i className="fab fa-google-plus-g"></i>
-                    </Link>
-                  </li>
-                </ul>
-              </span>
-            </div>
-          </div>
-        </div>
-      </footer>
-    );
-  }
+				<div className="bg12">
+					<div className="container size-h-4 p-tb-15 bdr-top-fotter">
+						<div className="row">
+							<span className="f1-s-1 cl0 txt-left col-md-6 p-0 line-copy">
+								An initiative of{" "}
+								<a href="https://kp.foundation" target="_blank">
+									KP Foundation
+								</a>
+							</span>
+							<span className="f1-s-1 cl0 txt-right col-md-6 p-0">
+								<ul className="social-links">
+									<li>
+										<Link to="#">
+											<i className="fa fa-twitter"></i>
+										</Link>
+									</li>
+									<li>
+										<Link to="#">
+											<i className="fa fa-facebook-f"></i>
+										</Link>
+									</li>
+									<li>
+										<Link to="#">
+											<i className="fa fa-google-plus"></i>
+										</Link>
+									</li>
+								</ul>
+							</span>
+						</div>
+					</div>
+				</div>
+			</footer>
+		);
+	}
 }
 
 export default Footer;

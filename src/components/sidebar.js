@@ -131,6 +131,18 @@ function Sidebar() {
 										<span className="color"> Pages</span>
 									</Link>
 								</MenuItem>
+								<MenuItem>
+									<Link to="/institution_details">
+										{/* <i class="fa fa-book fa-fw" aria-hidden="true"></i>  */}
+										<span className="color"> Institution Details</span>
+									</Link>
+								</MenuItem>
+								<MenuItem>
+									<Link to="/view_social_media_details">
+										{/* <i class="fa fa-book fa-fw" aria-hidden="true"></i>  */}
+										<span className="color"> Social Media</span>
+									</Link>
+								</MenuItem>
 							</SubMenu>
 
 							{/* <MenuItem>
