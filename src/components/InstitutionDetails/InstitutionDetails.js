@@ -1,13 +1,17 @@
 import React, { useMemo, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useTable } from "react-table";
 import Loader from "react-loader-spinner";
+import swal from "sweetalert";
 
 import Sidebar from "../sidebar";
 import axios from "axios";
 
 export const InstitutionDetails = () => {
 	const [institutions, setInstitutions] = useState([]);
+	const [value, setValue] = useState(true);
+
+	const history = useHistory();
 
 	useEffect(() => {
 		const getInstitutions = async () => {
@@ -22,7 +26,33 @@ export const InstitutionDetails = () => {
 				});
 		};
 		getInstitutions();
-	}, []);
+	}, [value]);
+
+	const handleDelete = (institutionid) => {
+		swal({
+			title: "Are you sure?",
+			text: "Once deleted, you will not be able to recover this imaginary file!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((willDelete) => {
+			if (willDelete) {
+				axios
+					.delete(
+						`${process.env.REACT_APP_BASE_URL}/institutiondetails/deleteinstitutiondetails/${institutionid}`
+					)
+					.then(() => {
+						swal("Institution has been deleted!", {
+							icon: "success",
+						}).then(() => {
+							setValue((value) => !value);
+						});
+					});
+			} else {
+				swal("Institution is not yet deleted!");
+			}
+		});
+	};
 
 	const COLUMNS = [
 		{
@@ -68,7 +98,7 @@ export const InstitutionDetails = () => {
 						<Link to={`/view_institution_details/${institutionid}`}>
 							<span className="btn">View</span>
 						</Link>
-						<Link>
+						<Link onClick={() => handleDelete(institutionid)}>
 							<span className="btn">Delete</span>
 						</Link>
 					</div>

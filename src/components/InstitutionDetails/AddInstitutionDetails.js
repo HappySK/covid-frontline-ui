@@ -220,8 +220,9 @@ export const AddInstitutionDetails = () => {
 																type="submit"
 																className="button button-contactForm boxed-btn margin"
 																type="submit"
+																disabled={!formik.isValid}
 															>
-																Save
+																{formik.isSubmitting ? `Saving..` : `Save`}
 															</button>
 														</div>
 													</div>
