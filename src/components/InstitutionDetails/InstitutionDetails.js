@@ -125,7 +125,7 @@ export const InstitutionDetails = () => {
 		state,
 		setPageSize,
 	} = useTable(
-		{ columns, data, initialState: { pageIndex: 0, pageSize: 1 } },
+		{ columns, data, initialState: { pageIndex: 0, pageSize: 5 } },
 		usePagination
 	);
 
@@ -194,7 +194,7 @@ export const InstitutionDetails = () => {
 										onChange={(e) => setPageSize(Number(e.target.value))}
 										className="form-control form-control-sm w-25 align-self-center"
 									>
-										{[1, 2, 3].map((pageSize) => (
+										{[5, 10, 15].map((pageSize) => (
 											<option key={pageSize} value={pageSize}>
 												Show {pageSize}
 											</option>
