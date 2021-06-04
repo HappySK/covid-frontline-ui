@@ -130,6 +130,36 @@ import { ViewHospitalDetails } from "./components/Hospital/ViewHospitalDetails";
 import { HospitalDetails } from "./components/Hospital/HospitalDetails";
 import { EditHospitalDetails } from "./components/Hospital/EditHospitalDetails";
 
+//Equipment Provider
+import { AddEquipmentProvider } from "./components/EquipmentProvider/AddEquipmentProvider";
+import { EquipmentProvider } from "./components/EquipmentProvider/EquipmentProvider";
+import { EditEquipmentProvider } from "./components/EquipmentProvider/EditEquipmentProvider";
+import { ViewEquipmentProvider } from "./components/EquipmentProvider/ViewEquipmentProvider";
+
+//Consultant
+import { AddConsultant } from "./components/Consultant/AddConsultant";
+import { EditConsultant } from "./components/Consultant/EditConsultant";
+import { ViewConsultant } from "./components/Consultant/ViewConsultant";
+import { Consultant } from "./components/Consultant/Consultant";
+
+//Pharma
+import { AddPharma } from "./components/Pharma/AddPharma";
+import { EditPharma } from "./components/Pharma/EditPharma";
+import { ViewPharma } from "./components/Pharma/ViewPharma";
+import { Pharma } from "./components/Pharma/Pharma";
+
+//Vaccine
+import { AddVaccine } from "./components/Vaccine/AddVaccine";
+import { EditVaccine } from "./components/Vaccine/EditVaccine";
+import { ViewVaccine } from "./components/Vaccine/ViewVaccine";
+import { Vaccine } from "./components/Vaccine/Vaccine";
+
+//Ambulance Service
+import { AddAmbulanceService } from "./components/AmbulanceService/AddAmbulanceService";
+import { EditAmbulanceService } from "./components/AmbulanceService/EditAmbulanceService";
+import { ViewAmbulanceService } from "./components/AmbulanceService/ViewAmbulanceService";
+import { AmbulanceService } from "./components/AmbulanceService/AmbulanceService";
+
 function Routing() {
 	return (
 		<HashRouter>
@@ -209,6 +239,48 @@ function Routing() {
 					exact
 					component={ViewHospitalDetails}
 				/>
+
+				{/* ****************************Equipment Provider*********************************** */}
+				<Route
+					path="/add_equipment_provider"
+					exact
+					component={AddEquipmentProvider}
+				/>
+				<Route path="/equipment_provider" exact component={EquipmentProvider} />
+				<Route
+					path="/edit_equipment_provider/:_id"
+					exact
+					component={EditEquipmentProvider}
+				/>
+				<Route
+					path="/view_equipment_provider/:_id"
+					exact
+					component={ViewEquipmentProvider}
+				/>
+
+				{/* ***********************************Consultant************************************* */}
+				<Route path="/add_consultant" exact component={AddConsultant} />
+				<Route path="/consultant" exact component={Consultant} />
+				<Route path="/edit_consultant/:_id" exact component={EditConsultant} />
+				<Route path="/view_consultant/:_id" exact component={ViewConsultant} />
+
+				{/* ************************************Pharma*********************************** */}
+				<Route path="/add_pharma" exact component={AddPharma} />
+				<Route path="/pharma" exact component={Pharma} />
+				<Route path="/edit_pharma/:_id" exact component={EditPharma} />
+				<Route path="/view_pharma/:_id" exact component={ViewPharma} />
+
+				{/* *******************************************Vaccine************************************* */}
+				<Route path="/add_vaccine" exact component={AddVaccine} />
+				<Route path="/vaccine" exact component={Vaccine} />
+				<Route path="/edit_vaccine/:_id" exact component={EditVaccine} />
+				<Route path="/view_vaccine/:_id" exact component={ViewVaccine} />
+
+				{/* *******************************************Ambulance Service************************************* */}
+				<Route path="/add_ambulance_service" exact component={AddAmbulanceService} />
+				<Route path="/ambulance_service" exact component={AmbulanceService} />
+				<Route path="/edit_ambulance_service/:_id" exact component={EditAmbulanceService} />
+				<Route path="/view_ambulance_service/:_id" exact component={ViewAmbulanceService} />
 
 				{/* PrivacyPolicy */}
 				<Route path="/add_privacypolicy" exact component={AddPrivacyPolicy} />

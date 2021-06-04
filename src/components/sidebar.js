@@ -92,6 +92,36 @@ function Sidebar() {
 										<span className="color"> Hospital</span>
 									</Link>
 								</MenuItem>
+								<MenuItem>
+									{" "}
+									<Link to="/equipment_provider" style={{ color: "white" }}>
+										<span className="color"> Equipment Provider</span>
+									</Link>
+								</MenuItem>
+								<MenuItem>
+									{" "}
+									<Link to="/consultant" style={{ color: "white" }}>
+										<span className="color"> Consultant</span>
+									</Link>
+								</MenuItem>
+								<MenuItem>
+									{" "}
+									<Link to="/pharma" style={{ color: "white" }}>
+										<span className="color"> Pharma</span>
+									</Link>
+								</MenuItem>
+								<MenuItem>
+									{" "}
+									<Link to="/vaccine" style={{ color: "white" }}>
+										<span className="color"> Vaccine</span>
+									</Link>
+								</MenuItem>
+								<MenuItem>
+									{" "}
+									<Link to="/ambulance_service" style={{ color: "white" }}>
+										<span className="color"> Ambulance</span>
+									</Link>
+								</MenuItem>
 							</SubMenu>
 							<SubMenu
 								title="Content Management System"

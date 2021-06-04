@@ -9,7 +9,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { TextError } from "../../TextError";
 import swal from "sweetalert";
 
-export const AddHospitalDetails = () => {
+export const AddEquipmentProvider = () => {
 	const {
 		user: { _id: addedBy },
 	} = isAutheticated();
@@ -31,7 +31,7 @@ export const AddHospitalDetails = () => {
 		const {
 			data: { success, message },
 		} = await axios.post(
-			`${process.env.REACT_APP_BASE_URL}/hospitaldetails/add`,
+			`${process.env.REACT_APP_BASE_URL}/equipmentprovider/add`,
 			{
 				...resource,
 				addedBy,
@@ -49,11 +49,11 @@ export const AddHospitalDetails = () => {
 		success &&
 			swal({
 				title: "Saved",
-				text: "Hospital Resource Details Saved.",
+				text: "Equipment Saved.",
 				icon: "success",
 				timer: 2000,
 			}).then(() => {
-				history.push("/hospital_details");
+				history.push("/equipment_provider");
 			});
 	};
 
@@ -63,7 +63,7 @@ export const AddHospitalDetails = () => {
 				<Sidebar></Sidebar>
 				<div className="admin-wrapper col-12">
 					<div className="admin-content">
-						<div className="admin-head">Hospital Details - Add New</div>
+						<div className="admin-head">Equipment Provider - Add New</div>
 						<div className="admin-data">
 							<div className="container-fluid p-0">
 								<Formik
@@ -77,7 +77,7 @@ export const AddHospitalDetails = () => {
 												<div className="col-lg-12 p-0">
 													<div className="form-group tags-field row m-0">
 														<label className="col-lg-2 p-0">
-															Hospital Resource
+															Equipment Name
 														</label>
 														<Field
 															className="form-control col-lg-6"
