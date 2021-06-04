@@ -10,6 +10,7 @@ class Footer extends React.Component {
 			PrivatePages: "",
 			menus: [],
 			socialmedia: {},
+			institutiondetails: {},
 		};
 	}
 	componentDidMount() {
@@ -28,6 +29,14 @@ class Footer extends React.Component {
 			.then(({ data: { success, message } }) => {
 				success && this.setState({ ...this.state, socialmedia: message });
 			});
+		axios
+			.get(
+				`${process.env.REACT_APP_BASE_URL}/institutiondetails/getinstitutiondetails/60b9292508770f08fc6c94ad`
+			)
+			.then(({ data: { success, message } }) => {
+				success &&
+					this.setState({ ...this.state, institutiondetails: message });
+			});
 	}
 
 	render() {
@@ -40,10 +49,16 @@ class Footer extends React.Component {
 								<div className="footer-menu">
 									<h1>COVID FRONTLINE</h1>
 									<p>
-										<br></br>
 										<ul>
 											<li>
-												<Link to="institutiondetails">Institution Details</Link>
+												<h4>{this.state.institutiondetails.institutionName}</h4>
+												<p>{this.state.institutiondetails.addressLine1}</p>
+												<p>{this.state.institutiondetails.addressLine2}</p>
+												<p>
+													{this.state.institutiondetails.city},
+													{this.state.institutiondetails.state} -{" "}
+													{this.state.institutiondetails.pincode}
+												</p>
 											</li>
 										</ul>
 									</p>
@@ -53,7 +68,6 @@ class Footer extends React.Component {
 								<div className="footer-menu">
 									<h1>Links</h1>
 									<p>
-										<br></br>
 										<ul>
 											{this.state.menus.map(({ menu }) => (
 												<li>
@@ -66,9 +80,8 @@ class Footer extends React.Component {
 							</div>
 							<div className="footer-box-2 col-lg-3 col-md-3 p-b-20 p-l-0">
 								<div className="footer-menu">
-									<h1>COMPLIANCE</h1>
+									<h1>Compliance</h1>
 									<p>
-										<br></br>
 										<ul>
 											<li>
 												<Link to="/privacy_policy">Privacy Policy</Link>
@@ -95,40 +108,48 @@ class Footer extends React.Component {
 							<div className="footer-box-2 col-lg-3 col-md-3 p-b-20">
 								<div className="footer-menu">
 									<h1>Social Media</h1>
-									<div className="d-flex align-items-center">
-										<div>
+									<ul className="d-flex flex-column">
+										<li>
 											<Link
 												to={`${this.state.socialmedia.facebook}`}
 												className="p-1"
 											>
-												<i class="fa fa-facebook" aria-hidden="true"></i>
+												Facebook
 											</Link>
-										</div>
-										<Link
-											to={`${this.state.socialmedia.twitter}`}
-											className="p-1"
-										>
-											<i class="fa fa-twitter" aria-hidden="true"></i>
-										</Link>
-										<Link
-											to={`${this.state.socialmedia.linkedin}`}
-											className="p-1"
-										>
-											<i class="fa fa-linkedin" aria-hidden="true"></i>
-										</Link>
-										<Link
-											to={`${this.state.socialmedia.instagram}`}
-											className="p-1"
-										>
-											<i class="fa fa-instagram" aria-hidden="true"></i>
-										</Link>
-										<Link
-											to={`${this.state.socialmedia.youtube}`}
-											className="p-1"
-										>
-											<i class="fa fa-youtube" aria-hidden="true"></i>
-										</Link>
-									</div>
+										</li>
+										<li>
+											<Link
+												to={`${this.state.socialmedia.twitter}`}
+												className="p-1"
+											>
+												Twitter
+											</Link>
+										</li>
+										<li>
+											<Link
+												to={`${this.state.socialmedia.linkedin}`}
+												className="p-1"
+											>
+												LinkedIn
+											</Link>
+										</li>
+										<li>
+											<Link
+												to={`${this.state.socialmedia.instagram}`}
+												className="p-1"
+											>
+												Instagram
+											</Link>
+										</li>
+										<li>
+											<Link
+												to={`${this.state.socialmedia.youtube}`}
+												className="p-1"
+											>
+												Youtube
+											</Link>
+										</li>
+									</ul>
 								</div>
 							</div>
 

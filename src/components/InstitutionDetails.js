@@ -71,7 +71,10 @@ export const InstitutionDetails = () => {
 			.min("10", "Minumum 10 characters required")
 			.max("50", "Maximum of 50 characters required")
 			.required("Address is required"),
-		city: Yup.string().required("City is required"),
+		city: Yup.string()
+			.min("3", "Minumum 3 characters required")
+			.max("50", "Maximum of 50 characters required")
+			.required("City is required"),
 		state: Yup.string()
 			.min("3", "Minumum 3 characters required")
 			.max("50", "Maximum of 50 characters required")
@@ -210,15 +213,7 @@ export const InstitutionDetails = () => {
 																className="form-control col-lg-6"
 																type="text"
 																name="city"
-																as="select"
-															>
-																<option value="">Select City</option>
-																{cities.map(({ city }, index) => (
-																	<option key={index} value={city}>
-																		{city}
-																	</option>
-																))}
-															</Field>
+															/>
 															<ErrorMessage component={TextError} name="city" />
 														</div>
 													</div>
