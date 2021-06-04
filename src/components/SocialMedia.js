@@ -47,26 +47,11 @@ export const SocialMediaDetails = (props) => {
 	};
 
 	const validationSchema = Yup.object({
-		facebook: Yup.string()
-			.min("10", "Minumum 10 characters required")
-			.max("100", "Maximum of 100 characters required")
-			.required("Instituiton Name is required"),
-		twitter: Yup.string()
-			.min("10", "Minumum 10 characters required")
-			.max("100", "Maximum of 100 characters required")
-			.required("Address is required"),
-		linkedin: Yup.string()
-			.min("10", "Minumum 10 characters required")
-			.max("100", "Maximum of 100 characters required")
-			.required("Address is required"),
-		instagram: Yup.string()
-			.min("10", "Minumum 10 characters required")
-			.max("100", "Maximum of 100 characters required")
-			.required("State name is required"),
-		youtube: Yup.string()
-			.min("10", "Minumum 10 characters required")
-			.max("100", "Maximum of 100 characters required")
-			.required("Pincode is required"),
+		facebook: Yup.string(),
+		twitter: Yup.string(),
+		linkedin: Yup.string(),
+		instagram: Yup.string(),
+		youtube: Yup.string(),
 	});
 
 	const onSubmit = async (socialmedia) => {
@@ -225,7 +210,7 @@ export const SocialMediaDetails = (props) => {
 																	className="button button-contactForm boxed-btn margin"
 																	type="submit"
 																>
-																	Save
+																	{formik.isSubmitting ? `Saving...` : `Save`}
 																</button>
 															</div>
 														</div>

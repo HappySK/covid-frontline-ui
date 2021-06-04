@@ -4,7 +4,7 @@ import axios from "axios";
 import renderHTML from "react-render-html";
 import Header from "./header";
 import Footer from "./footer";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 class Home extends React.Component {
 	constructor(props) {
 		super(props);
@@ -78,7 +78,11 @@ class Home extends React.Component {
 					</main>
 
 					{/* <!-- Back to top --> */}
-					<Link to="#">
+					<Link
+						onClick={() =>
+							window.scrollTo({ top: 0, left: 0, behaviour: "smooth" })
+						}
+					>
 						<div className="btn-back-to-top" id="myBtn">
 							<span className="symbol-btn-back-to-top">
 								<span className="fa fa-angle-double-up"></span>

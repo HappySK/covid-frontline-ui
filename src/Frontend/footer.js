@@ -110,44 +110,59 @@ class Footer extends React.Component {
 									<h1>Social Media</h1>
 									<ul className="d-flex flex-column">
 										<li>
-											<Link
-												to={`${this.state.socialmedia.facebook}`}
-												className="p-1"
-											>
-												Facebook
-											</Link>
+											{this.state.socialmedia.facebook && (
+												<a
+													href={`${this.state.socialmedia.facebook}`}
+													target="_blank"
+													className="p-1"
+												>
+													Facebook
+												</a>
+											)}
 										</li>
 										<li>
-											<Link
-												to={`${this.state.socialmedia.twitter}`}
-												className="p-1"
-											>
-												Twitter
-											</Link>
+											{this.state.socialmedia.twitter && (
+												<a
+													href={`${this.state.socialmedia.twitter}`}
+													target="_blank"
+													className="p-1"
+												>
+													Twitter
+												</a>
+											)}
 										</li>
 										<li>
-											<Link
-												to={`${this.state.socialmedia.linkedin}`}
-												className="p-1"
-											>
-												LinkedIn
-											</Link>
+											{this.state.socialmedia.linkedin && (
+												<a
+													href={`${this.state.socialmedia.linkedin}`}
+													target="_blank"
+													className="p-1"
+												>
+													LinkedIn
+												</a>
+											)}
 										</li>
 										<li>
-											<Link
-												to={`${this.state.socialmedia.instagram}`}
-												className="p-1"
-											>
-												Instagram
-											</Link>
+											{this.state.socialmedia.instagram && (
+												<a
+													href={`${this.state.socialmedia.instagram}`}
+													target="_blank"
+													className="p-1"
+												>
+													Instagram
+												</a>
+											)}
 										</li>
 										<li>
-											<Link
-												to={`${this.state.socialmedia.youtube}`}
-												className="p-1"
-											>
-												Youtube
-											</Link>
+											{this.state.socialmedia.youtube && (
+												<a
+													href={`${this.state.socialmedia.youtube}`}
+													target="_blank"
+													className="p-1"
+												>
+													Youtube
+												</a>
+											)}
 										</li>
 									</ul>
 								</div>

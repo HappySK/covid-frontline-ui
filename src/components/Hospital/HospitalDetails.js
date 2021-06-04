@@ -40,7 +40,7 @@ export const HospitalDetails = () => {
 						`${process.env.REACT_APP_BASE_URL}/hospitaldetails/delete/${resourceid}`
 					)
 					.then(() => {
-						swal("Institution has been deleted!", {
+						swal("Data has been deleted!", {
 							icon: "success",
 						}).then(() => {
 							setValue((value) => !value);
