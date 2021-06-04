@@ -115,12 +115,20 @@ import DevelopmentRoadMap from "./Frontend/DevelopmentRoadmap";
 
 // Institution Details
 import { AddInstitutionDetails } from "./components/InstitutionDetails/AddInstitutionDetails";
-import { InstitutionDetails } from "./components/InstitutionDetails/InstitutionDetails";
+// import { InstitutionDetails } from "./components/InstitutionDetails/InstitutionDetails";
 import { EditInstitutionDetails } from "./components/InstitutionDetails/EditInstitutionDetails";
 import { ViewInstitutionDetails } from "./components/InstitutionDetails/ViewInstitutionDetails";
 
+import { InstitutionDetails } from "./components/InstitutionDetails";
+
 // Social Media Details
 import { SocialMediaDetails } from "./components/SocialMedia";
+
+// Hospital
+import { AddHospitalDetails } from "./components/Hospital/AddHospitalDetails";
+import { ViewHospitalDetails } from "./components/Hospital/ViewHospitalDetails";
+import { HospitalDetails } from "./components/Hospital/HospitalDetails";
+import { EditHospitalDetails } from "./components/Hospital/EditHospitalDetails";
 
 function Routing() {
 	return (
@@ -184,6 +192,24 @@ function Routing() {
 					component={ViewResource}
 				/>
 				<PrivateRoute path="/resources" exact component={Resources} />
+				{/* ****************************Hospital*********************************** */}
+				<Route
+					path="/add_hospital_details"
+					exact
+					component={AddHospitalDetails}
+				/>
+				<Route path="/hospital_details" exact component={HospitalDetails} />
+				<Route
+					path="/edit_hospital_details/:_id"
+					exact
+					component={EditHospitalDetails}
+				/>
+				<Route
+					path="/view_hospital_details/:_id"
+					exact
+					component={ViewHospitalDetails}
+				/>
+
 				{/* PrivacyPolicy */}
 				<Route path="/add_privacypolicy" exact component={AddPrivacyPolicy} />
 				<Route path="/privacypolicy" exact component={PrivacyPolicy} />
@@ -240,7 +266,7 @@ function Routing() {
 				<Route path="/page" exact component={Page} />
 				<Route path="/edit_page/:_id" exact component={EditPage} />
 				<Route path="/view_page/:_id" exact component={ViewPage} />
-
+				{/* ********************************Institution Details***************************** */}
 				<Route
 					path="/add_institution_details"
 					exact
@@ -252,7 +278,7 @@ function Routing() {
 					component={InstitutionDetails}
 				/>
 				<Route
-					path="/edit_institution_details/:_id"
+					path="/edit_institution_details"
 					exact
 					component={EditInstitutionDetails}
 				/>
@@ -260,6 +286,12 @@ function Routing() {
 					path="/view_institution_details/:_id"
 					exact
 					component={ViewInstitutionDetails}
+				/>
+
+				<Route
+					path="/view_institution_details"
+					exact
+					component={InstitutionDetails}
 				/>
 
 				{/* ********************************Social Media Details**************************** */}

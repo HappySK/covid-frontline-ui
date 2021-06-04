@@ -6,11 +6,11 @@ import swal from "sweetalert";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Loader from "react-loader-spinner";
 
-import Sidebar from "../sidebar";
-import { isAutheticated } from "../../auth";
-import { TextError } from "../../TextError";
+import Sidebar from "../components/sidebar";
+import { isAutheticated } from "../auth";
+import { TextError } from "../TextError";
 
-export const EditInstitutionDetails = () => {
+export const InstitutionDetails = () => {
 	const {
 		user: { _id: addedBy },
 	} = isAutheticated();
@@ -43,7 +43,7 @@ export const EditInstitutionDetails = () => {
 	const getInstitutionDetails = () => {
 		axios
 			.get(
-				`${process.env.REACT_APP_BASE_URL}/institutiondetails/getinstitutiondetails`
+				`${process.env.REACT_APP_BASE_URL}/institutiondetails/getinstitutiondetails/60b9292508770f08fc6c94ad`
 			)
 			.then(({ data: { success, message } }) => {
 				success && setInstitutionData(message);
@@ -102,7 +102,7 @@ export const EditInstitutionDetails = () => {
 		success &&
 			swal({
 				title: "Saved",
-				text: "Institution Details Saved.Redirecting to the Dashboard",
+				text: "Institution Details Saved Successfully",
 				icon: "success",
 				timer: 2000,
 			}).then(() => {
@@ -118,10 +118,10 @@ export const EditInstitutionDetails = () => {
 				<Sidebar></Sidebar>
 				<div className="admin-wrapper col-12">
 					<div className="admin-content">
-						<div className="admin-head">Institution Details - Edit</div>
+						<div className="admin-head">Institution Details</div>
 						<div className="admin-data">
 							<div className="col-lg-12 p-0 text-right mb-30">
-								<Link to="/institution_details">
+								<Link to="/dashboard">
 									<button className="button button-contactForm boxed-btn">
 										Back
 									</button>
@@ -265,7 +265,7 @@ export const EditInstitutionDetails = () => {
 																	className="button button-contactForm boxed-btn margin"
 																	type="submit"
 																>
-																	Save
+																	{formik.isSubmitting ? `Saving` : `Save`}
 																</button>
 															</div>
 														</div>

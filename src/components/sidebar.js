@@ -86,6 +86,12 @@ function Sidebar() {
 										<span className="color"> Resources</span>
 									</Link>
 								</MenuItem>
+								<MenuItem>
+									{" "}
+									<Link to="/hospital_details" style={{ color: "white" }}>
+										<span className="color"> Hospital</span>
+									</Link>
+								</MenuItem>
 							</SubMenu>
 							<SubMenu
 								title="Content Management System"
